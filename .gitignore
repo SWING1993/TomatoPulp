@@ -40,3 +40,5 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 .idea/
+
+Pods/

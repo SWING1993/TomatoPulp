@@ -1,7 +1,9 @@
+platform :ios, '10.0'
+use_frameworks!
 target 'TomatoPulp' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  pod 'Material', '~> 2.0'
-
+    pod 'Material', '~> 2.0'
+    pod 'ReactiveCocoa', '~> 8.0'
+    pod 'Alamofire', '~> 5.0.0.beta.1'
+    pod 'SwiftDate'
+    pod 'HandyJSON', '~> 4.2.0'
 end

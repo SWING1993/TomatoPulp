@@ -1,4 +1,6 @@
 PODS:
+  - Alamofire (5.0.0.beta.1)
+  - HandyJSON (4.2.1)
   - Material (2.16.4):
     - Material/Core (= 2.16.4)
   - Material/Core (2.16.4):
@@ -6,19 +8,41 @@ PODS:
   - Motion (1.4.3):
     - Motion/Core (= 1.4.3)
   - Motion/Core (1.4.3)
+  - ReactiveCocoa (8.0.2):
+    - ReactiveSwift (~> 4.0)
+  - ReactiveSwift (4.0.0):
+    - Result (~> 4.0)
+  - Result (4.1.0)
+  - SwiftDate (5.0.13)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.0.0.beta.1)
+  - HandyJSON (~> 4.2.0)
   - Material (~> 2.0)
+  - ReactiveCocoa (~> 8.0)
+  - SwiftDate
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - HandyJSON
     - Material
     - Motion
+    - ReactiveCocoa
+    - ReactiveSwift
+    - Result
+    - SwiftDate
 
 SPEC CHECKSUMS:
+  Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
+  HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
   Motion: 153ba49692997888556c7a95207278a8b1f8be95
+  ReactiveCocoa: fbd26e9ba60e98417ee47433e59465a98ed9da0f
+  ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
 
-PODFILE CHECKSUM: 0cd9932de5c5978b74b57fa37ad9018783e6cac4
+PODFILE CHECKSUM: 66db0287a020fead5b11b47b8a231a785e03063a
 
 COCOAPODS: 1.5.3
