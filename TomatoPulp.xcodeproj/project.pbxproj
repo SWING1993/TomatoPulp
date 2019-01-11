@@ -14,6 +14,8 @@
 		03BEA12C21E6F22D00319A6C /* SWIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA12B21E6F22D00319A6C /* SWIndexViewController.swift */; };
 		03BEA12F21E6F4E500319A6C /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA12E21E6F4E500319A6C /* AppNavigationController.swift */; };
 		03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA13321E709C700319A6C /* SWLoginViewController.swift */; };
+		03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA13521E7195F00319A6C /* SWRegisterViewController.swift */; };
+		03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */; };
 		9AE2BE188F9EE124E3B2BD5B /* Pods_TomatoPulp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E056230424EEBA1231BE2A9F /* Pods_TomatoPulp.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +29,8 @@
 		03BEA12B21E6F22D00319A6C /* SWIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWIndexViewController.swift; sourceTree = "<group>"; };
 		03BEA12E21E6F4E500319A6C /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		03BEA13321E709C700319A6C /* SWLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewController.swift; sourceTree = "<group>"; };
+		03BEA13521E7195F00319A6C /* SWRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWRegisterViewController.swift; sourceTree = "<group>"; };
+		03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewModel.swift; sourceTree = "<group>"; };
 		5CA839BC8EB94E07683D8040 /* Pods-TomatoPulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TomatoPulp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TomatoPulp/Pods-TomatoPulp.debug.xcconfig"; sourceTree = "<group>"; };
 		7BA1AD4AF62682472F1CD356 /* Pods-TomatoPulp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TomatoPulp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TomatoPulp/Pods-TomatoPulp.release.xcconfig"; sourceTree = "<group>"; };
 		E056230424EEBA1231BE2A9F /* Pods_TomatoPulp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TomatoPulp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				03BEA13321E709C700319A6C /* SWLoginViewController.swift */,
+				03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 		03BEA13121E7095700319A6C /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				03BEA13521E7195F00319A6C /* SWRegisterViewController.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -270,7 +276,9 @@
 			files = (
 				03BEA12F21E6F4E500319A6C /* AppNavigationController.swift in Sources */,
 				03BEA12C21E6F22D00319A6C /* SWIndexViewController.swift in Sources */,
+				03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */,
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
+				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
 				03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

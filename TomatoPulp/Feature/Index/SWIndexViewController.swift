@@ -78,7 +78,7 @@ fileprivate extension SWIndexViewController {
 fileprivate extension SWIndexViewController {
     @objc
     func handleNextButton() {
-        let transitionViewController = SWIndexViewController()
-        navigationController?.pushViewController(transitionViewController, animated: true)
+        let loginViewController = SWLoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
     }
 }

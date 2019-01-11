@@ -8,90 +8,100 @@
 
 import UIKit
 import Material
+import ReactiveCocoa
+import ReactiveSwift
 
 class SWLoginViewController: UIViewController {
-    fileprivate var emailField: ErrorTextField!
-    fileprivate var passwordField: TextField!
-    
+    fileprivate var phoneField: ErrorTextField!
+    fileprivate var passwordField: ErrorTextField!
+    fileprivate var loginBtn: RaisedButton!
+
     /// A constant to layout the textFields.
     fileprivate let constant: CGFloat = 32
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.grey.lighten5
-        
+        preparePhoneField()
         preparePasswordField()
-        prepareEmailField()
         prepareResignResponderButton()
+        bindViewModel()
+        
+       
     }
     
-    /// Prepares the resign responder button.
-    fileprivate func prepareResignResponderButton() {
-        let btn = RaisedButton(title: "Resign", titleColor: Color.blue.base)
-        btn.addTarget(self, action: #selector(handleResignResponderButton(button:)), for: .touchUpInside)
+    fileprivate func bindViewModel() -> () {
+        // 初始化vm
+        let viewModel = SWLoginViewModel.init(phoneField.reactive.continuousTextValues, signal2: passwordField.reactive.continuousTextValues)
+
+        viewModel.phoneErrorSignal.observeValues {
+            self.phoneField.isErrorRevealed = $0
+        }
+        viewModel.passwordErrorSignal.observeValues {
+            self.passwordField.isErrorRevealed = $0
+        }
         
-        view.layout(btn).width(100).height(constant).top(40).right(20)
+        // 把信号绑定给登录的button
+        loginBtn.reactive.isEnabled <~ viewModel.loginEnableSignal
+        loginBtn.reactive.pressed = CocoaAction<RaisedButton>(viewModel.loginAction) {
+            _ in
+            return (self.phoneField.text!, self.passwordField.text!)
+        }
+        viewModel.loginAction.values.observeValues { success in
+            if success {
+                print("login success")
+            }
+        }
     }
     
     /// Handle the resign responder button.
     @objc
     internal func handleResignResponderButton(button: UIButton) {
-        emailField?.resignFirstResponder()
+        phoneField?.resignFirstResponder()
         passwordField?.resignFirstResponder()
     }
 }
 
 extension SWLoginViewController {
-    fileprivate func prepareEmailField() {
-        emailField = ErrorTextField()
-        emailField.placeholder = "Email"
-        emailField.detail = "Error, incorrect email"
-        emailField.isClearIconButtonEnabled = true
-        emailField.delegate = self
-        emailField.isPlaceholderUppercasedWhenEditing = true
-        emailField.placeholderAnimation = .hidden
-        
-        // Set the colors for the emailField, different from the defaults.
-        //        emailField.placeholderNormalColor = Color.amber.darken4
-        //        emailField.placeholderActiveColor = Color.pink.base
-        //        emailField.dividerNormalColor = Color.cyan.base
-        //        emailField.dividerActiveColor = Color.green.base
-        // Set the text inset
-        //        emailField.textInset = 20
-        
-        let leftView = UIImageView()
-        leftView.image = Icon.cm.audio
-        emailField.leftView = leftView
-        
-        view.layout(emailField).center(offsetY: -passwordField.bounds.height - 60).left(20).right(20)
+    fileprivate func preparePhoneField() {
+        phoneField = ErrorTextField()
+        phoneField.placeholder = "Phone"
+        phoneField.detail = "11位手机号码"
+//        phoneField.detailColor = Color.red.base
+        phoneField.error = "手机号码不正确"
+        phoneField.isClearIconButtonEnabled = true
+//        phoneField.delegate = self
+        phoneField.isPlaceholderUppercasedWhenEditing = true
+//        emailField.placeholderAnimation = .hidden
+//        let leftView = UIImageView()
+//        leftView.image = Icon.cm.audio
+//        emailField.leftView = leftView
+        view.layout(phoneField).top(20).left(20).right(20)
     }
     
     fileprivate func preparePasswordField() {
-        passwordField = TextField()
+        passwordField = ErrorTextField()
         passwordField.placeholder = "Password"
-        passwordField.detail = "At least 8 characters"
+        passwordField.detail = "至少6个字符的密码"
+//        passwordField.detailColor = Color.red.base
+        passwordField.error = "密码不符合要求"
         passwordField.clearButtonMode = .whileEditing
         passwordField.isVisibilityIconButtonEnabled = true
-        
-        // Setting the visibilityIconButton color.
-        passwordField.visibilityIconButton?.tintColor = Color.green.base.withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 0.54)
-        
-        view.layout(passwordField).center().left(20).right(20)
+        view.layout(passwordField).top(80).left(20).right(20)
+    }
+    
+    /// Prepares the login button.
+    fileprivate func prepareResignResponderButton() {
+        loginBtn = RaisedButton(title: "登录", titleColor: Color.blue.base)
+        loginBtn.addTarget(self, action: #selector(handleResignResponderButton(button:)), for: .touchUpInside)
+        view.layout(loginBtn).top(160).width(100).height(constant).right(20)
     }
 }
 
-extension SWLoginViewController: TextFieldDelegate {
-    public func textFieldDidEndEditing(_ textField: UITextField) {
-        (textField as? ErrorTextField)?.isErrorRevealed = false
-    }
-    
-    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.isErrorRevealed = false
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        (textField as? ErrorTextField)?.isErrorRevealed = true
-        return true
-    }
-}
+
+//extension SWLoginViewController: TextFieldDelegate {
+//    public func textFieldDidEndEditing(_ textField: UITextField) {
+//        (textField as? ErrorTextField)?.isErrorRevealed = textField.text!.count >= 6
+//    }
+//}
+

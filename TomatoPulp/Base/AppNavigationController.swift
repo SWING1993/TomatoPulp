@@ -13,7 +13,7 @@ class AppNavigationController: NavigationController {
     open override func prepare() {
         super.prepare()
         isMotionEnabled = true
-        motionNavigationTransitionType = .slide(direction: .down)
+//        motionNavigationTransitionType = .cover(direction: .right)
         guard let v = navigationBar as? NavigationBar else {
             return
         }
