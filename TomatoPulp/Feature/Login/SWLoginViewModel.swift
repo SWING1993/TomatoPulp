@@ -11,6 +11,7 @@ import ReactiveCocoa
 import ReactiveSwift
 import enum Result.NoError
 import Alamofire.Swift
+import Material
 
 class SWLoginViewModel: NSObject {
     
@@ -20,7 +21,6 @@ class SWLoginViewModel: NSObject {
     // 接收密码的信号
     var passwordSignal : Signal<String?, NoError>
     
-    
     // 用户名合法与否的信号
     var phoneErrorSignal : Signal<Bool, NoError>
     
@@ -29,6 +29,8 @@ class SWLoginViewModel: NSObject {
     
     // 用户名密码合法与否的信号
     var loginEnableSignal : Signal<Bool, NoError>
+    
+    var loginAlpha : Property<CGFloat>
 
     // 登录的Action
     var loginAction : Action<(String, String), Bool, NoError>
@@ -46,6 +48,13 @@ class SWLoginViewModel: NSObject {
         
         // 合并信号
         loginEnableSignal = Signal.combineLatest(phoneErrorSignal, passwordErrorSignal).map{ !$0 && !$1 }
+        
+        //通过.map对输入框变化的信号进行映射
+        let alphaSignal : Signal<CGFloat, NoError> = loginEnableSignal.map {
+            return $0 ? 1 : 0.5
+        }
+        //根据信号创建textfield的颜色属性
+        loginAlpha = Property(initial: 0.5, then: alphaSignal)
         
         // 根据合并的信号，创建控制登录按钮enable的属性
         let loginEnable = Property(initial: false, then: loginEnableSignal)
