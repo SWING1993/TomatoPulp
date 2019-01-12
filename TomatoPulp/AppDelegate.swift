@@ -17,8 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window!.backgroundColor = UIColor.white;
-        window!.rootViewController = AppNavigationController(rootViewController: SWLoginViewController())
-//        window!.rootViewController = AppNavigationController(rootViewController: SWIndexViewController())
+        if clientShared.isLogin() {
+            window!.rootViewController = AppNavigationController(rootViewController: SWIndexViewController())
+        } else {
+            window!.rootViewController = AppNavigationController(rootViewController: SWLoginViewController())
+        }
         window!.makeKeyAndVisible()
         return true
     }

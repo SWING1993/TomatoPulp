@@ -33,7 +33,7 @@ class SWLoginViewModel: NSObject {
     var loginAlpha : Property<CGFloat>
 
     // 登录的Action
-    var loginAction : Action<(String, String), Bool, NoError>
+    var loginAction : Action<(String, String), String, NoError>
     
     init(_ signal1 : Signal<String?, NoError>, signal2 : Signal<String?, NoError>) {
         // 信号赋值
@@ -61,18 +61,32 @@ class SWLoginViewModel: NSObject {
         
         loginAction = Action(enabledIf: loginEnable) {
             phone, password in
-            return SignalProducer<Bool, NoError> { observer, disposable in
+            return SignalProducer<String, NoError> { observer, disposable in
                 let parameters: Parameters = ["phone": phone, "password": password]
                 AF.request("http://118.24.216.163:8080/tomato/user/login", method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
                     //网络请求
-                    print(response)
-                    observer.send(value: true)
+                    var message : String = ""
+                    response.result.ifSuccess {
+                        if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
+                            if httpResult.success {
+                                message = "登录成功"
+                                if let user  = SWUser.deserialize(from: httpResult.result) {
+                                   clientShared.saveUserInfo(user: user)
+                                }
+                            } else {
+                                message = httpResult.message!
+                            }
+                        }
+                    }
+                    response.result.ifFailure({
+                        message = (response.error?.localizedDescription)!
+                    })
+                    
+                    observer.send(value: message)
                     observer.sendCompleted()
                 })
 
             }
         }
     }
-
-
 }

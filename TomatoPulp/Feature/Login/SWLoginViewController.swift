@@ -12,6 +12,7 @@ import ReactiveCocoa
 import ReactiveSwift
 
 class SWLoginViewController: UIViewController {
+    
     fileprivate var phoneField: ErrorTextField!
     fileprivate var passwordField: ErrorTextField!
     fileprivate var loginBtn: RaisedButton!
@@ -26,8 +27,11 @@ class SWLoginViewController: UIViewController {
         preparePasswordField()
         prepareResignResponderButton()
         bindViewModel()
-        
-       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        phoneField.text = "18667905583"
+        passwordField.text = "123456"
     }
     
     fileprivate func bindViewModel() -> () {
@@ -48,8 +52,9 @@ class SWLoginViewController: UIViewController {
             _ in
             return (self.phoneField.text!, self.passwordField.text!)
         }
-        viewModel.loginAction.values.observeValues { success in
-            if success {
+        viewModel.loginAction.values.observeValues { message in
+            print("登录 + \(message)")
+            if message == "登录成功" {
                 print("login success")
             }
         }
