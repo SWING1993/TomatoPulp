@@ -15,7 +15,7 @@ class AppHttpResponse: HandyJSON {
     var message : String?
     var error: String?
     var time: String?
-    var result:  Dictionary<String, Any> = [:]
+    var result: Any?
     
     required init() {}
 }

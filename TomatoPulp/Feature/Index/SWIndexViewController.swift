@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import Alamofire.Swift
 
 class SWIndexViewController: UIViewController {
 
@@ -33,6 +34,7 @@ class SWIndexViewController: UIViewController {
         prepareSearchButton()
         prepareNavigationItem()
         prepareFABButton()
+        setupASFBotData()
     }
 
     /*
@@ -48,6 +50,41 @@ class SWIndexViewController: UIViewController {
 }
 
 fileprivate extension SWIndexViewController {
+    
+    func setupASFBotData() {
+        let parameters: Parameters = ["pathname": "/root/ArchiSteamFarm/asf_linux/config"]
+        AF.request("http://swing1993.xyz:8080/tomato/asf/findAll", method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
+            //网络请求
+            response.result.ifSuccess {
+                if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
+                    if httpResult.success {
+                        let botJsons: Array<String> = httpResult.result as! Array
+                        for botJson in botJsons {
+//                            print("bot:\(botJson)")
+                            if let bot = SWASFBot.deserialize(from: botJson) {
+                                print(bot.filename!)
+                                if bot.filename! == "10446627.json" {
+                                    
+                                    
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            response.result.ifFailure({
+            })
+        })
+    }
+    
+//    func update() {
+//        let ZZ_parameters: Parameters = ["filename": "/Users/songguohua/Desktop/ASF.json", "content": bot.toJSONString()!]
+//        AF.request("http://localhost:8081/asf/save", method: .post, parameters: ZZ_parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
+//
+//        })
+//    }
+    
     func prepareMenuButton() {
         menuButton = IconButton(image: Icon.cm.menu)
     }
@@ -78,7 +115,6 @@ fileprivate extension SWIndexViewController {
 fileprivate extension SWIndexViewController {
     @objc
     func handleNextButton() {
-//        let loginViewController = SWLoginViewController()
-//        navigationController?.pushViewController(loginViewController, animated: true)
+        
     }
 }

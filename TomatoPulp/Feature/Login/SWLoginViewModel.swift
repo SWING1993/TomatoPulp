@@ -70,7 +70,8 @@ class SWLoginViewModel: NSObject {
                         if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
                             if httpResult.success {
                                 message = "登录成功"
-                                if let user  = SWUser.deserialize(from: httpResult.result) {
+                                let userDict : Dictionary<String, Any> = httpResult.result as! Dictionary<String, Any>
+                                if let user  = SWUser.deserialize(from: userDict) {
                                    clientShared.saveUserInfo(user: user)
                                 }
                             } else {
