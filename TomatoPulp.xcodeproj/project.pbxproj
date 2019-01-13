@@ -20,6 +20,7 @@
 		03FE608721EA116400E159FF /* AppHttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608621EA116400E159FF /* AppHttpResponse.swift */; };
 		03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608821EA1DBF00E159FF /* SWAppClient.swift */; };
 		03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608B21EB398A00E159FF /* SWASFBot.swift */; };
+		03FE608E21EB829900E159FF /* SWASFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608D21EB829900E159FF /* SWASFViewController.swift */; };
 		9AE2BE188F9EE124E3B2BD5B /* Pods_TomatoPulp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E056230424EEBA1231BE2A9F /* Pods_TomatoPulp.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		03FE608621EA116400E159FF /* AppHttpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHttpResponse.swift; sourceTree = "<group>"; };
 		03FE608821EA1DBF00E159FF /* SWAppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAppClient.swift; sourceTree = "<group>"; };
 		03FE608B21EB398A00E159FF /* SWASFBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBot.swift; sourceTree = "<group>"; };
+		03FE608D21EB829900E159FF /* SWASFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFViewController.swift; sourceTree = "<group>"; };
 		5CA839BC8EB94E07683D8040 /* Pods-TomatoPulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TomatoPulp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TomatoPulp/Pods-TomatoPulp.debug.xcconfig"; sourceTree = "<group>"; };
 		7BA1AD4AF62682472F1CD356 /* Pods-TomatoPulp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TomatoPulp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TomatoPulp/Pods-TomatoPulp.release.xcconfig"; sourceTree = "<group>"; };
 		E056230424EEBA1231BE2A9F /* Pods_TomatoPulp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TomatoPulp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				03FE608B21EB398A00E159FF /* SWASFBot.swift */,
+				03FE608D21EB829900E159FF /* SWASFViewController.swift */,
 			);
 			path = ASF;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03FE608E21EB829900E159FF /* SWASFViewController.swift in Sources */,
 				03BEA12F21E6F4E500319A6C /* AppNavigationController.swift in Sources */,
 				03BEA12C21E6F22D00319A6C /* SWIndexViewController.swift in Sources */,
 				03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */,
