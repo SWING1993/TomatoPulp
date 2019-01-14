@@ -1,5 +1,5 @@
 //
-//  SWASFSettingViewController.swift
+//  SWASFUserSettingViewController.swift
 //  TomatoPulp
 //
 //  Created by 宋国华 on 2019/1/14.
@@ -11,14 +11,14 @@ import UIKit
 import Material
 import Alamofire.Swift
 
-class SWASFSettingViewController: UIViewController {
-    
-    var asf: SWASF?
-    var asfDict: [String : Any]?
-    var asfKeys: Array<String>?
+class SWASFBotSettingViewController: UIViewController {
+
+    var asfBot: SWASFBot?
+    fileprivate var asfBotDict: [String : Any]?
+    fileprivate var asfBotKeys: Array<String>?
 
     fileprivate var tableView: TableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,11 +26,12 @@ class SWASFSettingViewController: UIViewController {
         prepareTableView()
         prepareNavigationItem()
         
-        if let asfConfig = self.asf {
-            asfDict = asfConfig.toJSON()
-            if let keys = asfDict?.keys {
-                asfKeys = Array(keys)
-                asfKeys?.sort(){
+        if let asfBotConfig = self.asfBot {
+            navigationItem.titleLabel.text = asfBotConfig.SteamLogin
+            asfBotDict = asfBotConfig.toJSON()
+            if let keys = asfBotDict?.keys {
+                asfBotKeys = Array(keys)
+                asfBotKeys?.sort(){
                     $0 < $1
                 }
             }
@@ -38,7 +39,7 @@ class SWASFSettingViewController: UIViewController {
     }
 }
 
-fileprivate extension SWASFSettingViewController {
+fileprivate extension SWASFBotSettingViewController {
     
     func prepareTableView() {
         tableView = TableView.init(frame: CGRect.zero, style: .grouped)
@@ -49,15 +50,15 @@ fileprivate extension SWASFSettingViewController {
     }
     
     func prepareNavigationItem() {
-        navigationItem.titleLabel.text = "ASF"
+        navigationItem.titleLabel.text = "ASFBot"
         navigationItem.detailLabel.text = "配置文件"
-//        settingButton.addTarget(self, action: #selector(handleToASFSetting), for: .touchUpInside)
-//        navigationItem.rightViews = [settingButton]
+        //        settingButton.addTarget(self, action: #selector(handleToASFSetting), for: .touchUpInside)
+        //        navigationItem.rightViews = [settingButton]
     }
 }
 
 
-extension SWASFSettingViewController : UITableViewDelegate {
+extension SWASFBotSettingViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
@@ -67,16 +68,12 @@ extension SWASFSettingViewController : UITableViewDelegate {
         return CGFloat.leastNormalMagnitude
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
 }
 
-extension SWASFSettingViewController : UITableViewDataSource {
+extension SWASFBotSettingViewController : UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = asfKeys?.count {
+        if let count = asfBotKeys?.count {
             return count;
         }
         return 0
@@ -88,13 +85,12 @@ extension SWASFSettingViewController : UITableViewDataSource {
             cell = TableViewCell.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cell")
         }
         
-        if let key = asfKeys?[indexPath.row] {
+        if let key = asfBotKeys?[indexPath.row] {
             cell?.textLabel?.text = key
-            if let value = asfDict?[key] {
+            if let value = asfBotDict?[key] {
                 cell?.detailTextLabel?.text =  "\(String(describing: value))"
             }
         }
-       
         cell?.textLabel?.font = Font.boldSystemFont(ofSize: 14)
         cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3

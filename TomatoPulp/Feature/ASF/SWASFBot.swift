@@ -165,7 +165,7 @@ class SWASFBot: HandyJSON {
     2    Operator    Provides basic access to given bot instances, mainly adding licenses and redeeming keys
     3    Master    Provides full access to given bot instance
  */
-    var SteamUserPermissions: Dictionary<UInt64, Int>?
+    var SteamUserPermissions: Dictionary<String, Int>?
     
     /// SteamMasterClanID - ulong type with default value of 0. This property defines the steamID of the steam group that bot should automatically join, including group chat. You can check steamID of your group by navigating to its page, then adding /memberslistxml?xml=1 to the end of the link, so the link will look like this. Then you can get steamID of your group from the result, it's in <groupID64> tag. In above example it would be 103582791440160998. If you don't have any "farm group" for your bots, you should keep it at default.
     var SteamMasterClanID: Int64 = 0

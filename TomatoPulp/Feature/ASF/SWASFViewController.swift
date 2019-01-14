@@ -89,6 +89,16 @@ extension SWASFViewController : UITableViewDelegate {
         return 55
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let bot: SWASFBot = self.bots[indexPath.row]
+        let controller: SWASFBotSettingViewController = SWASFBotSettingViewController()
+        controller.asfBot = bot
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension SWASFViewController : UITableViewDataSource {
@@ -108,7 +118,7 @@ extension SWASFViewController : UITableViewDataSource {
         cell?.textLabel?.text = bot.SteamLogin
         cell?.textLabel?.font = Font.boldSystemFont(ofSize: 14)
         cell?.detailTextLabel?.text = bot.FileName
-        cell?.detailTextLabel?.font = Font.italicSystemFont(ofSize: 11)
+        cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3
         
         let botSwitch: Switch = Switch(state: .off, style: .light, size: .small)
@@ -138,7 +148,9 @@ extension SWASFViewController: SwitchDelegate {
 fileprivate extension SWASFViewController {
     @objc
     func handleToASFSetting() {
-//        navigationController?.pushViewController(SWASFViewController(), animated: true)
+        let controller: SWASFSettingViewController = SWASFSettingViewController()
+        controller.asf = self.asf
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 //    @objc

@@ -14,9 +14,7 @@ class SWIndexViewController: UIViewController {
 
     fileprivate var menuButton: IconButton!
     fileprivate var starButton: IconButton!
-    fileprivate var searchButton: IconButton!
 
-    
     let v1 = UIView()
     
     open override func viewDidLoad() {
@@ -30,7 +28,6 @@ class SWIndexViewController: UIViewController {
         
         prepareMenuButton()
         prepareStarButton()
-        prepareSearchButton()
         prepareNavigationItem()
       
     }
@@ -49,21 +46,13 @@ fileprivate extension SWIndexViewController {
         starButton.addTarget(self, action: #selector(handleToSSR), for: .touchUpInside)
     }
     
-    func prepareSearchButton() {
-        searchButton = IconButton(image: Icon.cm.search)
-    }
-    
     func prepareNavigationItem() {
         navigationItem.titleLabel.text = "Material"
         navigationItem.detailLabel.text = "Build Beautiful Software"
         
-        navigationItem.leftViews = [menuButton]
-        navigationItem.rightViews = [starButton, searchButton]
+        navigationItem.rightViews = [starButton, menuButton]
     }
-    
-   
 }
-
 
 fileprivate extension SWIndexViewController {
     @objc
