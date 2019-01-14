@@ -30,8 +30,8 @@ class SWLoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        phoneField.text = "18667905583"
-        passwordField.text = "123456"
+        self.phoneField.text = "18667905583"
+        self.passwordField.text = "123456"
     }
     
     fileprivate func bindViewModel() -> () {
@@ -73,15 +73,12 @@ extension SWLoginViewController {
         phoneField = ErrorTextField()
         phoneField.placeholder = "手机号"
         phoneField.detail = "11位手机号码"
-//        phoneField.detailColor = Color.red.base
         phoneField.error = "手机号码不正确"
         phoneField.isClearIconButtonEnabled = true
-//        phoneField.delegate = self
         phoneField.isPlaceholderUppercasedWhenEditing = true
-//        emailField.placeholderAnimation = .hidden
-//        let leftView = UIImageView()
-//        leftView.image = Icon.cm.audio
-//        emailField.leftView = leftView
+        let leftView = UIImageView()
+        leftView.image = UIImage.init(named: "phone-solid")?.resize(toWidth: 20)
+        phoneField.leftView = leftView
         view.layout(phoneField).top(30).left(20).right(20)
     }
     
@@ -92,6 +89,9 @@ extension SWLoginViewController {
         passwordField.error = "密码不符合要求"
         passwordField.clearButtonMode = .whileEditing
         passwordField.isVisibilityIconButtonEnabled = true
+        let leftView = UIImageView()
+        leftView.image = UIImage.init(named: "unlock-solid")?.resize(toWidth: 20)
+        passwordField.leftView = leftView
         view.layout(passwordField).top(120).left(20).right(20)
     }
     
@@ -103,10 +103,4 @@ extension SWLoginViewController {
     }
 }
 
-
-//extension SWLoginViewController: TextFieldDelegate {
-//    public func textFieldDidEndEditing(_ textField: UITextField) {
-//        (textField as? ErrorTextField)?.isErrorRevealed = textField.text!.count >= 6
-//    }
-//}
 
