@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0332000421EC23E800158E86 /* SWASF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000321EC23E800158E86 /* SWASF.swift */; };
+		0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000521EC717B00158E86 /* SWSSRViewController.swift */; };
+		0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000821EC71CB00158E86 /* SWSSRUser.swift */; };
+		0332000B21EC7E6900158E86 /* SWASFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */; };
+		0332000D21EC7E9300158E86 /* SWASFUserSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000C21EC7E9300158E86 /* SWASFUserSettingViewController.swift */; };
 		03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA11621E6EB1B00319A6C /* AppDelegate.swift */; };
 		03BEA11C21E6EB1B00319A6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03BEA11A21E6EB1B00319A6C /* Main.storyboard */; };
 		03BEA11E21E6EB1D00319A6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03BEA11D21E6EB1D00319A6C /* Assets.xcassets */; };
@@ -27,6 +31,10 @@
 
 /* Begin PBXFileReference section */
 		0332000321EC23E800158E86 /* SWASF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASF.swift; sourceTree = "<group>"; };
+		0332000521EC717B00158E86 /* SWSSRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRViewController.swift; sourceTree = "<group>"; };
+		0332000821EC71CB00158E86 /* SWSSRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRUser.swift; sourceTree = "<group>"; };
+		0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSettingViewController.swift; sourceTree = "<group>"; };
+		0332000C21EC7E9300158E86 /* SWASFUserSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFUserSettingViewController.swift; sourceTree = "<group>"; };
 		03BEA11321E6EB1B00319A6C /* TomatoPulp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TomatoPulp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BEA11621E6EB1B00319A6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03BEA11B21E6EB1B00319A6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0332000721EC718C00158E86 /* SSR */ = {
+			isa = PBXGroup;
+			children = (
+				0332000821EC71CB00158E86 /* SWSSRUser.swift */,
+				0332000521EC717B00158E86 /* SWSSRViewController.swift */,
+			);
+			path = SSR;
+			sourceTree = "<group>";
+		};
 		03BEA10A21E6EB1B00319A6C = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +112,7 @@
 		03BEA12821E6F1CC00319A6C /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				0332000721EC718C00158E86 /* SSR */,
 				03FE608A21EB377900E159FF /* ASF */,
 				03BEA13121E7095700319A6C /* Register */,
 				03BEA13021E7094800319A6C /* Login */,
@@ -153,6 +171,8 @@
 				0332000321EC23E800158E86 /* SWASF.swift */,
 				03FE608B21EB398A00E159FF /* SWASFBot.swift */,
 				03FE608D21EB829900E159FF /* SWASFViewController.swift */,
+				0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */,
+				0332000C21EC7E9300158E86 /* SWASFUserSettingViewController.swift */,
 			);
 			path = ASF;
 			sourceTree = "<group>";
@@ -303,15 +323,19 @@
 				03FE608E21EB829900E159FF /* SWASFViewController.swift in Sources */,
 				03BEA12F21E6F4E500319A6C /* AppNavigationController.swift in Sources */,
 				03BEA12C21E6F22D00319A6C /* SWIndexViewController.swift in Sources */,
+				0332000B21EC7E6900158E86 /* SWASFSettingViewController.swift in Sources */,
 				03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */,
 				03FE608521EA02CE00E159FF /* SWUser.swift in Sources */,
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
 				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
 				03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */,
 				03FE608721EA116400E159FF /* AppHttpResponse.swift in Sources */,
+				0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */,
 				03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */,
 				0332000421EC23E800158E86 /* SWASF.swift in Sources */,
 				03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */,
+				0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */,
+				0332000D21EC7E9300158E86 /* SWASFUserSettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

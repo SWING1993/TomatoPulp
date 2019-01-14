@@ -41,12 +41,12 @@ fileprivate extension SWIndexViewController {
 
     func prepareMenuButton() {
         menuButton = IconButton(image: Icon.cm.menu)
-        menuButton.addTarget(self, action: #selector(handleNextButton), for: .touchUpInside)
-//        menuButton.addTarget(self, action: #selector(handleNextButton), for: .touchUpInside)
+        menuButton.addTarget(self, action: #selector(handleToASF), for: .touchUpInside)
     }
     
     func prepareStarButton() {
         starButton = IconButton(image: Icon.cm.star)
+        starButton.addTarget(self, action: #selector(handleToSSR), for: .touchUpInside)
     }
     
     func prepareSearchButton() {
@@ -67,7 +67,12 @@ fileprivate extension SWIndexViewController {
 
 fileprivate extension SWIndexViewController {
     @objc
-    func handleNextButton() {
+    func handleToASF() {
         navigationController?.pushViewController(SWASFViewController(), animated: true)
+    }
+    
+    @objc
+    func handleToSSR() {
+        navigationController?.pushViewController(SWSSRViewController(), animated: true)
     }
 }

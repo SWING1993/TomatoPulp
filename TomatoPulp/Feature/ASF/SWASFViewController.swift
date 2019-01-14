@@ -12,6 +12,8 @@ import Alamofire.Swift
 
 class SWASFViewController: UIViewController {
     
+    fileprivate var settingButton: IconButton = IconButton.init(image: Icon.cm.settings)
+
     fileprivate var tableView: TableView!
     
     fileprivate var asf: SWASF = SWASF()
@@ -25,13 +27,29 @@ class SWASFViewController: UIViewController {
         
         prepareTableView()
         
+        prepareNavigationItem()
+        
         setupASFBotData()
     }
     
-
 }
 
 fileprivate extension SWASFViewController {
+
+    func prepareTableView() {
+        tableView = TableView.init(frame: CGRect.zero, style: .grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .singleLine
+        view.layout(tableView).edges()
+    }
+    
+    func prepareNavigationItem() {
+        navigationItem.titleLabel.text = "ArchiSteamFarm"
+        navigationItem.detailLabel.text = "前所未有的挂卡体验"
+        settingButton.addTarget(self, action: #selector(handleToASFSetting), for: .touchUpInside)
+        navigationItem.rightViews = [settingButton]
+    }
     
     func setupASFBotData() {
         let parameters: Parameters = ["pathname": "/root/ArchiSteamFarm/asf_linux/config"]
@@ -44,7 +62,7 @@ fileprivate extension SWASFViewController {
                         
                         if let asf:SWASF = SWASF.deserialize(from: resultDict["asf"] as? String) {
                             self.asf = asf
-                            print("asf:\(self.asf.FilePath)")
+                            print("asf:\(self.asf.FileName)")
                         }
                         
                         let botJsons: Array<String> = resultDict["bots"] as! Array<String>
@@ -62,14 +80,6 @@ fileprivate extension SWASFViewController {
             response.result.ifFailure({
             })
         })
-    }
-    
-    func prepareTableView() {
-        tableView = TableView.init(frame: CGRect.zero, style: .grouped)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .singleLine
-        view.layout(tableView).edges()
     }
 }
 
@@ -94,10 +104,10 @@ extension SWASFViewController : UITableViewDataSource {
         }
         
         let bot: SWASFBot = self.bots[indexPath.row]
-        cell?.imageView?.image = UIImage.init(named: "robot-solid")?.resize(toWidth: 25)?.tint(with: bot.Enabled ? Color.green.base : Color.red.base)
+        cell?.imageView?.image = UIImage.init(named: "robot-solid")?.resize(toWidth: 25)?.tint(with: bot.Enabled ? Color.green.base : Color.blueGrey.lighten4)
         cell?.textLabel?.text = bot.SteamLogin
         cell?.textLabel?.font = Font.boldSystemFont(ofSize: 14)
-        cell?.detailTextLabel?.text = bot.FilePath
+        cell?.detailTextLabel?.text = bot.FileName
         cell?.detailTextLabel?.font = Font.italicSystemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3
         
@@ -117,10 +127,22 @@ extension SWASFViewController: SwitchDelegate {
         print("Switch changed state to: ", .on == state ? "on" : "off")
         let bot: SWASFBot = self.bots[control.tag]
         bot.Enabled = control.isOn
-        let parameters: Parameters = ["filename": bot.FilePath, "content": bot.toJSONString()!]
+        let parameters: Parameters = ["filename": bot.FileName, "content": bot.toJSONString()!]
         AF.request("http://swing1993.xyz:8080/tomato/asf/save", method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
             print(response.result.value!)
             self.setupASFBotData()
         })
     }
+}
+
+fileprivate extension SWASFViewController {
+    @objc
+    func handleToASFSetting() {
+//        navigationController?.pushViewController(SWASFViewController(), animated: true)
+    }
+    
+//    @objc
+//    func handleToSSR() {
+//        navigationController?.pushViewController(SWSSRViewController(), animated: true)
+//    }
 }

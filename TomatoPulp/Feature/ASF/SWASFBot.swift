@@ -40,7 +40,7 @@ class SWASFBot: HandyJSON {
     /// Enabled —— bool 类型，默认值为 false。本字段定义了是否启用本机器人。如果设置为 true，在 ASF 程序启动的时候会自动启动本机器人。如果设置成 false 则需要手动启动机器人。默认所有机器人都不自动启动，所以需要将所有想要自动启动的机器人的本字段设置成 true。
     var Enabled: Bool = false
 
-    var FilePath: String = ""
+//    var FilePath: String = ""
     var FileName: String = ""
     
     /*
