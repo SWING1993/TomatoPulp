@@ -62,6 +62,16 @@ fileprivate extension SWSSRViewController {
         })
     }
     
+    func transformedValue(value: Int64) -> String {
+        var result: Double = Double.init(value)
+        var multiplyFactor :Int = 0;
+        let tokens: Array<String> = ["Bytes", "KB", "MB", "GB","TB"]
+        while result > 1024 {
+            multiplyFactor = multiplyFactor + 1
+            result = result/1024
+        }
+        return "\(String(format: "%.2f", result))\(tokens[multiplyFactor])"
+    }
 }
 
 extension SWSSRViewController : UITableViewDelegate {
@@ -85,18 +95,15 @@ extension SWSSRViewController : UITableViewDataSource {
         }
         
         let user: SWSSRUser = self.users[indexPath.row]
-        cell?.imageView?.image = UIImage.init(named: "robot-solid")?.resize(toWidth: 25)?.tint(with: user.enable ? Color.green.base : Color.red.base)
+        cell?.imageView?.image = UIImage.init(named: "paper-plane-regular")?.resize(toWidth: 25)?.tint(with: user.enable ? Color.green.base : Color.red.base)
         cell?.textLabel?.text = user.user
         cell?.textLabel?.font = Font.boldSystemFont(ofSize: 14)
-//        cell?.detailTextLabel?.text = bot.FilePath
-        cell?.detailTextLabel?.font = Font.italicSystemFont(ofSize: 11)
+        cell?.detailTextLabel?.text = "已用:\(self.transformedValue(value: user.u + user.d)) 剩余:\(self.transformedValue(value: user.transfer_enable - user.u - user.d)) 总共:\(self.transformedValue(value: user.transfer_enable))"
+        cell?.detailTextLabel?.font = Font.systemFont(ofSize: 10)
         cell?.detailTextLabel?.textColor = Color.blue.accent3
         
-        let botSwitch: Switch = Switch(state: .off, style: .light, size: .small)
-        botSwitch.isOn = user.enable
-        botSwitch.tag = indexPath.row
-//        botSwitch.delegate = self
-        cell?.accessoryView = botSwitch
+        cell?.accessoryType = .detailButton
+        cell?.accessoryView?.tintColor = Color.blue.accent3
         
         return cell!
     }
