@@ -52,9 +52,11 @@ fileprivate extension SWASFViewController {
     }
     
     func setupASFBotData() {
+        self.showProgreeHUD("加载中...")
         let parameters: Parameters = ["pathname": "/root/ArchiSteamFarm/asf_linux/config"]
         AF.request("http://swing1993.xyz:8080/tomato/asf/findBots", method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
-            //网络请求
+            self.hideHUD()
+            //回调
             response.result.ifSuccess {
                 if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
                     if httpResult.success {
@@ -73,11 +75,17 @@ fileprivate extension SWASFViewController {
                                 self.bots.append(bot)
                             }
                         }
+                        self.bots.sort(by: { (bot1, bot2) -> Bool in
+                            return bot1.SteamLogin! < bot2.SteamLogin!
+                        })
                         self.tableView.reloadData()
+                    } else {
+                        self.showTextHUD(httpResult.message!, dismissAfterDelay: 3)
                     }
                 }
             }
             response.result.ifFailure({
+                self.showTextHUD(response.error?.localizedDescription, dismissAfterDelay: 3)
             })
         })
     }
@@ -97,6 +105,9 @@ extension SWASFViewController : UITableViewDelegate {
         let bot: SWASFBot = self.bots[indexPath.row]
         let controller: SWASFBotSettingViewController = SWASFBotSettingViewController()
         controller.asfBot = bot
+        controller.saved = {
+            self.setupASFBotData()
+        }
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -121,29 +132,42 @@ extension SWASFViewController : UITableViewDataSource {
         cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3
         
-        let botSwitch: Switch = Switch(state: .off, style: .light, size: .small)
-        botSwitch.isOn = bot.Enabled
-        botSwitch.tag = indexPath.row
-        botSwitch.delegate = self
-        cell?.accessoryView = botSwitch
+        cell?.accessoryType = .disclosureIndicator
         
         return cell!
     }
     
 }
 
+/*
 extension SWASFViewController: SwitchDelegate {
     func switchDidChangeState(control: Switch, state: SwitchState) {
         print("Switch changed state to: ", .on == state ? "on" : "off")
+        self.showProgreeHUD("保存中...")
         let bot: SWASFBot = self.bots[control.tag]
         bot.Enabled = control.isOn
         let parameters: Parameters = ["filename": bot.FileName, "content": bot.toJSONString()!]
         AF.request("http://swing1993.xyz:8080/tomato/asf/save", method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
-            print(response.result.value!)
-            self.setupASFBotData()
+            self.hideHUD()
+            response.result.ifSuccess {
+                if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
+                    if httpResult.success {
+                        self.setupASFBotData()
+                    } else {
+                        control.isOn = !control.isOn
+                        self.showTextHUD(httpResult.message!, dismissAfterDelay: 3)
+                    }
+                }
+            }
+            
+            response.result.ifFailure {
+                control.isOn = !control.isOn
+                self.showTextHUD(response.error?.localizedDescription, dismissAfterDelay: 3)
+            }
         })
     }
 }
+*/
 
 fileprivate extension SWASFViewController {
     @objc

@@ -1,10 +1,15 @@
 PODS:
   - Alamofire (5.0.0.beta.1)
+  - AsyncSwift (2.0.4)
+  - Charts (3.2.1):
+    - Charts/Core (= 3.2.1)
+  - Charts/Core (3.2.1)
   - HandyJSON (4.2.1)
   - Material (2.16.4):
     - Material/Core (= 2.16.4)
   - Material/Core (2.16.4):
     - Motion (~> 1.4.3)
+  - MBProgressHUD (1.1.0)
   - Motion (1.4.3):
     - Motion/Core (= 1.4.3)
   - Motion/Core (1.4.3)
@@ -13,36 +18,49 @@ PODS:
   - ReactiveSwift (4.0.0):
     - Result (~> 4.0)
   - Result (4.1.0)
+  - SnapKit (4.0.1)
   - SwiftDate (5.0.13)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0.beta.1)
+  - AsyncSwift
+  - Charts
   - HandyJSON (~> 4.2.0)
   - Material (~> 2.0)
+  - MBProgressHUD
   - ReactiveCocoa (~> 8.0)
+  - SnapKit (~> 4.0.0)
   - SwiftDate
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AsyncSwift
+    - Charts
     - HandyJSON
     - Material
+    - MBProgressHUD
     - Motion
     - ReactiveCocoa
     - ReactiveSwift
     - Result
+    - SnapKit
     - SwiftDate
 
 SPEC CHECKSUMS:
   Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
+  AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
+  Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   Motion: 153ba49692997888556c7a95207278a8b1f8be95
   ReactiveCocoa: fbd26e9ba60e98417ee47433e59465a98ed9da0f
   ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
 
-PODFILE CHECKSUM: 66db0287a020fead5b11b47b8a231a785e03063a
+PODFILE CHECKSUM: 2977523e7a5248dc243ecdc62a1b4d67f160d04f
 
 COCOAPODS: 1.5.3

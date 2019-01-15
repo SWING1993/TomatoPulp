@@ -6,4 +6,8 @@ target 'TomatoPulp' do
     pod 'Alamofire', '~> 5.0.0.beta.1'
     pod 'SwiftDate'
     pod 'HandyJSON', '~> 4.2.0'
+    pod 'SnapKit', '~> 4.0.0'
+    pod 'AsyncSwift'
+    pod 'MBProgressHUD'
+    pod 'Charts'
 end

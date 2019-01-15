@@ -13,7 +13,7 @@ import Alamofire.Swift
 
 class SWASFSettingViewController: UIViewController {
     
-    var asf: SWASF?
+    var asf: SWASF = SWASF()
     var asfDict: [String : Any]?
     var asfKeys: Array<String>?
 
@@ -26,13 +26,11 @@ class SWASFSettingViewController: UIViewController {
         prepareTableView()
         prepareNavigationItem()
         
-        if let asfConfig = self.asf {
-            asfDict = asfConfig.toJSON()
-            if let keys = asfDict?.keys {
-                asfKeys = Array(keys)
-                asfKeys?.sort(){
-                    $0 < $1
-                }
+        asfDict = self.asf.toJSON()
+        if let keys = asfDict?.keys {
+            asfKeys = Array(keys)
+            asfKeys?.sort(){
+                $0 < $1
             }
         }
     }
@@ -63,8 +61,11 @@ extension SWASFSettingViewController : UITableViewDelegate {
         return 55
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat.leastNormalMagnitude
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if let key = asfKeys?[section] {
+            return SWASF.printDesc(key: key)
+        }
+        return ""
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -75,11 +76,16 @@ extension SWASFSettingViewController : UITableViewDelegate {
 
 extension SWASFSettingViewController : UITableViewDataSource {
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         if let count = asfKeys?.count {
             return count;
         }
         return 0
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,7 +94,7 @@ extension SWASFSettingViewController : UITableViewDataSource {
             cell = TableViewCell.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cell")
         }
         
-        if let key = asfKeys?[indexPath.row] {
+        if let key = asfKeys?[indexPath.section] {
             cell?.textLabel?.text = key
             if let value = asfDict?[key] {
                 cell?.detailTextLabel?.text =  "\(String(describing: value))"
