@@ -14,14 +14,51 @@ class HttpUtils {
     static let `default` = HttpUtils()
     /// 超时时间
     private var host: String {
-        return "http://swing1993.xyz:8080/tomato"
+//        return "http://swing1993.xyz:8080/tomato"
+
+        return "http://localhost:8081"
     }
     private var timeoutIntervalForRequest: TimeInterval = 25
     private var encoding: ParameterEncoding = URLEncoding(destination: .queryString)
     private var headers: HTTPHeaders = HTTPHeaders.init(["Content-Type" : "application/json"])
     
+    // ACCESS_KEY
+    private var ACCESS_KEY: String = "accessKey";
+    // ACCESS_SECRET
+    private var ACCESS_SECRET: String = "s7*&6f";
+    // md5盐值，用于混淆
+    private var signSalt: String = "/1s%gsa";
+    
     func request(_ url: String,  method: HTTPMethod = .get, params: Parameters? = nil) -> HttpTaskUtils {
-        let taskManager: HttpTaskUtils = HttpTaskUtils().request("\(host)\(url)", method: method, params: params, encoding: encoding, headers: headers)
+        
+        // 参数签名
+        var temp: String = ""
+        if let keys = params?.keys {
+            var array: Array<String> = Array(keys)
+            array.sort(){
+                $0 < $1
+            }
+            array.forEach { value in
+                temp.append("\(value)&")
+            }
+        }
+        temp.append("\(ACCESS_KEY)=\(ACCESS_SECRET)\(signSalt)")
+        
+        var signatureParams = Parameters();
+        if let args = params {
+            args.forEach { (arg) in
+                signatureParams[arg.key] = arg.value
+            }
+        }
+        headers.add(name: "signature_secret", value: temp.md5())
+
+        // 请求头
+        if let token = clientShared.user.token {
+            headers.add(name: "token", value: token)
+            headers.add(name: "uid", value: "\(clientShared.user.id)")
+        }
+
+        let taskManager: HttpTaskUtils = HttpTaskUtils().request("\(host)\(url)", method: method, params: signatureParams, encoding: encoding, headers: headers)
         return taskManager
     }
     

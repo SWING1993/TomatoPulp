@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E558221EECC4E00C20363 /* HttpUtils.swift */; };
 		031E558521EF0ED800C20363 /* SWSSRInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E558421EF0ED800C20363 /* SWSSRInfoViewController.swift */; };
+		031E558821EF28C400C20363 /* StringMd5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E558721EF28C400C20363 /* StringMd5.swift */; };
 		0332000421EC23E800158E86 /* SWASF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000321EC23E800158E86 /* SWASF.swift */; };
 		0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000521EC717B00158E86 /* SWSSRViewController.swift */; };
 		0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000821EC71CB00158E86 /* SWSSRUser.swift */; };
@@ -34,6 +35,8 @@
 /* Begin PBXFileReference section */
 		031E558221EECC4E00C20363 /* HttpUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtils.swift; sourceTree = "<group>"; };
 		031E558421EF0ED800C20363 /* SWSSRInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRInfoViewController.swift; sourceTree = "<group>"; };
+		031E558721EF28C400C20363 /* StringMd5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringMd5.swift; sourceTree = "<group>"; };
+		031E558921EF28FA00C20363 /* TomatoPulp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TomatoPulp-Bridging-Header.h"; sourceTree = "<group>"; };
 		0332000321EC23E800158E86 /* SWASF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASF.swift; sourceTree = "<group>"; };
 		0332000521EC717B00158E86 /* SWSSRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRViewController.swift; sourceTree = "<group>"; };
 		0332000821EC71CB00158E86 /* SWSSRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRUser.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 				035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */,
 				035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */,
 				031E558221EECC4E00C20363 /* HttpUtils.swift */,
+				031E558721EF28C400C20363 /* StringMd5.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -114,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				03BEA11621E6EB1B00319A6C /* AppDelegate.swift */,
+				031E558921EF28FA00C20363 /* TomatoPulp-Bridging-Header.h */,
 				035CDEB521EDA67F00DCE7B1 /* Utils */,
 				03BEA12D21E6F47A00319A6C /* Base */,
 				03BEA12821E6F1CC00319A6C /* Feature */,
@@ -242,6 +247,7 @@
 				TargetAttributes = {
 					03BEA11221E6EB1B00319A6C = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -348,6 +354,7 @@
 				03BEA12C21E6F22D00319A6C /* SWIndexViewController.swift in Sources */,
 				0332000B21EC7E6900158E86 /* SWASFSettingViewController.swift in Sources */,
 				03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */,
+				031E558821EF28C400C20363 /* StringMd5.swift in Sources */,
 				03FE608521EA02CE00E159FF /* SWUser.swift in Sources */,
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
 				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
@@ -500,6 +507,7 @@
 			baseConfigurationReference = 5CA839BC8EB94E07683D8040 /* Pods-TomatoPulp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				INFOPLIST_FILE = TomatoPulp/Info.plist;
@@ -509,6 +517,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swing.tomato.TomatoPulp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TomatoPulp/TomatoPulp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -519,6 +529,7 @@
 			baseConfigurationReference = 7BA1AD4AF62682472F1CD356 /* Pods-TomatoPulp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				INFOPLIST_FILE = TomatoPulp/Info.plist;
@@ -528,6 +539,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swing.tomato.TomatoPulp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TomatoPulp/TomatoPulp-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
