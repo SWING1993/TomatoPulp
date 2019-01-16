@@ -10,4 +10,5 @@ target 'TomatoPulp' do
     pod 'AsyncSwift'
     pod 'MBProgressHUD'
     pod 'Charts'
+    pod 'Cache', '>= 5.0.0'
 end

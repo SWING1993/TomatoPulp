@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.0.0.beta.1)
   - AsyncSwift (2.0.4)
+  - Cache (5.2.0)
   - Charts (3.2.1):
     - Charts/Core (= 3.2.1)
   - Charts/Core (3.2.1)
@@ -24,6 +25,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.0.0.beta.1)
   - AsyncSwift
+  - Cache (>= 5.0.0)
   - Charts
   - HandyJSON (~> 4.2.0)
   - Material (~> 2.0)
@@ -36,6 +38,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AsyncSwift
+    - Cache
     - Charts
     - HandyJSON
     - Material
@@ -50,6 +53,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
@@ -61,6 +65,6 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
 
-PODFILE CHECKSUM: 2977523e7a5248dc243ecdc62a1b4d67f160d04f
+PODFILE CHECKSUM: 0e658711f2c42ca7fa5813fbcdcd12814df21684
 
 COCOAPODS: 1.5.3

@@ -25,7 +25,6 @@ class SWSSRViewController: UIViewController {
         navigationItem.detailLabel.text = "用户配置"
         prepareTableView()
         setupSSRUserData()
-        
     }
     
 }
@@ -38,40 +37,37 @@ fileprivate extension SWSSRViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
         view.layout(tableView).edges()
+        
+//        HttpUtils.default.request("http://swing1993.xyz:8080/tomato/ssr/user", method: .put, params: nil).response(success: { (<#Any#>) in
+//            <#code#>
+//        }) { (<#String#>) in
+//            <#code#>
+//        }
     }
     
     func setupSSRUserData() {
         self.showProgreeHUD("加载中...")
-        AF.request("http://swing1993.xyz:8080/tomato/ssr/user", method: .get, parameters: nil, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
+        HttpUtils.default.request("http://swing1993.xyz:8080/tomato/ssr/user", method: .get, params: nil).response(success: { result in
             self.hideHUD()
-            //网络请求
-            response.result.ifSuccess {
-                if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
-                    if httpResult.success {
-                        self.users.removeAll()
-                        let userJsonsString: String? = httpResult.result as? String
-                        if let users: [SWSSRUser] = [SWSSRUser].deserialize(from: userJsonsString) as? [SWSSRUser] {
-                            users.forEach({ (user) in
-                                print(user.user)
-                                if user.u + user.d > 0 {
-                                    self.users.append(user)
-                                }
-                            })
-                        }
-                        self.users.sort(by: { (user1, user2) -> Bool in
-                            return user1.u + user1.d > user2.u + user2.d
-                        })
-                        self.configChartView()
-                        self.tableView.reloadData()
-                    } else {
-                        self.showTextHUD(httpResult.message!, dismissAfterDelay: 3)
+            self.users.removeAll()
+            let userJsonsString: String? = result as? String
+            if let users: [SWSSRUser] = [SWSSRUser].deserialize(from: userJsonsString) as? [SWSSRUser] {
+                users.forEach({ (user) in
+                    print(user.user)
+                    if user.u + user.d > 0 {
+                        self.users.append(user)
                     }
-                }
+                })
             }
-            response.result.ifFailure({
-                self.showTextHUD(response.error?.localizedDescription, dismissAfterDelay: 3)
+            self.users.sort(by: { (user1, user2) -> Bool in
+                return user1.u + user1.d > user2.u + user2.d
             })
-        })
+            self.configChartView()
+            self.tableView.reloadData()
+        }) { errorMsg in
+            self.hideHUD()
+            self.showTextHUD(errorMsg, dismissAfterDelay: 3)
+        }
     }
     
     func transformedValue(value: Int64) -> String {

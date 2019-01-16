@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E558221EECC4E00C20363 /* HttpUtils.swift */; };
 		0332000421EC23E800158E86 /* SWASF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000321EC23E800158E86 /* SWASF.swift */; };
 		0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000521EC717B00158E86 /* SWSSRViewController.swift */; };
 		0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000821EC71CB00158E86 /* SWSSRUser.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		031E558221EECC4E00C20363 /* HttpUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtils.swift; sourceTree = "<group>"; };
 		0332000321EC23E800158E86 /* SWASF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASF.swift; sourceTree = "<group>"; };
 		0332000521EC717B00158E86 /* SWSSRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRViewController.swift; sourceTree = "<group>"; };
 		0332000821EC71CB00158E86 /* SWSSRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRUser.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			children = (
 				035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */,
 				035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */,
+				031E558221EECC4E00C20363 /* HttpUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TomatoPulp/Pods-TomatoPulp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AsyncSwift/Async.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -315,6 +319,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Async.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
@@ -346,6 +351,7 @@
 				03FE608521EA02CE00E159FF /* SWUser.swift in Sources */,
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
 				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
+				031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */,
 				03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */,
 				03FE608721EA116400E159FF /* AppHttpResponse.swift in Sources */,
 				035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */,
