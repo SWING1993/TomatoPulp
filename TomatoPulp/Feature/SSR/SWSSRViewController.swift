@@ -113,7 +113,7 @@ fileprivate extension SWSSRViewController {
                                      label: user.user)
         }
         
-        let set = PieChartDataSet(values: entries, label: "用户数据")
+        let set = PieChartDataSet(values: entries, label: "")
         set.drawIconsEnabled = false
         set.sliceSpace = 2
         

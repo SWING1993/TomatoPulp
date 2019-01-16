@@ -85,8 +85,8 @@ extension SWASFViewController : UITableViewDelegate {
         return 55
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.01
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "steam bots"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -127,46 +127,14 @@ extension SWASFViewController : UITableViewDataSource {
     
 }
 
-/*
-extension SWASFViewController: SwitchDelegate {
-    func switchDidChangeState(control: Switch, state: SwitchState) {
-        print("Switch changed state to: ", .on == state ? "on" : "off")
-        self.showProgreeHUD("保存中...")
-        let bot: SWASFBot = self.bots[control.tag]
-        bot.Enabled = control.isOn
-        let parameters: Parameters = ["filename": bot.FileName, "content": bot.toJSONString()!]
-        AF.request("http://swing1993.xyz:8080/tomato/asf/save", method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
-            self.hideHUD()
-            response.result.ifSuccess {
-                if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
-                    if httpResult.success {
-                        self.setupASFBotData()
-                    } else {
-                        control.isOn = !control.isOn
-                        self.showTextHUD(httpResult.message!, dismissAfterDelay: 3)
-                    }
-                }
-            }
-            
-            response.result.ifFailure {
-                control.isOn = !control.isOn
-                self.showTextHUD(response.error?.localizedDescription, dismissAfterDelay: 3)
-            }
-        })
-    }
-}
-*/
 
 fileprivate extension SWASFViewController {
+    
     @objc
     func handleToASFSetting() {
         let controller: SWASFSettingViewController = SWASFSettingViewController()
         controller.asf = self.asf
         navigationController?.pushViewController(controller, animated: true)
     }
-    
-//    @objc
-//    func handleToSSR() {
-//        navigationController?.pushViewController(SWSSRViewController(), animated: true)
-//    }
+
 }

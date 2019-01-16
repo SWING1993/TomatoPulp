@@ -99,7 +99,7 @@ fileprivate extension SWSSRInfoViewController {
                        PieChartDataEntry(value: Double(ssr.transfer_enable - ssr.d - ssr.u),
                                          label: "剩余")]
         
-        let set = PieChartDataSet(values: entries, label: "用户流量")
+        let set = PieChartDataSet(values: entries, label: "")
         set.drawIconsEnabled = false
         set.sliceSpace = 2
         set.valueLinePart1OffsetPercentage = 0.8
