@@ -9,7 +9,10 @@
 import UIKit
 
 import Material
-import Alamofire.Swift
+import ReactiveCocoa
+import ReactiveSwift
+import enum Result.NoError
+import Alamofire
 
 class SWASFBotSettingViewController: UIViewController {
 
@@ -61,28 +64,23 @@ fileprivate extension SWASFBotSettingViewController {
         saveButton.addTarget(self, action: #selector(saveBot), for: .touchUpInside)
         navigationItem.rightViews = [saveButton]
         saveButton.isEnabled = false
+        saveButton.alpha = 0.5
+        
+        
     }
     
     @objc func saveBot() {
         self.showProgreeHUD("保存中...")
         let parameters: Parameters = ["filename": self.asfBot.FileName, "content": self.asfBot.toJSONString()!]
-        AF.request("http://swing1993.xyz:8080/tomato/asf/save", method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
+        HttpUtils.default.request("/asf/save", method: .post, params: parameters).response(success: { _ in
             self.hideHUD()
-            response.result.ifSuccess {
-                if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
-                    if httpResult.success {
-                        self.saved()
-                        self.navigationController?.popViewController(animated: true)
-                    } else {
-                        self.showTextHUD(httpResult.message!, dismissAfterDelay: 3)
-                    }
-                }
-            }
-            
-            response.result.ifFailure {
-                self.showTextHUD(response.error?.localizedDescription, dismissAfterDelay: 3)
-            }
-        })
+            self.saved()
+            self.navigationController?.popViewController(animated: true)
+        }) { errorMsg in
+            self.hideHUD()
+            self.showTextHUD(errorMsg, dismissAfterDelay: 3)
+        }
+
     }
 }
 
@@ -140,7 +138,7 @@ extension SWASFBotSettingViewController : UITableViewDataSource {
         }
 
         
-        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 14)
+        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
         cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3
         
@@ -154,5 +152,7 @@ extension SWASFBotSettingViewController: SwitchDelegate {
         print("Switch changed state to: ", .on == state ? "on" : "off")
         self.asfBot.Enabled = control.isOn
         self.saveButton?.isEnabled = true
+        self.saveButton.alpha = 1
+
     }
 }

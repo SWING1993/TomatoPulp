@@ -1,8 +1,8 @@
 //
-//  SWSSRViewController.swift
+//  SWSSRInfoViewController.swift
 //  TomatoPulp
 //
-//  Created by 宋国华 on 2019/1/14.
+//  Created by 宋国华 on 2019/1/16.
 //  Copyright © 2019 songguohua. All rights reserved.
 //
 
@@ -10,25 +10,33 @@ import UIKit
 import Material
 import Charts
 
-class SWSSRViewController: UIViewController {
+class SWSSRInfoViewController: UIViewController {
 
-    fileprivate var tableView: TableView!
+    var ssr: SWSSRUser = SWSSRUser()
+    var ssrDict: [String : Any]?
+    var ssrKeys: Array<String>?
     
-    fileprivate var users: Array<SWSSRUser> = Array()
+    fileprivate var tableView: TableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        navigationItem.titleLabel.text = "SSR"
-        navigationItem.detailLabel.text = "用户配置"
         prepareTableView()
-        setupSSRUserData()
+        prepareNavigationItem()
+        configChartView()
+        
+        ssrDict = self.ssr.toJSON()
+        if let keys = ssrDict?.keys {
+            ssrKeys = Array(keys)
+            ssrKeys?.sort(){
+                $0 < $1
+            }
+        }
     }
-    
 }
 
-fileprivate extension SWSSRViewController {
+fileprivate extension SWSSRInfoViewController {
     
     func prepareTableView() {
         tableView = TableView.init(frame: CGRect.zero, style: .grouped)
@@ -38,32 +46,10 @@ fileprivate extension SWSSRViewController {
         view.layout(tableView).edges()
     }
     
-    func setupSSRUserData() {
-        self.showProgreeHUD("加载中...")
-        HttpUtils.default.request("/ssr/user", method: .get, params: nil).response(success: { result in
-            self.hideHUD()
-            self.users.removeAll()
-            let userJsonsString: String? = result as? String
-            if let users: [SWSSRUser] = [SWSSRUser].deserialize(from: userJsonsString) as? [SWSSRUser] {
-                users.forEach({ (user) in
-                    print(user.user)
-                    if user.u + user.d > 0 {
-                        self.users.append(user)
-                    }
-                })
-            }
-            self.users.sort(by: { (user1, user2) -> Bool in
-                return user1.u + user1.d > user2.u + user2.d
-            })
-            self.configChartView()
-            self.tableView.reloadData()
-        }) { errorMsg in
-            self.hideHUD()
-            self.showTextHUD(errorMsg, dismissAfterDelay: 3)
-        }
+    func prepareNavigationItem() {
+        navigationItem.titleLabel.text = ssr.user
+        navigationItem.detailLabel.text = "配置文件"
     }
-    
-
     
     func configChartView() {
         let chartView: PieChartView = PieChartView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 300))
@@ -92,8 +78,8 @@ fileprivate extension SWSSRViewController {
         chartView.highlightPerTapEnabled = true
         
         // 不显示title
-        chartView.drawEntryLabelsEnabled = false
-        
+//        chartView.drawEntryLabelsEnabled = false
+//        chartView.legend.enabled = false
         let l = chartView.legend
         l.horizontalAlignment = .left
         l.verticalAlignment = .top
@@ -108,17 +94,21 @@ fileprivate extension SWSSRViewController {
         
         chartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
         
-        let entries = self.users.map { (user) -> PieChartDataEntry in
-            return PieChartDataEntry(value: Double(user.d + user.u),
-                                     label: user.user)
-        }
+        let entries = [PieChartDataEntry(value: Double(ssr.u + ssr.d),
+                                         label: "已用"),
+                       PieChartDataEntry(value: Double(ssr.transfer_enable - ssr.d - ssr.u),
+                                         label: "剩余")]
         
-        let set = PieChartDataSet(values: entries, label: "用户数据")
+        let set = PieChartDataSet(values: entries, label: "用户流量")
         set.drawIconsEnabled = false
         set.sliceSpace = 2
-        
+        set.valueLinePart1OffsetPercentage = 0.8
+        set.valueLinePart1Length = 0.2
+        set.valueLinePart2Length = 0.4
+        //set.xValuePosition = .outsideSlice
+        set.yValuePosition = .outsideSlice
         set.colors = [Color.red.base, Color.green.base, Color.blue.base, Color.orange.base, Color.pink.base, Color.purple.base, Color.yellow.base, Color.red.accent1, Color.blue.darken4, Color.cyan.base]
-
+        
         let data = PieChartData(dataSet: set)
         
         let pFormatter = NumberFormatter()
@@ -127,10 +117,8 @@ fileprivate extension SWSSRViewController {
         pFormatter.multiplier = 1
         pFormatter.percentSymbol = " %"
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
-        
         data.setValueFont(.systemFont(ofSize: 10, weight: .light))
-        data.setValueTextColor(.white)
-        
+        data.setValueTextColor(.black)
         chartView.data = data
         chartView.highlightValues(nil)
         
@@ -139,48 +127,53 @@ fileprivate extension SWSSRViewController {
     }
 }
 
-extension SWSSRViewController : UITableViewDelegate {
+
+extension SWSSRInfoViewController : UITableViewDelegate {
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
     
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "域名：swing1993.xyz\nIP：35.241.122.72"
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user: SWSSRUser = self.users[indexPath.row]
-        let controller: SWSSRInfoViewController = SWSSRInfoViewController()
-        controller.ssr = user
-        self.navigationController?.pushViewController(controller, animated: true)
-
-    }
 }
 
-extension SWSSRViewController : UITableViewDataSource {
+extension SWSSRInfoViewController : UITableViewDataSource {
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.users.count
+        if let count = ssrKeys?.count {
+            return count;
+        }
+        return 0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
-            cell = TableViewCell.init(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "cell")
+            cell = TableViewCell.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cell")
         }
         
-        let user: SWSSRUser = self.users[indexPath.row]
-        cell?.textLabel?.text = user.user
-        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 14)
-        cell?.detailTextLabel?.text = "已用:\(HttpUtils.transformedValue(value: user.u + user.d)) 剩余:\(HttpUtils.transformedValue(value: user.transfer_enable - user.u - user.d)) 总共:\(HttpUtils.transformedValue(value: user.transfer_enable))"
-        cell?.detailTextLabel?.font = Font.systemFont(ofSize: 10)
-        cell?.detailTextLabel?.textColor = Color.blue.accent3
+        if let key = ssrKeys?[indexPath.row] {
+            cell?.textLabel?.text = key
+            if let value = ssrDict?[key] {
+                cell?.detailTextLabel?.text =  "\(String(describing: value))"
+            }
+        }
         
-        cell?.accessoryView = UIImageView.init(image: UIImage.init(named: "paper-plane-regular")?.resize(toWidth: 25)?.tint(with: user.enable ? Color.green.base : Color.red.base)) 
+        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
+        cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
+        cell?.detailTextLabel?.textColor = Color.blue.accent3
         
         return cell!
     }
-    
 }
+
+
+
 

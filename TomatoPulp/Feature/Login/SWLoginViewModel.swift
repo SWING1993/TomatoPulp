@@ -63,30 +63,18 @@ class SWLoginViewModel: NSObject {
             phone, password in
             return SignalProducer<String, NoError> { observer, disposable in
                 let parameters: Parameters = ["phone": phone, "password": password]
-                AF.request("http://118.24.216.163:8080/tomato/user/login", method: .post, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
-                    //网络请求
-                    var message : String = ""
-                    response.result.ifSuccess {
-                        if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
-                            if httpResult.success {
-                                message = "登录成功"
-                                let userDict : Dictionary<String, Any> = httpResult.result as! Dictionary<String, Any>
-                                if let user  = SWUser.deserialize(from: userDict) {
-                                   clientShared.saveUserInfo(user: user)
-                                }
-                            } else {
-                                message = httpResult.message!
-                            }
-                        }
+                
+                HttpUtils.default.request("/user/login", method: .post, params: parameters).response(success: { result in
+                    let userDict : Dictionary<String, Any> = result as! Dictionary<String, Any>
+                    if let user  = SWUser.deserialize(from: userDict) {
+                        clientShared.saveUserInfo(user: user)
                     }
-                    response.result.ifFailure({
-                        message = (response.error?.localizedDescription)!
-                    })
-                    
-                    observer.send(value: message)
+                    observer.send(value: "登录成功")
+                    observer.sendCompleted()
+                }, failure: { msg in
+                    observer.send(value: msg)
                     observer.sendCompleted()
                 })
-
             }
         }
     }

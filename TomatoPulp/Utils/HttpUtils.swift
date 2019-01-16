@@ -13,14 +13,27 @@ import HandyJSON
 class HttpUtils {
     static let `default` = HttpUtils()
     /// 超时时间
+    private var host: String {
+        return "http://swing1993.xyz:8080/tomato"
+    }
     private var timeoutIntervalForRequest: TimeInterval = 25
     private var encoding: ParameterEncoding = URLEncoding(destination: .queryString)
     private var headers: HTTPHeaders = HTTPHeaders.init(["Content-Type" : "application/json"])
     
     func request(_ url: String,  method: HTTPMethod = .get, params: Parameters? = nil) -> HttpTaskUtils {
-        let tempParam = params == nil ? [:] : params!
-        let taskManager: HttpTaskUtils = HttpTaskUtils().request(url, method: method, params: tempParam, encoding: encoding, headers: headers)
+        let taskManager: HttpTaskUtils = HttpTaskUtils().request("\(host)\(url)", method: method, params: params, encoding: encoding, headers: headers)
         return taskManager
+    }
+    
+    static func transformedValue(value: Int64) -> String {
+        var result: Double = Double.init(value)
+        var multiplyFactor :Int = 0;
+        let tokens: Array<String> = ["Bytes", "KB", "MB", "GB","TB"]
+        while result > 1024 {
+            multiplyFactor = multiplyFactor + 1
+            result = result/1024
+        }
+        return "\(String(format: "%.2f", result))\(tokens[multiplyFactor])"
     }
 }
 
@@ -28,6 +41,7 @@ class HttpUtils {
 public class HttpTaskUtils {
     fileprivate var dataRequest: DataRequest?
     fileprivate var completionClosure: (()->())?
+    
     @discardableResult
     fileprivate func request(
         _ url: String,
@@ -41,12 +55,12 @@ public class HttpTaskUtils {
     }
 
     /// 响应String
-    public func response(success: @escaping (_ response: Any)->(), failure: @escaping (_ errorMsg: String)->()) {
+    public func response(success: @escaping (Any?)->(), failure: @escaping (String)->()) {
         dataRequest?.responseString(completionHandler: { response in
             response.result.ifSuccess {
-                if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
+                if let httpResult = HttpResponse<Any>.deserialize(from: response.result.value) {
                     if httpResult.success {
-                        success(httpResult.result as Any)
+                        success(httpResult.result)
                     } else {
                         failure(httpResult.message!)
                     }
@@ -67,13 +81,13 @@ public class HttpTaskUtils {
 }
 
 //// MARK: - Result
-class HttpResponse<Value>: HandyJSON {
+class HttpResponse<T>: HandyJSON {
     
     var success: Bool = false
     var message : String?
     var error: String?
     var time: String?
-    var result: Value?
+    var result: T?
     
     required init() {}
 }

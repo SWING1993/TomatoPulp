@@ -8,7 +8,6 @@
 
 import UIKit
 import Material
-import Alamofire.Swift
 
 class SWASFViewController: UIViewController {
     
@@ -53,41 +52,30 @@ fileprivate extension SWASFViewController {
     
     func setupASFBotData() {
         self.showProgreeHUD("加载中...")
-        let parameters: Parameters = ["pathname": "/root/ArchiSteamFarm/asf_linux/config"]
-        AF.request("http://swing1993.xyz:8080/tomato/asf/findBots", method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: HTTPHeaders.init(["Content-Type" : "application/json"])).responseString(completionHandler: { response in
+        HttpUtils.default.request("/asf/findBots").response(success: { result in
             self.hideHUD()
-            //回调
-            response.result.ifSuccess {
-                if let httpResult = AppHttpResponse.deserialize(from: response.result.value) {
-                    if httpResult.success {
-                        let resultDict: Dictionary<String, Any> = httpResult.result as! Dictionary<String, Any>
-                        
-                        if let asf:SWASF = SWASF.deserialize(from: resultDict["asf"] as? String) {
-                            self.asf = asf
-                            print("asf:\(self.asf.FileName)")
-                        }
-                        
-                        let botJsons: Array<String> = resultDict["bots"] as! Array<String>
-                        self.bots.removeAll()
-                        for botJson in botJsons {
-                            if let bot: SWASFBot = SWASFBot.deserialize(from: botJson) {
-                                print(bot.FileName)
-                                self.bots.append(bot)
-                            }
-                        }
-                        self.bots.sort(by: { (bot1, bot2) -> Bool in
-                            return bot1.SteamLogin! < bot2.SteamLogin!
-                        })
-                        self.tableView.reloadData()
-                    } else {
-                        self.showTextHUD(httpResult.message!, dismissAfterDelay: 3)
-                    }
+            let resultDict: Dictionary<String, Any> = result as! Dictionary<String, Any>
+            if let asf:SWASF = SWASF.deserialize(from: resultDict["asf"] as? String) {
+                self.asf = asf
+                print("asf:\(self.asf.FileName)")
+            }
+            
+            let botJsons: Array<String> = resultDict["bots"] as! Array<String>
+            self.bots.removeAll()
+            for botJson in botJsons {
+                if let bot: SWASFBot = SWASFBot.deserialize(from: botJson) {
+                    print(bot.FileName)
+                    self.bots.append(bot)
                 }
             }
-            response.result.ifFailure({
-                self.showTextHUD(response.error?.localizedDescription, dismissAfterDelay: 3)
+            self.bots.sort(by: { (bot1, bot2) -> Bool in
+                return bot1.SteamLogin! < bot2.SteamLogin!
             })
-        })
+            self.tableView.reloadData()
+        }) { msg in
+            self.hideHUD()
+            self.showTextHUD(msg, dismissAfterDelay: 3)
+        }
     }
 }
 
@@ -127,7 +115,7 @@ extension SWASFViewController : UITableViewDataSource {
         let bot: SWASFBot = self.bots[indexPath.row]
         cell?.imageView?.image = UIImage.init(named: "robot-solid")?.resize(toWidth: 25)?.tint(with: bot.Enabled ? Color.green.base : Color.blueGrey.lighten4)
         cell?.textLabel?.text = bot.SteamLogin
-        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 14)
+        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
         cell?.detailTextLabel?.text = bot.FileName
         cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3

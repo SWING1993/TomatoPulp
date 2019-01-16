@@ -9,7 +9,6 @@
 import UIKit
 
 import Material
-import Alamofire.Swift
 
 class SWASFSettingViewController: UIViewController {
     
@@ -49,8 +48,6 @@ fileprivate extension SWASFSettingViewController {
     func prepareNavigationItem() {
         navigationItem.titleLabel.text = "ASF"
         navigationItem.detailLabel.text = "配置文件"
-//        settingButton.addTarget(self, action: #selector(handleToASFSetting), for: .touchUpInside)
-//        navigationItem.rightViews = [settingButton]
     }
 }
 
@@ -101,7 +98,7 @@ extension SWASFSettingViewController : UITableViewDataSource {
             }
         }
        
-        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 14)
+        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
         cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3
         
