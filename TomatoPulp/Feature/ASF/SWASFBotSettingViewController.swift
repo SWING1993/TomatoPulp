@@ -166,6 +166,7 @@ extension SWASFBotSettingViewController : UITableViewDataSource {
         
         cell?.textLabel?.text = ""
         cell?.detailTextLabel?.text = ""
+        cell?.accessoryView = nil
         
         if let key = asfBotKeys?[indexPath.section] {
             cell?.textLabel?.text = key
