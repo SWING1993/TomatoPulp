@@ -9,15 +9,16 @@
 import Foundation
 import Alamofire
 import HandyJSON
+import Async
 
 class HttpUtils {
     static let `default` = HttpUtils()
-    /// 超时时间
+    
     private var host: String {
-//        return "http://swing1993.xyz:8080/tomato"
-
-        return "http://localhost:8081"
+        return "http://swing1993.xyz:8080/tomato"
+//        return "http://localhost:8081"
     }
+    /// 超时时间
     private var timeoutIntervalForRequest: TimeInterval = 25
     private var encoding: ParameterEncoding = URLEncoding(destination: .queryString)
     private var headers: HTTPHeaders = HTTPHeaders.init(["Content-Type" : "application/json"])
@@ -100,6 +101,12 @@ public class HttpTaskUtils {
                         success(httpResult.result)
                     } else {
                         failure(httpResult.message!)
+                        if httpResult.code == 10002 {
+                            Async.main{
+                                let app = UIApplication.shared.delegate as! AppDelegate
+                                app.toLogin()
+                            }
+                        }
                     }
                 } else {
                     failure("服务器错误")
@@ -125,6 +132,7 @@ class HttpResponse<T>: HandyJSON {
     var error: String?
     var time: String?
     var result: T?
+    var code: Int = 0
     
     required init() {}
 }

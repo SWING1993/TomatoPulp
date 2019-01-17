@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-class SWASFViewController: UIViewController {
+class SWASFViewController: QMUICommonViewController {
     
     fileprivate var settingButton: IconButton = IconButton.init(image: Icon.cm.settings)
 
@@ -24,6 +24,8 @@ class SWASFViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+       self.showEmptyView(withText: "SteamBot为空", detailText: "请检查网络", buttonTitle: nil, buttonAction: nil)
+
         prepareTableView()
         
         prepareNavigationItem()
@@ -40,6 +42,9 @@ fileprivate extension SWASFViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
+        tableView.estimatedRowHeight = 0;
+        tableView.estimatedSectionHeaderHeight = 0;
+        tableView.estimatedSectionFooterHeight = 0;
         view.layout(tableView).edges()
     }
     
@@ -69,9 +74,10 @@ fileprivate extension SWASFViewController {
                 }
             }
             self.bots.sort(by: { (bot1, bot2) -> Bool in
-                return bot1.SteamLogin! < bot2.SteamLogin!
+                return bot1.SteamLogin < bot2.SteamLogin
             })
             self.tableView.reloadData()
+            self.hideEmptyView()
         }) { msg in
             self.hideHUD()
             self.showTextHUD(msg, dismissAfterDelay: 3)

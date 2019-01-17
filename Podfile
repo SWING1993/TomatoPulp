@@ -11,4 +11,5 @@ target 'TomatoPulp' do
     pod 'MBProgressHUD'
     pod 'Charts'
     pod 'Cache', '>= 5.0.0'
+    pod 'QMUIKit'
 end

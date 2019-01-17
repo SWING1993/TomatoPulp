@@ -18,12 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window!.backgroundColor = UIColor.white;
         if clientShared.isLogin() {
-            window!.rootViewController = AppNavigationController(rootViewController: SWIndexViewController())
+            toMain()
         } else {
-            window!.rootViewController = AppNavigationController(rootViewController: SWLoginViewController())
+            toLogin()
         }
         window!.makeKeyAndVisible()
         return true
+    }
+    
+    func toLogin() {
+        window!.rootViewController = AppNavigationController(rootViewController: SWLoginViewController())
+    }
+    
+    func toMain() {
+        window!.rootViewController = AppNavigationController(rootViewController: SWIndexViewController())
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

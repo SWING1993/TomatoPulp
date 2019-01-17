@@ -15,6 +15,7 @@
 		0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000821EC71CB00158E86 /* SWSSRUser.swift */; };
 		0332000B21EC7E6900158E86 /* SWASFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */; };
 		0332000D21EC7E9300158E86 /* SWASFBotSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000C21EC7E9300158E86 /* SWASFBotSettingViewController.swift */; };
+		034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */; };
 		035CDEB721EDA76C00DCE7B1 /* HUDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */; };
 		035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */; };
 		03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA11621E6EB1B00319A6C /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 		0332000821EC71CB00158E86 /* SWSSRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRUser.swift; sourceTree = "<group>"; };
 		0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSettingViewController.swift; sourceTree = "<group>"; };
 		0332000C21EC7E9300158E86 /* SWASFBotSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBotSettingViewController.swift; sourceTree = "<group>"; };
+		034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSetConfigViewController.swift; sourceTree = "<group>"; };
 		035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDUtils.swift; sourceTree = "<group>"; };
 		035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASFBotUtils.swift; sourceTree = "<group>"; };
 		03BEA11321E6EB1B00319A6C /* TomatoPulp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TomatoPulp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 				03FE608D21EB829900E159FF /* SWASFViewController.swift */,
 				0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */,
 				0332000C21EC7E9300158E86 /* SWASFBotSettingViewController.swift */,
+				034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */,
 			);
 			path = ASF;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/QMUIKit/QMUIKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -331,6 +335,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QMUIKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -359,6 +364,7 @@
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
 				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
 				031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */,
+				034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */,
 				03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */,
 				031E558521EF0ED800C20363 /* SWSSRInfoViewController.swift in Sources */,
 				035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */,

@@ -30,6 +30,7 @@ class SWAppClient: NSObject {
     }
     
     public func saveUserInfo(user: SWUser) {
+        clientShared.user = user
         let userJson = user.toJSONString()!
         UserDefaults.standard.set(userJson, forKey: userStoreKey)
         UserDefaults.standard.synchronize()

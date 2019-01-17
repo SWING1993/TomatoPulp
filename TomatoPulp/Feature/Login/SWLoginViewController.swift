@@ -56,6 +56,10 @@ class SWLoginViewController: UIViewController {
             print("登录 + \(message)")
             if message == "登录成功" {
                 print("login success")
+                let app = UIApplication.shared.delegate as! AppDelegate
+                app.toMain()
+            } else {
+                self.showTextHUD(message, dismissAfterDelay: 3)
             }
         }
     }

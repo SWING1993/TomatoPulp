@@ -19,9 +19,6 @@ extension SWASF {
         case "Blacklist":
             result = "Blacklist —— HashSet<uint> 类型，默认值为空。就像字段名一样，本字段定义了一些全局的 appID（游戏）黑名单，这些 appID 会在 ASF 自动挂卡的时候忽略掉。有趣的是，Steam 喜欢把夏促和冬促的徽章 appID 设置成 “可掉落卡牌”，这会误导 ASF 认为这个 appID 是一个可以掉落卡牌的游戏。如果没有将这些 appID 添加进 Blacklist ASF 可能会一直挂一个不存在游戏的卡。ASF 的黑名单就是为了标记这些不能挂卡的 appID，在决定挂什么的时候忽略它们，避免落入陷阱"
             
-        case "CustomGamePlayedWhileFarming":
-            result = "CustomGamePlayedWhileFarming —— string 类型，默认值为 null。在 ASF 挂卡的时候，可以自定义正在游玩的信息为“非 Steam 游戏中：CustomGamePlayedWhileFarming”，而不显示当前正在挂卡的游戏名。本功能可以在你不想更改默认的 OnlineStatus 时，告诉你的好友你正在挂卡。需要注意 ASF 并不能保证 Steam 网络实际展示的顺序，因此它可能并不能正地的显示。默认值 null 为停用此功能。"
-            
         case "ConfirmationsLimiterDelay":
             result = "ConfirmationsLimiterDelay —— byte 类型，默认值为 10。通常，Steam 网络会对类似的请求有的速率限制，被限制后会阻止提供服务。因此我们必须添加一些额外的延迟，防止触发速率限制。ASF 会确保连续的两个 2FA 确认请求之间，至少有 ConfirmationsLimiterDelay 秒的间隔 —— 本字段被用于 ASF 2FA 中，例如 2faok 指令，同样也用于各种交易相关操作之间。默认值是基于我们的测试而设置的，如果你不想在使用 ASF 过程中遇到问题，就不要将其值设置得更低。除非你有 非常 充分的理由修改本字段，请将本字段保持默认。"
             
@@ -125,7 +122,10 @@ extension SWASFBot {
             result = "AutoSteamSaleEvent —— bool 类型，默认值为 false。我们知道，在 Steam 夏季/冬季促销时，可以通过每天探索队列或者为 Steam 奖项投票来获取额外的节日集换式卡牌。当启用本功能时，每 6 隔小时 ASF 会检查你的队列和 Steam 奖项投票，如果未完成，则 ASF 会自动帮你完成。如果你想要亲自完成这些内容，那么不建议你开启本功能。所以本功能对于小号会非常有用。除此之外，如果你想得到这些卡牌，需要你的账户等级达到了 8 级。如果你不确定是否要启用本功能，那么请将本字段保持默认值 false。"
             
         case "BotBehaviour":
-            result = "BotBehaviour —— byte flags 类型，默认值为 0。本字段定义了在各种情形下 ASF 机器人的行为。可定义的行为有以下几种：/n值    行为名称    行为描述/n0    None    机器人没有特殊的行为，侵入性最小的模式，默认值/n1    RejectInvalidFriendInvites    ASF 会拒绝（不是忽略）无效的好友请求/n2    RejectInvalidTrades    ASF 会拒绝（不是忽略）无效的交易报价/n4    RejectInvalidGroupInvites    ASF 会拒绝（不是忽略）无效的组邀请/n8    DismissInventoryNotifications    ASF 会自动关闭所有库存通知"
+            result = "BotBehaviour —— byte flags 类型，默认值为 0。本字段定义了在各种情形下 ASF 机器人的行为。可定义的行为有以下几种：\n值    行为名称    行为描述\n0    None    机器人没有特殊的行为，侵入性最小的模式，默认值\n1    RejectInvalidFriendInvites    ASF 会拒绝（不是忽略）无效的好友请求\n2    RejectInvalidTrades    ASF 会拒绝（不是忽略）无效的交易报价\n4    RejectInvalidGroupInvites    ASF 会拒绝（不是忽略）无效的组邀请\n8    DismissInventoryNotifications    ASF 会自动关闭所有库存通知"
+            
+        case "CustomGamePlayedWhileFarming":
+            result = "CustomGamePlayedWhileFarming —— string 类型，默认值为 null。在 ASF 挂卡的时候，可以自定义正在游玩的信息为“非 Steam 游戏中：CustomGamePlayedWhileFarming”，而不显示当前正在挂卡的游戏名。本功能可以在你不想更改默认的 OnlineStatus 时，告诉你的好友你正在挂卡。需要注意 ASF 并不能保证 Steam 网络实际展示的顺序，因此它可能并不能正地的显示。默认值 null 为停用此功能。"
             
         case "CustomGamePlayedWhileIdle":
             result = "CustomGamePlayedWhileIdle —— string 类型，默认值为 null。与 CustomGamePlayedWhileFarming 类似，但是本字段是在 ASF 空闲的时候（账户无卡可挂的时候）显示。默认值 null 为停用此功能。"
@@ -137,7 +137,7 @@ extension SWASFBot {
             result = "FarmingOrders —— HashSet<byte> 类型，默认值为空。本字段定义了 ASF 对此机器人的 首选 挂卡顺序。目前 ASF 支持以下这几种挂卡顺序：\n值    挂卡顺序名称    挂卡顺序描述\n0    Unordered    不进行排序，略微提升 CPU 性能\n1    AppIDsAscending    尝试优先挂 appID 较小的游戏\n2    AppIDsDescending    尝试优先挂 appID 较大的游戏\n3    CardDropsAscending    尝试优先挂剩余卡牌掉落数较少的游戏\n4    CardDropsDescending    尝试优先挂剩余卡牌掉落数较多的游戏\n5    HoursAscending    尝试优先挂剩余挂卡时长较短的游戏\n6    HoursDescending    尝试优先挂剩余挂卡时长较长的游戏\n7    NamesAscending    尝试按游戏名称字母排序，从 A 开始\n8    NamesDescending    尝试按游戏名称字母排序，从 Z 开始\n9    Random    尝试完全随机顺序挂卡（每次运行程序顺序都不一样）\n10    BadgeLevelsAscending    尝试优先挂徽章等级低的游戏\n11    BadgeLevelsDescending    尝试优先挂徽章等级高的游戏\n12    RedeemDateTimesAscending    尝试优先挂先激活的游戏\n13    RedeemDateTimesDescending    尝试优先挂后激活的游戏\n14    MarketableAscending    尝试优先挂不可交易卡牌的游戏\n15    MarketableDescending    尝试优先挂可交易卡牌的游戏"
             
         case "FileName":
-            result = "FileName = string 类型，默认值为 null。\n文件名"
+            result = "FileName —— String 类型，默认值为 null。\n文件名"
             
         case "GamesPlayedWhileIdle":
             result = "GamesPlayedWhileIdle —— HashSet<uint> 类型，默认值为空。当 ASF 空闲的时候（没有可挂卡的游戏），它可以游玩你指定的这些游戏（appID）。这样可以增加你指定的这些游戏的游玩时长，别无它用。本字段功能可以和 CustomGamePlayedWhileIdle 字段功能同时启用。这样既可以挂你指定游戏的游玩时长，还可以显示自定义的 Steam 状态。"

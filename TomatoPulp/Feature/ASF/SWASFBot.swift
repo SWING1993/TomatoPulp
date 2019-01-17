@@ -12,14 +12,12 @@ import HandyJSON
 
 class SWASFBot: HandyJSON {
     
-    
     /// AcceptGifts —— bool 类型，默认值为 false。当启用的时候，ASF 会帮该机器人自动接收和激活所有 Steam 礼物。甚至会接收不包含在 SteamUserPermissions 中设置的用户的礼物。本功能建议只为小号开启，因为你可能并不想让主账户激活发送过来的所有礼物。需要注意，通过电子邮件发送的礼物，并不会直接经过客户端，所以 ASF 不会自动接收（除非你额外干预），因此应该直接向账户发送 Steam 礼物。如果你不确定是否要启用本功能，那么请将本字段保持默认值 false。
     var AcceptGifts: Bool = false
     
     /// AutoSteamSaleEvent —— bool 类型，默认值为 false。我们知道，在 Steam 夏季/冬季促销时，可以通过每天探索队列或者为 Steam 奖项投票来获取额外的节日集换式卡牌。当启用本功能时，每 6 隔小时 ASF 会检查你的队列和 Steam 奖项投票，如果未完成，则 ASF 会自动帮你完成。如果你想要亲自完成这些内容，那么不建议你开启本功能。所以本功能对于小号会非常有用。除此之外，如果你想得到这些卡牌，需要你的账户等级达到了 8 级。如果你不确定是否要启用本功能，那么请将本字段保持默认值 false。
     var AutoSteamSaleEvent: Bool = false
 
-    
     /// BotBehaviour —— byte flags 类型，默认值为 0。本字段定义了在各种情形下 ASF 机器人的行为。可定义的行为有以下几种：
     /*
     值    行为名称    行为描述
@@ -32,15 +30,14 @@ class SWASFBot: HandyJSON {
     var BotBehaviour: Int = 0
     
     /// CustomGamePlayedWhileFarming —— string 类型，默认值为 null。在 ASF 挂卡的时候，可以自定义正在游玩的信息为“非 Steam 游戏中：CustomGamePlayedWhileFarming”，而不显示当前正在挂卡的游戏名。本功能可以在你不想更改默认的 OnlineStatus 时，告诉你的好友你正在挂卡。需要注意 ASF 并不能保证 Steam 网络实际展示的顺序，因此它可能并不能正地的显示。默认值 null 为停用此功能。
-    var CustomGamePlayedWhileFarming: String?
+    var CustomGamePlayedWhileFarming: String = ""
     
     /// CustomGamePlayedWhileIdle —— string 类型，默认值为 null。与 CustomGamePlayedWhileFarming 类似，但是本字段是在 ASF 空闲的时候（账户无卡可挂的时候）显示。默认值 null 为停用此功能。
-    var CustomGamePlayedWhileIdle : String?
+    var CustomGamePlayedWhileIdle : String = ""
     
     /// Enabled —— bool 类型，默认值为 false。本字段定义了是否启用本机器人。如果设置为 true，在 ASF 程序启动的时候会自动启动本机器人。如果设置成 false 则需要手动启动机器人。默认所有机器人都不自动启动，所以需要将所有想要自动启动的机器人的本字段设置成 true。
     var Enabled: Bool = false
 
-//    var FilePath: String = ""
     var FileName: String = ""
     
     /*
@@ -64,10 +61,10 @@ class SWASFBot: HandyJSON {
      14    MarketableAscending    尝试优先挂不可交易卡牌的游戏
      15    MarketableDescending    尝试优先挂可交易卡牌的游戏
  */
-    var FarmingOrders: Set<Int>?
+    var FarmingOrders: Set<Int> = Set<Int>()
     
     /// GamesPlayedWhileIdle —— HashSet<uint> 类型，默认值为空。当 ASF 空闲的时候（没有可挂卡的游戏），它可以游玩你指定的这些游戏（appID）。这样可以增加你指定的这些游戏的游玩时长，别无它用。本字段功能可以和 CustomGamePlayedWhileIdle 字段功能同时启用。这样既可以挂你指定游戏的游玩时长，还可以显示自定义的 Steam 状态。但是某些情况下，如设置了
-    var GamesPlayedWhileIdle: Set<UInt>?
+    var GamesPlayedWhileIdle: Set<Int> = Set<Int>()
 
     /// HandleOfflineMessages —— bool 类型，默认值为 false。当 OnlineStatus 字段设置成 Offline 时，机器人会因为没有登录到 Steam 社区，而无法接收到指令消息。为了解决这个问题，ASF 可以通过启用本字段支持 Steam 离线消息。如果你的小号 OnlineStatus 字段设置成 Offline，你可以考虑将本字段设置成 true 来接收指令信息并做出响应。需要注意的是，本功能基于 Steam 的离线消息机制，接收到的消息会自动标记为已读，因此不建议为主账户设置本字段。因为 ASF 会强制读取所有离线消息并标记为已读 —— 这不仅会处理 ASF 指令，还会影响到你朋友发来的离线消息。
     var HandleOfflineMessages: Bool = false
@@ -94,7 +91,7 @@ class SWASFBot: HandyJSON {
     5    TradingCard    Steam 集换式卡牌（非闪卡）
     6    SteamGems    可用于制作补充包的宝珠和宝珠袋
  */
-    var LootableTypes: Set<Int>?
+    var LootableTypes: Set<Int> = Set<Int>()
     
     
     /// MatchableTypes —— HashSet<byte> 类型，默认值为 5 一种 Steam 物品类型。本字段定义了当 TradingPreferences 字段包含 SteamTradeMatcher 选项时，ASF 允许匹配的 Steam 物品类型。物品类型定义如下：
@@ -108,7 +105,7 @@ class SWASFBot: HandyJSON {
     5    TradingCard    Steam 集换式卡牌（非闪卡）
     6    SteamGems    可用于制作补充包的宝珠和宝珠袋
  */
-    var MatchableTypes: Set<Int>?
+    var MatchableTypes: Set<Int> = Set<Int>()
 
     
     /// OnlineStatus —— byte 类型，默认值为 1。本字段定义了在机器人登录 Steam 网络后的 Steam 社区显示的状态。目前你可以从下列状态中选择：
@@ -149,13 +146,13 @@ class SWASFBot: HandyJSON {
     var SendTradePeriod: Int = 0
     
     /// SteamLogin - string type with default value of null. This property defines your steam login - the one you use for logging in to steam. In addition to defining steam login here, you may also keep default value of null if you want to enter your steam login on each ASF startup instead of putting it in the config. This may be useful for you if you don't want to save sensitive data in config file.
-    var SteamLogin: String?
+    var SteamLogin: String = ""
     
     /// SteamPassword - string type with default value of null. This property defines your steam password - the one you use for logging in to steam. In addition to defining steam password here, you may also keep default value of null if you want to enter your steam password on each ASF startup instead of putting it in the config. This may be useful for you if you don't want to save sensitive data in config file.
-    var SteamPassword: String?
+    var SteamPassword: String = ""
     
     /// SteamTradeToken - string type with default value of null. When you have your bot on your friend list, then bot can send a trade to you right away without worrying about trade token, therefore you can leave this property at default value of null. If you however decide to NOT have your bot on your friend list, then you will need to generate and fill a trade token as the user that this bot is expecting to send trades to. In other words, this property should be filled with trade token of the account that is defined with Master permission in SteamUserPermissions of this bot instance.
-    var SteamTradeToken: String?
+    var SteamTradeToken: String = ""
     
     /// SteamUserPermissions - Dictionary<ulong, byte> type with default value of being empty. This property is a dictionary property which maps given Steam user identified by his 64-bit steam ID, to byte number that specifies his permission in ASF instance. Currently available bot permissions in ASF are defined as:
     /*
@@ -165,13 +162,13 @@ class SWASFBot: HandyJSON {
     2    Operator    Provides basic access to given bot instances, mainly adding licenses and redeeming keys
     3    Master    Provides full access to given bot instance
  */
-    var SteamUserPermissions: Dictionary<String, Int>?
+    var SteamUserPermissions: Dictionary<String, Int> = Dictionary<String, Int>()
     
     /// SteamMasterClanID - ulong type with default value of 0. This property defines the steamID of the steam group that bot should automatically join, including group chat. You can check steamID of your group by navigating to its page, then adding /memberslistxml?xml=1 to the end of the link, so the link will look like this. Then you can get steamID of your group from the result, it's in <groupID64> tag. In above example it would be 103582791440160998. If you don't have any "farm group" for your bots, you should keep it at default.
     var SteamMasterClanID: Int64 = 0
     
     /// SteamParentalPIN - string type with default value of 0. This property defines your steam parental PIN. ASF requires an access to resources protected by steam parental, therefore if you use that feature, you need to provide ASF with parental unlock PIN, so it can operate normally. Default value of 0 means that there is no steam parental PIN required to unlock this account, and this is probably what you want if you don't use steam parental functionality. In addition to defining steam parental PIN here, you may also use value of null if you want to enter your steam parental PIN on each ASF startup instead of putting it in the config. This may be useful for you if you don't want to save sensitive data in config file.
-    var SteamParentalPIN: String?
+    var SteamParentalPIN: String = ""
     
     /// ShutdownOnFarmingFinished - bool type with default value of false. ASF is "occupying" an account for the whole time of process being active. When given account is done with farming, ASF periodically checks it (every IdleFarmingPeriod hours), if perhaps some new games with steam cards were added in the meantime, so it can resume farming of that account without a need to restart the process. This is useful for majority of people, as ASF can automatically resume farming when needed. However, you may actually want to stop the process when given account is fully farmed, you can achieve that by setting this property to true. When enabled, ASF will proceed with logging off when account is fully farmed, which means that it won't be periodically checked or occupied anymore. You should decide yourself if you prefer ASF to work on given bot instance for the whole time, or if perhaps ASF should stop it when farming process is done. When all accounts are stopped and process is not running in --process-required mode, ASF will shutdown as well. If you're not sure how to set this property, leave it with default value of false.
     var ShutdownOnFarmingFinished: Bool = false
@@ -192,37 +189,3 @@ class SWASFBot: HandyJSON {
     
     required init() {}
 }
-
-/*
-
- "SteamTradeToken":null,
- "CustomGamePlayedWhileIdle":null,
- "IdlePriorityQueueOnly":false,
- "CustomGamePlayedWhileFarming":null,
- "SendOnFarmingFinished":true,
- "SteamUserPermissions":{"76561198193152589":3},
- "SteamLogin":"steam10446627",
- "filepath":"/root/ArchiSteamFarm/asf_linux/config/steam10446627.json",
- "PasswordFormat":0,
- "GamesPlayedWhileIdle":[578080],
- "ShutdownOnFarmingFinished":false,
- "Paused":false,
- "AutoSteamSaleEvent":true,
- "BotBehaviour":0,
- "HoursUntilCardDrops":3,
- "SteamPassword":"Swing.1993",
- "IdleRefundableGames":true,
- "LootableTypes":[1,3,5],
- "FarmingOrders":[],
- "OnlineStatus":1,
- "SendTradePeriod":23,
- "Enabled":true,
- "MatchableTypes":[5],
- "AcceptGifts":true,
- "UseLoginKeys":true,
- "filename":"steam10446627.json",
- "SteamMasterClanID":103582791463387376,
- "SteamParentalPIN":"0",
- "TradingPreferences":0,
- "RedeemingPreferences":0
- */

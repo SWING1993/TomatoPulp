@@ -10,7 +10,7 @@ import UIKit
 import Material
 import Charts
 
-class SWSSRViewController: UIViewController {
+class SWSSRViewController: QMUICommonViewController {
 
     fileprivate var tableView: TableView!
     
@@ -20,6 +20,7 @@ class SWSSRViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.showEmptyView(withText: "SSRUser为空", detailText: "请检查网络", buttonTitle: nil, buttonAction: nil)
         navigationItem.titleLabel.text = "SSR"
         navigationItem.detailLabel.text = "用户配置"
         prepareTableView()
@@ -35,6 +36,9 @@ fileprivate extension SWSSRViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
+        tableView.estimatedRowHeight = 0;
+        tableView.estimatedSectionHeaderHeight = 0;
+        tableView.estimatedSectionFooterHeight = 0;
         view.layout(tableView).edges()
     }
     
@@ -57,6 +61,7 @@ fileprivate extension SWSSRViewController {
             })
             self.configChartView()
             self.tableView.reloadData()
+            self.hideEmptyView()
         }) { errorMsg in
             self.hideHUD()
             self.showTextHUD(errorMsg, dismissAfterDelay: 3)

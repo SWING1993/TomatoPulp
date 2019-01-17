@@ -43,6 +43,9 @@ fileprivate extension SWSSRInfoViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
+        tableView.estimatedRowHeight = 0;
+        tableView.estimatedSectionHeaderHeight = 0;
+        tableView.estimatedSectionFooterHeight = 0;
         view.layout(tableView).edges()
     }
     
