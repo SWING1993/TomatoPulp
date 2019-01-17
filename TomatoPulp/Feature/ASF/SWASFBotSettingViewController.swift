@@ -203,6 +203,7 @@ extension SWASFBotSettingViewController {
         dialogViewController.addTextField(withTitle: nil) { (titleLabel, textField, separatorLayer) in
             textField?.placeholder = "请输入";
             textField?.maximumTextLength = 70;
+            textField?.keyboardType = .numberPad
         }
         dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
         dialogViewController.addCancelButton(withText: "取消", block: nil)
@@ -229,14 +230,20 @@ extension SWASFBotSettingViewController {
             textField?.maximumTextLength = 70;
         }
         dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
+        dialogViewController.shouldEnableSubmitButtonBlock = { _ in
+            return true
+        }
+      
         dialogViewController.addCancelButton(withText: "取消", block: nil)
         dialogViewController.addSubmitButton(withText: "确定") { d in
             let d = d as! QMUIDialogTextFieldViewController
             let t = d.textFields.first
             if let tValue = t?.text {
                 self.asfBotDict?[key] = tValue
-                self.tableView.reloadData()
+            } else {
+                self.asfBotDict?[key] = ""
             }
+            self.tableView.reloadData()
             d.hide()
         }
         dialogViewController.show()

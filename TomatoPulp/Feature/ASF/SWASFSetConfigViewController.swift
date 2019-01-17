@@ -70,7 +70,12 @@ fileprivate extension SWASFSetConfigViewController {
 
 extension SWASFSetConfigViewController : UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return sectionTitle
+//    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return sectionTitle
     }
     
@@ -91,10 +96,7 @@ extension SWASFSetConfigViewController : UITableViewDelegate {
         self.set.remove(value)
         tableView.reloadData()
     }
-    
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return ""
-    }
+
 }
 
 extension SWASFSetConfigViewController : UITableViewDataSource {
@@ -137,6 +139,7 @@ fileprivate extension SWASFSetConfigViewController {
         dialogViewController.addTextField(withTitle: nil) { (titleLabel, textField, separatorLayer) in
             textField?.placeholder = "请输入";
             textField?.maximumTextLength = 20;
+            textField?.keyboardType = .numberPad
         }
         dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
         dialogViewController.addCancelButton(withText: "取消", block: nil)
