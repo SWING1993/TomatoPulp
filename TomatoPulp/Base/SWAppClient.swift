@@ -29,10 +29,14 @@ class SWAppClient: NSObject {
         return false
     }
     
-    public func saveUserInfo(user: SWUser) {
-        clientShared.user = user
-        let userJson = user.toJSONString()!
+    public func saveUserInfo() {
+        let userJson = clientShared.user.toJSONString()!
         UserDefaults.standard.set(userJson, forKey: userStoreKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    public func removeUserInfo() {
+        UserDefaults.standard.removeObject(forKey: userStoreKey)
         UserDefaults.standard.synchronize()
     }
 }

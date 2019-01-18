@@ -58,6 +58,7 @@ class HttpUtils {
             headers.add(name: "token", value: token)
             headers.add(name: "uid", value: "\(clientShared.user.id)")
         }
+        print("headers:\(headers)")
 
         let taskManager: HttpTaskUtils = HttpTaskUtils().request("\(host)\(url)", method: method, params: signatureParams, encoding: encoding, headers: headers)
         return taskManager
@@ -102,6 +103,7 @@ public class HttpTaskUtils {
                     } else {
                         failure(httpResult.message!)
                         if httpResult.code == 10002 {
+                            clientShared.removeUserInfo()
                             Async.main{
                                 let app = UIApplication.shared.delegate as! AppDelegate
                                 app.toLogin()

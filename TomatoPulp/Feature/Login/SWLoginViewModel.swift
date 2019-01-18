@@ -67,7 +67,8 @@ class SWLoginViewModel: NSObject {
                 HttpUtils.default.request("/user/login", method: .post, params: parameters).response(success: { result in
                     let userDict : Dictionary<String, Any> = result as! Dictionary<String, Any>
                     if let user  = SWUser.deserialize(from: userDict) {
-                        clientShared.saveUserInfo(user: user)
+                        clientShared.user = user
+                        clientShared.saveUserInfo()
                     }
                     observer.send(value: "登录成功")
                     observer.sendCompleted()

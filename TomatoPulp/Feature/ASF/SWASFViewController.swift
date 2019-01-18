@@ -11,25 +11,22 @@ import Material
 
 class SWASFViewController: QMUICommonViewController {
     
-    fileprivate var settingButton: IconButton = IconButton.init(image: Icon.cm.settings)
+    fileprivate var logButton: IconButton = IconButton.init(image: Icon.cm.menu)
+    fileprivate var asfButton: IconButton = IconButton.init(image: UIImage.init(named: "ASF")?.resize(toHeight: 20))
 
     fileprivate var tableView: TableView!
-    
     fileprivate var asf: SWASF = SWASF()
-    
     fileprivate var bots: Array<SWASFBot> = Array()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-       self.showEmptyView(withText: "SteamBot为空", detailText: "请检查网络", buttonTitle: nil, buttonAction: nil)
+        self.showEmptyView(withText: "SteamBot为空", detailText: "请检查网络", buttonTitle: nil, buttonAction: nil)
         prepareTableView()
         prepareNavigationItem()
         setupASFBotData()
     }
-    
 }
 
 fileprivate extension SWASFViewController {
@@ -48,8 +45,9 @@ fileprivate extension SWASFViewController {
     func prepareNavigationItem() {
         navigationItem.titleLabel.text = "ArchiSteamFarm"
         navigationItem.detailLabel.text = "前所未有的挂卡体验"
-        settingButton.addTarget(self, action: #selector(handleToASFSetting), for: .touchUpInside)
-        navigationItem.rightViews = [settingButton]
+        logButton.addTarget(self, action: #selector(handleToASFLog), for: .touchUpInside)
+        asfButton.addTarget(self, action: #selector(handleToASFSetting), for: .touchUpInside)
+        navigationItem.rightViews = [logButton, asfButton]
     }
     
     func setupASFBotData() {
@@ -133,6 +131,11 @@ fileprivate extension SWASFViewController {
     func handleToASFSetting() {
         let controller: SWASFConfigViewController = SWASFConfigViewController()
         controller.asf = self.asf
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc
+    func handleToASFLog() {
         navigationController?.pushViewController(SWASFLogViewController(), animated: true)
     }
 }

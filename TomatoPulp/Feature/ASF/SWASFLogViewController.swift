@@ -84,11 +84,10 @@ extension SWASFLogViewController : UITableViewDelegate {
 extension SWASFLogViewController : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.logs.count
-
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

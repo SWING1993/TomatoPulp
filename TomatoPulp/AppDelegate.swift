@@ -19,6 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.backgroundColor = UIColor.white;
         if clientShared.isLogin() {
             toMain()
+            HttpUtils.default.request("/user/refreshToekn").response(success: { result in
+                if let dict: [String: String] = result as? [String: String] {
+                    if let token = dict["token"] {
+                        clientShared.user.token = token
+                        clientShared.saveUserInfo()
+                    }
+                }
+            }) { error in
+                print("refreshToeknError:\(error)")
+            }
         } else {
             toLogin()
         }
