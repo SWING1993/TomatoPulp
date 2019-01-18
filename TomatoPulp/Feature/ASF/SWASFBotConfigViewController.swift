@@ -14,7 +14,7 @@ import ReactiveSwift
 import enum Result.NoError
 import Alamofire
 
-class SWASFBotSettingViewController: UIViewController {
+class SWASFBotConfigViewController: UIViewController {
 
     var saved = {}
     var asfBot: SWASFBot = SWASFBot()
@@ -69,7 +69,7 @@ class SWASFBotSettingViewController: UIViewController {
     }
 }
 
-fileprivate extension SWASFBotSettingViewController {
+fileprivate extension SWASFBotConfigViewController {
     
     func prepareTableView() {
         tableView = TableView.init(frame: CGRect.zero, style: .grouped)
@@ -108,7 +108,7 @@ fileprivate extension SWASFBotSettingViewController {
 }
 
 
-extension SWASFBotSettingViewController : UITableViewDelegate {
+extension SWASFBotConfigViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
@@ -142,7 +142,7 @@ extension SWASFBotSettingViewController : UITableViewDelegate {
     }
 }
 
-extension SWASFBotSettingViewController : UITableViewDataSource {
+extension SWASFBotConfigViewController : UITableViewDataSource {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         if let count = asfBotKeys?.count {
@@ -186,7 +186,7 @@ extension SWASFBotSettingViewController : UITableViewDataSource {
     }
 }
 
-extension SWASFBotSettingViewController: SwitchDelegate {
+extension SWASFBotConfigViewController: SwitchDelegate {
     func switchDidChangeState(control: Switch, state: SwitchState) {
         print("Switch changed state to: ", .on == state ? "on" : "off")
         let key: String = (asfBotKeys?[control.tag])!
@@ -195,7 +195,7 @@ extension SWASFBotSettingViewController: SwitchDelegate {
 }
 
 
-extension SWASFBotSettingViewController {
+extension SWASFBotConfigViewController {
     
     func xxInt(_ key: String) {
         let dialogViewController = QMUIDialogTextFieldViewController()

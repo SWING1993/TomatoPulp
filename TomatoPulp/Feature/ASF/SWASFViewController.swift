@@ -25,11 +25,8 @@ class SWASFViewController: QMUICommonViewController {
         // Do any additional setup after loading the view.
         
        self.showEmptyView(withText: "SteamBot为空", detailText: "请检查网络", buttonTitle: nil, buttonAction: nil)
-
         prepareTableView()
-        
         prepareNavigationItem()
-        
         setupASFBotData()
     }
     
@@ -97,7 +94,7 @@ extension SWASFViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let bot: SWASFBot = self.bots[indexPath.row]
-        let controller: SWASFBotSettingViewController = SWASFBotSettingViewController()
+        let controller: SWASFBotConfigViewController = SWASFBotConfigViewController()
         controller.asfBot = bot
         controller.saved = {
             self.setupASFBotData()
@@ -116,21 +113,17 @@ extension SWASFViewController : UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
             cell = TableViewCell.init(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "cell")
+            cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
+            cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
+            cell?.detailTextLabel?.textColor = Color.blue.accent3
+            cell?.accessoryType = .disclosureIndicator
         }
-        
         let bot: SWASFBot = self.bots[indexPath.row]
         cell?.imageView?.image = UIImage.init(named: "robot-solid")?.resize(toWidth: 25)?.tint(with: bot.Enabled ? Color.green.base : Color.blueGrey.lighten4)
         cell?.textLabel?.text = bot.SteamLogin
-        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
         cell?.detailTextLabel?.text = bot.FileName
-        cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
-        cell?.detailTextLabel?.textColor = Color.blue.accent3
-        
-        cell?.accessoryType = .disclosureIndicator
-        
         return cell!
     }
-    
 }
 
 
@@ -138,9 +131,8 @@ fileprivate extension SWASFViewController {
     
     @objc
     func handleToASFSetting() {
-        let controller: SWASFSettingViewController = SWASFSettingViewController()
+        let controller: SWASFConfigViewController = SWASFConfigViewController()
         controller.asf = self.asf
-        navigationController?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(SWASFLogViewController(), animated: true)
     }
-
 }

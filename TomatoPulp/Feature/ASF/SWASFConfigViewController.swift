@@ -10,7 +10,7 @@ import UIKit
 
 import Material
 
-class SWASFSettingViewController: UIViewController {
+class SWASFConfigViewController: UIViewController {
     
     var asf: SWASF = SWASF()
     var asfDict: [String : Any]?
@@ -35,7 +35,7 @@ class SWASFSettingViewController: UIViewController {
     }
 }
 
-fileprivate extension SWASFSettingViewController {
+fileprivate extension SWASFConfigViewController {
     
     func prepareTableView() {
         tableView = TableView.init(frame: CGRect.zero, style: .grouped)
@@ -55,7 +55,7 @@ fileprivate extension SWASFSettingViewController {
 }
 
 
-extension SWASFSettingViewController : UITableViewDelegate {
+extension SWASFConfigViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
@@ -74,7 +74,7 @@ extension SWASFSettingViewController : UITableViewDelegate {
     
 }
 
-extension SWASFSettingViewController : UITableViewDataSource {
+extension SWASFConfigViewController : UITableViewDataSource {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         if let count = asfKeys?.count {
@@ -91,6 +91,9 @@ extension SWASFSettingViewController : UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
             cell = TableViewCell.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cell")
+            cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
+            cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
+            cell?.detailTextLabel?.textColor = Color.blue.accent3
         }
         
         if let key = asfKeys?[indexPath.section] {
@@ -98,12 +101,7 @@ extension SWASFSettingViewController : UITableViewDataSource {
             if let value = asfDict?[key] {
                 cell?.detailTextLabel?.text =  "\(String(describing: value))"
             }
-        }
-       
-        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
-        cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
-        cell?.detailTextLabel?.textColor = Color.blue.accent3
-        
+        }        
         return cell!
     }
     

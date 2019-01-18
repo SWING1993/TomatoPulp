@@ -109,20 +109,16 @@ extension SWASFSetConfigViewController : UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
             cell = TableViewCell.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cell")
+            cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
+            cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
+            cell?.detailTextLabel?.textColor = Color.blue.accent3
         }
         
         let value = Array(set)[indexPath.row]
         cell?.textLabel?.text = "\(value)"
-        
-        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
-        cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
-        cell?.detailTextLabel?.textColor = Color.blue.accent3
-        
         return cell!
     }
-    
 }
-
 
 fileprivate extension SWASFSetConfigViewController {
     

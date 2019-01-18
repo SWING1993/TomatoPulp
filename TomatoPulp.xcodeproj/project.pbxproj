@@ -13,9 +13,10 @@
 		0332000421EC23E800158E86 /* SWASF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000321EC23E800158E86 /* SWASF.swift */; };
 		0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000521EC717B00158E86 /* SWSSRViewController.swift */; };
 		0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000821EC71CB00158E86 /* SWSSRUser.swift */; };
-		0332000B21EC7E6900158E86 /* SWASFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */; };
-		0332000D21EC7E9300158E86 /* SWASFBotSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000C21EC7E9300158E86 /* SWASFBotSettingViewController.swift */; };
+		0332000B21EC7E6900158E86 /* SWASFConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000A21EC7E6900158E86 /* SWASFConfigViewController.swift */; };
+		0332000D21EC7E9300158E86 /* SWASFBotConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */; };
 		034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */; };
+		034FC89921F16674006379C7 /* SWASFLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FC89821F16674006379C7 /* SWASFLogViewController.swift */; };
 		035CDEB721EDA76C00DCE7B1 /* HUDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */; };
 		035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */; };
 		03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA11621E6EB1B00319A6C /* AppDelegate.swift */; };
@@ -41,9 +42,10 @@
 		0332000321EC23E800158E86 /* SWASF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASF.swift; sourceTree = "<group>"; };
 		0332000521EC717B00158E86 /* SWSSRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRViewController.swift; sourceTree = "<group>"; };
 		0332000821EC71CB00158E86 /* SWSSRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRUser.swift; sourceTree = "<group>"; };
-		0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSettingViewController.swift; sourceTree = "<group>"; };
-		0332000C21EC7E9300158E86 /* SWASFBotSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBotSettingViewController.swift; sourceTree = "<group>"; };
+		0332000A21EC7E6900158E86 /* SWASFConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFConfigViewController.swift; sourceTree = "<group>"; };
+		0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBotConfigViewController.swift; sourceTree = "<group>"; };
 		034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSetConfigViewController.swift; sourceTree = "<group>"; };
+		034FC89821F16674006379C7 /* SWASFLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFLogViewController.swift; sourceTree = "<group>"; };
 		035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDUtils.swift; sourceTree = "<group>"; };
 		035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASFBotUtils.swift; sourceTree = "<group>"; };
 		03BEA11321E6EB1B00319A6C /* TomatoPulp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TomatoPulp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,9 +194,10 @@
 				0332000321EC23E800158E86 /* SWASF.swift */,
 				03FE608B21EB398A00E159FF /* SWASFBot.swift */,
 				03FE608D21EB829900E159FF /* SWASFViewController.swift */,
-				0332000A21EC7E6900158E86 /* SWASFSettingViewController.swift */,
-				0332000C21EC7E9300158E86 /* SWASFBotSettingViewController.swift */,
+				0332000A21EC7E6900158E86 /* SWASFConfigViewController.swift */,
+				0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */,
 				034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */,
+				034FC89821F16674006379C7 /* SWASFLogViewController.swift */,
 			);
 			path = ASF;
 			sourceTree = "<group>";
@@ -357,13 +360,14 @@
 				03FE608E21EB829900E159FF /* SWASFViewController.swift in Sources */,
 				03BEA12F21E6F4E500319A6C /* AppNavigationController.swift in Sources */,
 				03BEA12C21E6F22D00319A6C /* SWIndexViewController.swift in Sources */,
-				0332000B21EC7E6900158E86 /* SWASFSettingViewController.swift in Sources */,
+				0332000B21EC7E6900158E86 /* SWASFConfigViewController.swift in Sources */,
 				03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */,
 				031E558821EF28C400C20363 /* StringMd5.swift in Sources */,
 				03FE608521EA02CE00E159FF /* SWUser.swift in Sources */,
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
 				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
 				031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */,
+				034FC89921F16674006379C7 /* SWASFLogViewController.swift in Sources */,
 				034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */,
 				03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */,
 				031E558521EF0ED800C20363 /* SWSSRInfoViewController.swift in Sources */,
@@ -373,7 +377,7 @@
 				0332000421EC23E800158E86 /* SWASF.swift in Sources */,
 				03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */,
 				0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */,
-				0332000D21EC7E9300158E86 /* SWASFBotSettingViewController.swift in Sources */,
+				0332000D21EC7E9300158E86 /* SWASFBotConfigViewController.swift in Sources */,
 				035CDEB721EDA76C00DCE7B1 /* HUDUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
