@@ -36,7 +36,8 @@ class SWAppClient: NSObject {
     }
     
     public func removeUserInfo() {
-        UserDefaults.standard.removeObject(forKey: userStoreKey)
+        UserDefaults.standard.set("", forKey: userStoreKey)
         UserDefaults.standard.synchronize()
     }
+    
 }

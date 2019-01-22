@@ -89,6 +89,7 @@ public class HttpTaskUtils {
         encoding: ParameterEncoding = URLEncoding.default,
         headers: HTTPHeaders? = nil)
         -> HttpTaskUtils {
+            
             dataRequest = AF.request(url, method: method, parameters: params, encoding: encoding, headers: headers)
         return self
     }
