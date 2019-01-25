@@ -9,6 +9,8 @@
 import UIKit
 import Material
 import Charts
+import ReactiveSwift
+import ReactiveCocoa
 
 class SWSSRViewController: QMUICommonViewController {
 
@@ -79,14 +81,17 @@ fileprivate extension SWSSRViewController {
         chartView.transparentCircleRadiusPercent = 0.61
         chartView.chartDescription?.enabled = false
         chartView.setExtraOffsets(left: 5, top: 10, right: 5, bottom: 5)
-        
         chartView.drawCenterTextEnabled = true
         
         let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineBreakMode = .byTruncatingTail
         paragraphStyle.alignment = .center
         
-        let centerText = NSMutableAttributedString(string: "SSR\n用户流量")
+        let total = self.users.reduce(0) { (result, user) -> Int64 in
+            return result + user.u + user.d
+        }
+        
+        let centerText = NSMutableAttributedString(string: "SSR\n用户总流量\n\(HttpUtils.transformedValue(value: total))")
         centerText.setAttributes([.font : UIFont(name: "HelveticaNeue-Light", size: 13)!,
                                   .paragraphStyle : paragraphStyle], range: NSRange(location: 0, length: centerText.length))
         chartView.centerAttributedText = centerText;
