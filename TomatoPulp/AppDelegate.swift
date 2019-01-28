@@ -17,22 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window!.backgroundColor = UIColor.white;
-        if clientShared.isLogin() {
-            toMain()
-            HttpUtils.default.request("/user/refreshToekn").response(success: { result in
-                if let dict: [String: String] = result as? [String: String] {
-                    if let token = dict["token"] {
-                        print("toekn: \(token)")
-                        clientShared.user.token = token
-                        clientShared.saveUserInfo()
-                    }
-                }
-            }) { error in
-                print("refreshToeknError:\(error)")
-            }
-        } else {
-            toLogin()
-        }
+        toMain()
+//        if clientShared.isLogin() {
+//            toMain()
+//            HttpUtils.default.request("/user/refreshToekn").response(success: { result in
+//                if let dict: [String: String] = result as? [String: String] {
+//                    if let token = dict["token"] {
+//                        print("toekn: \(token)")
+//                        clientShared.user.token = token
+//                        clientShared.saveUserInfo()
+//                    }
+//                }
+//            }) { error in
+//                print("refreshToeknError:\(error)")
+//            }
+//        } else {
+//            toLogin()
+//        }
         window!.makeKeyAndVisible()
         return true
     }

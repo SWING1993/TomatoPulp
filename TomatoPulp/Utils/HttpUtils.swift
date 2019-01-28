@@ -15,7 +15,7 @@ class HttpUtils {
     static let `default` = HttpUtils()
     
     private var host: String {
-        return "http://swing1993.xyz:8080/tomato"
+        return "http://118.24.216.163:8080/orange"
 //        return "http://localhost:8081"
     }
     /// 超时时间
@@ -23,12 +23,14 @@ class HttpUtils {
     private var encoding: ParameterEncoding = URLEncoding(destination: .queryString)
     private var headers: HTTPHeaders = HTTPHeaders.init(["Content-Type" : "application/json"])
     
+    // SIGN_KEY
+    private var SIGN_KEY: String = "signature_secret"
     // ACCESS_KEY
-    private var ACCESS_KEY: String = "accessKey";
+    private var ACCESS_KEY: String = "accessKey"
     // ACCESS_SECRET
-    private var ACCESS_SECRET: String = "s7*&6f";
+    private var ACCESS_SECRET: String = "!@#orange"
     // md5盐值，用于混淆
-    private var signSalt: String = "/1s%gsa";
+    private var signSalt: String = "orange!@#"
     
     func request(_ url: String,  method: HTTPMethod = .get, params: Parameters? = nil) -> HttpTaskUtils {
         
@@ -51,7 +53,7 @@ class HttpUtils {
                 signatureParams[arg.key] = arg.value
             }
         }
-        headers.add(name: "signature_secret", value: temp.md5())
+        headers.add(name: SIGN_KEY, value: temp.md5())
 
         // 请求头
         if let token = clientShared.user.token {
