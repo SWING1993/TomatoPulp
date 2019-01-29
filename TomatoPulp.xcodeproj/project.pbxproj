@@ -96,6 +96,7 @@
 				035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */,
 				031E558221EECC4E00C20363 /* HttpUtils.swift */,
 				031E558721EF28C400C20363 /* StringMd5.swift */,
+				03FE608821EA1DBF00E159FF /* SWAppClient.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -165,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				03BEA12E21E6F4E500319A6C /* AppNavigationController.swift */,
-				03FE608821EA1DBF00E159FF /* SWAppClient.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";

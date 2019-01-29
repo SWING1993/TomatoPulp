@@ -16,7 +16,7 @@ class HttpUtils {
     
     private var host: String {
         return "http://118.24.216.163:8080/orange"
-//        return "http://localhost:8081"
+//        return "http://localhost:8080"
     }
     /// 超时时间
     private var timeoutIntervalForRequest: TimeInterval = 25
@@ -106,11 +106,15 @@ public class HttpTaskUtils {
                     } else {
                         failure(httpResult.message!)
                         if httpResult.code == 10002 {
+                            // token无效，
                             clientShared.removeUserInfo()
                             Async.main{
                                 let app = UIApplication.shared.delegate as! AppDelegate
                                 app.toLogin()
                             }
+                        } else if httpResult.code == 10002 {
+                            // token过期，刷新token
+                            clientShared.refreshToekn()
                         }
                     }
                 } else {

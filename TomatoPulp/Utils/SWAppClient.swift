@@ -40,4 +40,18 @@ class SWAppClient: NSObject {
         UserDefaults.standard.synchronize()
     }
     
+    public func refreshToekn() {
+        HttpUtils.default.request("/user/refreshToekn").response(success: { result in
+            if let dict: [String: String] = result as? [String: String] {
+                if let token = dict["token"] {
+                    print("refreshToken toekn: \(token)")
+                    self.user.token = token
+                    self.saveUserInfo()
+                }
+            }
+        }) { error in
+            print("refreshToken Error:\(error)")
+        }
+    }
+    
 }
