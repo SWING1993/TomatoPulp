@@ -91,7 +91,6 @@ public class HttpTaskUtils {
         encoding: ParameterEncoding = URLEncoding.default,
         headers: HTTPHeaders? = nil)
         -> HttpTaskUtils {
-            
             dataRequest = AF.request(url, method: method, parameters: params, encoding: encoding, headers: headers)
         return self
     }
@@ -104,6 +103,9 @@ public class HttpTaskUtils {
                     if httpResult.success {
                         success(httpResult.result)
                     } else {
+                        
+                        let requestUrl: String = String(describing: self.dataRequest?.convertible.urlRequest?.url?.absoluteString)
+                        
                         failure(httpResult.message!)
                         if httpResult.code == 10002 {
                             // token无效，
@@ -112,7 +114,7 @@ public class HttpTaskUtils {
                                 let app = UIApplication.shared.delegate as! AppDelegate
                                 app.toLogin()
                             }
-                        } else if httpResult.code == 10002 {
+                        } else if httpResult.code == 10003 && !requestUrl.contains("refreshToekn") {
                             // token过期，刷新token
                             clientShared.refreshToekn()
                         }
