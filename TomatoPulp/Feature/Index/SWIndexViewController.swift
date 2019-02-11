@@ -57,11 +57,15 @@ fileprivate extension SWIndexViewController {
 fileprivate extension SWIndexViewController {
     @objc
     func handleToASF() {
-        navigationController?.pushViewController(SWASFViewController(), animated: true)
+        let controller = SWASFViewController()
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc
     func handleToSSR() {
-        navigationController?.pushViewController(SWSSRViewController(), animated: true)
+        let controller = SWSSRViewController()
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

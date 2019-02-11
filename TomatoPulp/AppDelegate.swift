@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QMUIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,7 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func toMain() {
-        window!.rootViewController = AppNavigationController(rootViewController: SWIndexViewController())
+        let indexNav = AppNavigationController(rootViewController: SWIndexViewController())
+        indexNav.tabBarItem.title = "index"
+
+        let userNav = AppNavigationController(rootViewController: SWUserInfoViewController())
+        userNav.tabBarItem.title = "user"
+        let appTabs = QMUITabBarViewController.init()
+        appTabs.viewControllers = [indexNav, userNav]
+        window!.rootViewController = appTabs;
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

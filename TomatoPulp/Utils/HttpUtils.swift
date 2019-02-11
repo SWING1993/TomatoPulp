@@ -103,20 +103,14 @@ public class HttpTaskUtils {
                     if httpResult.success {
                         success(httpResult.result)
                     } else {
-                        
-                        let requestUrl: String = String(describing: self.dataRequest?.convertible.urlRequest?.url?.absoluteString)
-                        
                         failure(httpResult.message!)
-                        if httpResult.code == 10002 {
+                        if httpResult.code == 10002 || httpResult.code == 10003{
                             // token无效，
                             clientShared.removeUserInfo()
                             Async.main{
                                 let app = UIApplication.shared.delegate as! AppDelegate
                                 app.toLogin()
                             }
-                        } else if httpResult.code == 10003 && !requestUrl.contains("refreshToekn") {
-                            // token过期，刷新token
-                            clientShared.refreshToekn()
                         }
                     }
                 } else {
