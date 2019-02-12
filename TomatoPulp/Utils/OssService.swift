@@ -8,14 +8,16 @@
 
 import UIKit
 import AliyunOSSiOS
+import Async
 
 class OssService {
     
     let AccessKeySecret = "1bXQp4ewQYWoupyNu37lXvLkEbHyJQ"
     let AccessKeyId = "LTAIeJacGUbHxZXE"
-    let endPoint = "https://oss-cn-beijing.aliyuncs.com"
+    let EndPoint = "https://oss-cn-beijing.aliyuncs.com"
     let BUCKET_NAME = "mybucket-swing"
-    let characters = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    let UrlPrefixed = "https://mybucket-swing.oss-cn-beijing.aliyuncs.com/"
+    let Characters = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
     var isCancelled = false;
     var putRequest: OSSPutObjectRequest?
@@ -34,7 +36,7 @@ class OssService {
             let signature = OSSUtil.calBase64Sha1(withData: contentToSign, withSecret: self.AccessKeySecret)
             return "OSS \(self.AccessKeyId):\(String(describing: signature!))"
         }
-        client = OSSClient.init(endpoint: endPoint, credentialProvider: credential!)
+        client = OSSClient.init(endpoint: EndPoint, credentialProvider: credential!)
     }
     
     func putImage(image: UIImage, compression: Bool, succees: @escaping (String) ->(), failed: @escaping (NSError) -> ()) -> Void {
@@ -54,9 +56,14 @@ class OssService {
             let task = self.client?.putObject(putRequest)
             task?.continue({ task -> Any? in
                 if let putError = task.error {
-                    failed(putError as NSError)
+                    Async.main{
+                        failed(putError as NSError)
+                    }
                 } else {
-                    succees(putRequest.objectKey)
+                    Async.main{
+                        let urlStr = "\(self.UrlPrefixed)\(putRequest.objectKey)"
+                        succees(urlStr)
+                    }
                 }
                 self.putRequest = nil
                 return nil
@@ -74,8 +81,8 @@ class OssService {
         let components = NSCalendar.current.dateComponents([Calendar.Component.year, Calendar.Component.month, Calendar.Component.day], from: Date())
         var string = ""
         for _ in 0..<length {
-            let index = Int(arc4random_uniform(UInt32(characters.count)))
-            string.append(characters[index])
+            let index = Int(arc4random_uniform(UInt32(Characters.count)))
+            string.append(Characters[index])
         }
         return "tomato-pulp/\(String(describing: components.year!))/\(String(describing: components.month!))/\(String(describing: components.day!))/\(string)"
     }

@@ -1,7 +1,24 @@
 PODS:
-  - Alamofire (5.0.0.beta.1)
+  - Alamofire (4.8.1)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
   - AliyunOSSiOS (2.10.7)
   - AsyncSwift (2.0.4)
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - Cache (5.2.0)
   - Charts (3.2.1):
     - Charts/Core (= 3.2.1)
@@ -282,9 +299,11 @@ PODS:
   - SwiftDate (5.0.13)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.0.0.beta.1)
+  - Alamofire (~> 4.8)
+  - AlamofireImage (~> 3.5)
   - AliyunOSSiOS
   - AsyncSwift
+  - BlocksKit
   - Cache (>= 5.0.0)
   - Charts
   - HandyJSON (~> 4.2.0)
@@ -298,8 +317,10 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AlamofireImage
     - AliyunOSSiOS
     - AsyncSwift
+    - BlocksKit
     - Cache
     - Charts
     - HandyJSON
@@ -314,9 +335,11 @@ SPEC REPOS:
     - SwiftDate
 
 SPEC CHECKSUMS:
-  Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
@@ -330,6 +353,6 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
 
-PODFILE CHECKSUM: bf34f56b03cbc3349e58483e7f9ac3728d0182dc
+PODFILE CHECKSUM: ee1f817e17e97c5303736d7e615c36577d2de3ab
 
 COCOAPODS: 1.5.3

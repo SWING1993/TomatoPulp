@@ -33,7 +33,7 @@ class SWLoginViewController: UIViewController {
         self.phoneField.text = "18667905583"
         self.passwordField.text = "123456"
         loginBtn.isEnabled = true
-        loginBtn.alpha = 0
+        loginBtn.alpha = 1
     }
     
     fileprivate func bindViewModel() -> () {

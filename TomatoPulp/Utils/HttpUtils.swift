@@ -21,7 +21,7 @@ class HttpUtils {
     /// 超时时间
     private var timeoutIntervalForRequest: TimeInterval = 25
     private var encoding: ParameterEncoding = URLEncoding(destination: .queryString)
-    private var headers: HTTPHeaders = HTTPHeaders.init(["Content-Type" : "application/json"])
+    private var headers: HTTPHeaders = ["Content-Type" : "application/json"]
     
     // SIGN_KEY
     private var SIGN_KEY: String = "signature_secret"
@@ -53,12 +53,12 @@ class HttpUtils {
                 signatureParams[arg.key] = arg.value
             }
         }
-        headers.add(name: SIGN_KEY, value: temp.md5())
+        headers[SIGN_KEY] = temp.md5()
 
         // 请求头
         if let token = clientShared.user.token {
-            headers.add(name: "token", value: token)
-            headers.add(name: "uid", value: "\(clientShared.user.id)")
+            headers["token"] = token
+            headers["uid"] = "\(clientShared.user.id)"
         }
         print("headers:\(headers)")
 
@@ -91,7 +91,7 @@ public class HttpTaskUtils {
         encoding: ParameterEncoding = URLEncoding.default,
         headers: HTTPHeaders? = nil)
         -> HttpTaskUtils {
-            dataRequest = AF.request(url, method: method, parameters: params, encoding: encoding, headers: headers)
+            dataRequest = Alamofire.request(url, method: method, parameters: params, encoding: encoding, headers: headers)
         return self
     }
 
