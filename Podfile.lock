@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.0.0.beta.1)
+  - AliyunOSSiOS (2.10.7)
   - AsyncSwift (2.0.4)
   - Cache (5.2.0)
   - Charts (3.2.1):
@@ -282,6 +283,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0.beta.1)
+  - AliyunOSSiOS
   - AsyncSwift
   - Cache (>= 5.0.0)
   - Charts
@@ -296,6 +298,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AliyunOSSiOS
     - AsyncSwift
     - Cache
     - Charts
@@ -312,6 +315,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
+  AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
@@ -326,6 +330,6 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
 
-PODFILE CHECKSUM: 67baa23ba3cdead4f9eddebc1300cf9eed9eda96
+PODFILE CHECKSUM: bf34f56b03cbc3349e58483e7f9ac3728d0182dc
 
 COCOAPODS: 1.5.3

@@ -4,3 +4,4 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import <QMUIKit/QMUIKit.h>
+#import <AliyunOSSiOS/OSSService.h>

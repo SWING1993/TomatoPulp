@@ -12,4 +12,5 @@ target 'TomatoPulp' do
     pod 'Charts'
     pod 'Cache', '>= 5.0.0'
     pod 'QMUIKit'
+    pod 'AliyunOSSiOS'
 end

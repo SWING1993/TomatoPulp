@@ -36,7 +36,30 @@ fileprivate extension SWUserInfoViewController {
     
     @objc
     func handleToSettings() {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        app.toLogin()
+//        let app = UIApplication.shared.delegate as! AppDelegate
+//        app.toLogin()
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        self.present(imagePickerController, animated: true) {
+            
+        }
+    }
+    
+    
+}
+
+extension SWUserInfoViewController : UIImagePickerControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let aImage = info[UIImagePickerController.InfoKey.originalImage];
+        OssService().putImage(image: aImage as! UIImage, compression: true, succees: { imageUrl in
+            print(imageUrl)
+        }) { (error) in
+            print(error)
+        }
+    }
+    
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

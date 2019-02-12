@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03154341221297C100881E80 /* OssService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03154340221297C100881E80 /* OssService.swift */; };
 		031820AA22116BFF0027D58A /* SWUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031820A922116BFF0027D58A /* SWUserInfoViewController.swift */; };
 		031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E558221EECC4E00C20363 /* HttpUtils.swift */; };
 		031E558521EF0ED800C20363 /* SWSSRInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E558421EF0ED800C20363 /* SWSSRInfoViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03154340221297C100881E80 /* OssService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OssService.swift; sourceTree = "<group>"; };
 		031820A922116BFF0027D58A /* SWUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWUserInfoViewController.swift; sourceTree = "<group>"; };
 		031E558221EECC4E00C20363 /* HttpUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtils.swift; sourceTree = "<group>"; };
 		031E558421EF0ED800C20363 /* SWSSRInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSSRInfoViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				031E558221EECC4E00C20363 /* HttpUtils.swift */,
 				031E558721EF28C400C20363 /* StringMd5.swift */,
 				03FE608821EA1DBF00E159FF /* SWAppClient.swift */,
+				03154340221297C100881E80 /* OssService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TomatoPulp/Pods-TomatoPulp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AliyunOSSiOS/AliyunOSSiOS.framework",
 				"${BUILT_PRODUCTS_DIR}/AsyncSwift/Async.framework",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -342,6 +346,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunOSSiOS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Async.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
@@ -385,6 +390,7 @@
 				031E558521EF0ED800C20363 /* SWSSRInfoViewController.swift in Sources */,
 				035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */,
 				0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */,
+				03154341221297C100881E80 /* OssService.swift in Sources */,
 				03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */,
 				0332000421EC23E800158E86 /* SWASF.swift in Sources */,
 				03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */,
