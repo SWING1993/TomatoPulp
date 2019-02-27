@@ -245,6 +245,7 @@
 				03BEA11021E6EB1B00319A6C /* Frameworks */,
 				03BEA11121E6EB1B00319A6C /* Resources */,
 				E3CF1318EBF61E0AC3A9ACB2 /* [CP] Embed Pods Frameworks */,
+				037A676922266537001B3527 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -302,6 +303,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		037A676922266537001B3527 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nif [ $CONFIGURATION != Debug ]; then\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$((0x$buildNumber)) \nbuildNumber=$(($buildNumber + 1)) \nbuildNumber=$(printf \"%X\" $buildNumber)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nelse\necho $CONFIGURATION \"当前不为 Release Configuration\"\nfi\n";
+		};
 		2964C030E96C7963B9A07DC6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

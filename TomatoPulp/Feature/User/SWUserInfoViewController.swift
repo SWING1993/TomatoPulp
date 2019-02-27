@@ -16,6 +16,7 @@ class SWUserInfoViewController: QMUICommonViewController {
     
     fileprivate let settingsButton: IconButton = IconButton(image: Icon.cm.settings)
     fileprivate let avatarView: UIImageView = UIImageView()
+    fileprivate let nicknameLabel : UILabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +56,22 @@ fileprivate extension SWUserInfoViewController {
             maker.size.equalTo(CGSize(width: 60, height: 60))
         }
         avatarView.bk_(whenTapped: {
-            
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
             imagePickerController.sourceType = .photoLibrary
             self.present(imagePickerController, animated: true, completion: nil)
         })
+        
+        if let nickname = clientShared.user.nickname {
+            nicknameLabel.text = nickname
+        }
+        self.view.addSubview(nicknameLabel)
+        nicknameLabel.snp.makeConstraints { maker in
+            maker.left.equalTo(15)
+            maker.right.equalTo(-15)
+            maker.top.equalTo(avatarView.snp.bottom).offset(15)
+            maker.height.equalTo(25)
+        }
     }
     
     @objc
