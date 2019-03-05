@@ -29,6 +29,7 @@
 		03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA13321E709C700319A6C /* SWLoginViewController.swift */; };
 		03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA13521E7195F00319A6C /* SWRegisterViewController.swift */; };
 		03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */; };
+		03D5B5F7222E48EC00ED81D9 /* helloworld.md in Resources */ = {isa = PBXBuildFile; fileRef = 03D5B5F6222E48EC00ED81D9 /* helloworld.md */; };
 		03FE608521EA02CE00E159FF /* SWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608421EA02CE00E159FF /* SWUser.swift */; };
 		03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608821EA1DBF00E159FF /* SWAppClient.swift */; };
 		03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608B21EB398A00E159FF /* SWASFBot.swift */; };
@@ -62,6 +63,7 @@
 		03BEA13321E709C700319A6C /* SWLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewController.swift; sourceTree = "<group>"; };
 		03BEA13521E7195F00319A6C /* SWRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWRegisterViewController.swift; sourceTree = "<group>"; };
 		03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewModel.swift; sourceTree = "<group>"; };
+		03D5B5F6222E48EC00ED81D9 /* helloworld.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = helloworld.md; sourceTree = "<group>"; };
 		03FE608421EA02CE00E159FF /* SWUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWUser.swift; sourceTree = "<group>"; };
 		03FE608821EA1DBF00E159FF /* SWAppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAppClient.swift; sourceTree = "<group>"; };
 		03FE608B21EB398A00E159FF /* SWASFBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBot.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		03BEA10A21E6EB1B00319A6C = {
 			isa = PBXGroup;
 			children = (
+				03D5B5F6222E48EC00ED81D9 /* helloworld.md */,
 				03BEA11521E6EB1B00319A6C /* TomatoPulp */,
 				03BEA11421E6EB1B00319A6C /* Products */,
 				20D536314FC12E96DB08286F /* Pods */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03BEA12121E6EB1D00319A6C /* LaunchScreen.storyboard in Resources */,
+				03D5B5F7222E48EC00ED81D9 /* helloworld.md in Resources */,
 				03BEA11E21E6EB1D00319A6C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
