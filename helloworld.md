@@ -88,14 +88,11 @@ Objective-C
 比如下面的代码就会发生崩溃
 
 // .h文件
-// http://weibo.com/luohanchenyilong/
-// https://github.com/ChenYilong
 // 下面的代码就会发生崩溃
 
 @property (nonatomic, copy) NSMutableArray *mutableArray;
+
 // .m文件
-// http://weibo.com/luohanchenyilong/
-// https://github.com/ChenYilong
 // 下面的代码就会发生崩溃
 
 NSMutableArray *array = [NSMutableArray arrayWithObjects:@1,@2,nil];
@@ -123,37 +120,125 @@ self.mutableArray = array;
 ```
 
 7. @property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的？
+```
+@property = ivar + getter + setter;
+实例变量+get方法+set方法,也就是说使用@property 系统会自动生成setter和getter方法;
+```
 
-8.[@protocol 和 category 中如何使用 @property](https://github.com/zhoushejun/)
+8. @protocol 和 category 中如何使用 @property
+```
+1.在 protocol 中使用 property 只会生成 setter 和 getter 方法声明,我们使用属性的目的,是希望遵守我协议的对象能实现该属性
+2.category 使用 @property 也是只会生成 setter 和 getter 方法的声明,如果我们真的需要给 category 增加属性的实现,需要借助于运行时的两个函数：
+3.objc_setAssociatedObject
+4.objc_getAssociatedObject
+```
 
 9.[runtime 如何实现 weak 属性](https://github.com/zhoushejun/)
 
-10.[@property中有哪些属性关键字？](https://github.com/zhoushejun/)
+10.  数据结构
+```
+数据结构：是指相互之间存在着一种或多种关系的数据元素的集合和该集合中数据元素之间的关系组成。
+包括三个组成成分：数据的逻辑结构、物理结构（存储结构）、运算结构。
+数据的逻辑结构：
+1、集合（数据之间无关系）
+2、线性结构（一对一）
+3、树形结构（一对多）
+4、图形结构（多对多）
+数据的物理结构：指数据在计算机存储空间的存放形式；
+顺序存储、链表存储、索引存储、散列存储
+常用的数据结构：
+1、数组
+2、栈（先进后出、线性表）
+3、队列（先进先出、后进后出、线性表）
+4、链表（每个节点包括两个部分：一个存储数据元素的数据域、另一个存储下一个节点地址的指针域）
+5、树
+6、图
+7、堆（是一种动态的树形结构）
+8、散列表
+而在C／C++中，我们常说的堆区、栈区则并不是数据结构中的堆、栈，而是满足数据结构中堆、栈性质的数据结构的形式。
+一个程序在加载到内存中时；抽象的将编译的程序所占用的内存分为以下几个部分：
+1、栈区（stack）— 由编译器自动分配释放 ，存放函数的参数名，局部变量的名等。其操作方式类似于数据结构中的栈。
+2、堆区（heap）— 由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表。
+3、静态区（static）—全局变量和局部静态变量的存储是放在一块的。程序结束后由系统释放。
+4、文字常量区—常量字符串就是放在这里的，程序结束后由系统释放 。
+5、程序代码区— 存放函数体的二进制代码。
+```
 
-11.[weak属性需要在dealloc中置nil么？]
+11. weak属性需要在dealloc中置nil么？
+```
+不需要。
+在ARC环境无论是强指针还是弱指针都无需在 dealloc 设置为 nil ， ARC 会自动帮我们处理
+即便是编译器不帮我们做这些，weak也不需要在 dealloc 中置nil
+```
+12. @synthesize和@dynamic分别有什么作用？
+```
+1.@synthesize告诉编译器：如果你没有手动实现setter和getter方法，编译器会自动帮你生成
+2.@dynamic告诉编译器：用户需要自己实现setter和getter方法，不自动生成。假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var = someVar，由于缺 setter 方法会导致程序崩溃；或者当运行到 someVar = var时，由于缺 getter 方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。
+```
 
-12.[@synthesize和@dynamic分别有什么作用？]
+13. ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
+```
+1.对应基本数据类型默认关键字是 atomic,readwrite,assign 
+2.对于普通的 Objective-C 对象 atomic,readwrite,strong
+```
 
-13.[ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？]
+14. 用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？
+```
+1.因为父类指针可以指向子类对象,使用 copy 的目的是为了让本对象的属性不受外界影响,使用 copy 无论给我传入是一个可变对象还是不可对象,我本身持有的就是一个不可变的副本.
+2.如果我们使用是 strong ,那么这个属性就有可能指向一个可变对象,如果这个可变对象在外部被修改了,那么会影响该属性.
+copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。 当属性类型为 NSString 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString 类的实例。这个类是 NSString 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。
+```
+15. @synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？
 
-14.[用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？]
+16. 在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？
 
-15.[@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？]
+17. objc中向一个nil对象发送消息将会发生什么？
+```
+在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用:
 
-16.[在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？]
+如果一个方法返回值是一个对象，那么发送给nil的消息将返回0(nil)。例如：
+Person * motherInlaw = [[aPerson spouse] mother];
+1. 如果 spouse 对象为 nil，那么发送给 nil 的消息 mother 也将返回 nil。 2. 如果方法返回值为指针类型，其指针大小为小于或者等于sizeof(void*)，float，double，long double 或者 long long 的整型标量，发送给 nil 的消息将返回0。 2. 如果方法返回值为结构体,发送给 nil 的消息将返回0。结构体中各个字段的值将都是0。 2. 如果方法的返回值不是上述提到的几种情况，那么发送给 nil 的消息的返回值将是未定义的。
 
-17.[objc中向一个nil对象发送消息将会发生什么？]
+具体原因如下：
 
-18.[objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？]
+objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。
 
-19.[什么时候会报unrecognized selector的异常？]
+objc在向一个对象发送消息时，runtime库会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，然后在发送消息的时候，objc_msgSend方法不会返回值，所谓的返回内容都是具体调用时执行的。 那么，回到本题，如果向一个nil对象发送消息，首先在寻找对象的isa指针时就是0地址返回了，所以不会出现任何错误。
+```
+
+18. objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？
+```
+[obj foo];在objc编译时，会被转意为：objc_msgSend(obj, @selector(foo));。
+```
+
+19. 什么时候会报unrecognized selector的异常？
+```
+简单来说：
+
+当调用该对象上某个方法,而该对象上没有实现这个方法的时候， 可以通过“消息转发”进行解决。
+
+简单的流程如下，在上一题中也提到过：
+
+objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。
+
+objc在向一个对象发送消息时，runtime库会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，如果，在最顶层的父类中依然找不到相应的方法时，程序在运行时会挂掉并抛出异常unrecognized selector sent to XXX 。但是在这之前，objc的运行时会给出三次拯救程序崩溃的机会：
+
+1. Method resolution
+objc运行时会调用+resolveInstanceMethod:或者 +resolveClassMethod:，让你有机会提供一个函数实现。如果你添加了函数，那运行时系统就会重新启动一次消息发送的过程，否则 ，运行时就会移到下一步，消息转发（Message Forwarding）。
+
+2. Fast forwarding
+如果目标对象实现了-forwardingTargetForSelector:，Runtime 这时就会调用这个方法，给你把这个消息转发给其他对象的机会。 只要这个方法返回的不是nil和self，整个消息发送的过程就会被重启，当然发送的对象会变成你返回的那个对象。否则，就会继续Normal Fowarding。 这里叫Fast，只是为了区别下一步的转发机制。因为这一步不会创建任何新的对象，但下一步转发会创建一个NSInvocation对象，所以相对更快点。 3. Normal forwarding
+
+这一步是Runtime最后一次给你挽救的机会。首先它会发送-methodSignatureForSelector:消息获得函数的参数和返回值类型。如果-methodSignatureForSelector:返回nil，Runtime则会发出-doesNotRecognizeSelector:消息，程序这时也就挂掉了。如果返回了一个函数签名，Runtime就会创建一个NSInvocation对象并发送-forwardInvocation:消息给目标对象。
+```
+
 
 20.[一个objc对象如何进行内存布局？（考虑有父类的情况）]
 
 21.[一个objc对象的isa的指针指向什么？有什么作用？]
 
 22.[下面的代码输出什么？]
-
 ```
 @implementation Son : Father
 - (id)init
@@ -173,6 +258,23 @@ return self;
 24.[使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？]
 
 25.[objc中的类方法和实例方法有什么本质区别和联系？]
+```
+类方法：
+1.类方法是属于类对象的
+2.类方法只能通过类对象调用
+3.类方法中的self是类对象
+4.类方法可以调用其他的类方法
+5.类方法中不能访问成员变量
+6.类方法中不能直接调用对象方法
+
+实例方法：
+1.实例方法是属于实例对象的
+2.实例方法只能通过实例对象调用
+3.实例方法中的self是实例对象
+4.实例方法中可以访问成员变量
+5.实例方法中直接调用实例方法
+6.实例方法中也可以调用类方法(通过类名)
+```
 
 26.[_objc_msgForward函数是做什么的，直接调用它将会发生什么？]
 
@@ -247,167 +349,5 @@ NSLog(@"3");
 55.[如何调试BAD_ACCESS错误]
 
 56.[lldb（gdb）常用的调试命令？]
-
-
--------------
--------------
--------------
-
-
-
-###1.风格纠错题
-![imageURL](http://ww4.sinaimg.cn/large/51530583jw1eqo0v3zgr8j20qc0f2dja.jpg)
-
-###2.[@property 后面可以有哪些修饰符？]
-
-###3.[什么情况使用 weak 关键字，相比 assign 有什么不同？]
-
-###4.[怎么用 copy 关键字？]
-
-###5.[这个写法会出什么问题：]
-
-```Objective-C
-@property (copy) NSMutableArray *array;
-```
-
-###6.[如何让自己的类用 copy 修饰符？如何重写带 copy 关键字的 setter？]
-
-###7.[@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的]
-
-###8.[@protocol 和 category 中如何使用 @property]
-
-###9.[runtime 如何实现 weak 属性]
-
-###10.[@property中有哪些属性关键字？]
-
-###11.[weak属性需要在dealloc中置nil么？]
-
-###12.[@synthesize和@dynamic分别有什么作用？]
-
-###13.[ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？]
-
-###14.[用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？]
-
-###15.[@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？]
-
-###16.[在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？]
-
-###17.[objc中向一个nil对象发送消息将会发生什么？]
-
-###18.[objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？]
-
-###19.[什么时候会报unrecognized selector的异常？]
-
-###20.[一个objc对象如何进行内存布局？（考虑有父类的情况）]
-
-###21.[一个objc对象的isa的指针指向什么？有什么作用？]
-
-###22.[下面的代码输出什么？]
-
-```
-@implementation Son : Father
-- (id)init
-{
-self = [super init];
-if (self) {
-NSLog(@"%@", NSStringFromClass([self class]));
-NSLog(@"%@", NSStringFromClass([super class]));
-}
-return self;
-}
-@end
-```
-
-###23.[runtime如何通过selector找到对应的IMP地址？（分别考虑类方法和实例方法）]
-
-24.[使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？]
-
-25.[objc中的类方法和实例方法有什么本质区别和联系？]
-
-26.[_objc_msgForward函数是做什么的，直接调用它将会发生什么？]
-
-27.[runtime如何实现weak变量的自动置nil？]
-
-28.[能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？]
-
-29.[runloop和线程有什么关系？]
-
-30.[runloop的mode作用是什么？]
-
-31.[以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？]
-
-32.[猜想runloop内部是如何实现的？]
-
-33.[objc使用什么机制管理对象内存？]
-
-34.[ARC通过什么方式帮助开发者管理内存？]
-
-35.[不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）]
-
-36.[BAD_ACCESS在什么情况下出现？]
-
-37.[苹果是如何实现autoreleasepool的？]
-
-38.[使用block时什么情况会发生引用循环，如何解决？]
-
-39.[在block内如何修改block外部变量？]
-
-40.[使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？]
-
-41.[GCD的队列（dispatch_queue_t）分哪两种类型？]
-
-42.[如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）]
-
-43.[dispatch_barrier_async的作用是什么？]
-
-44.[苹果为什么要废弃dispatch_get_current_queue？]
-
-45.[以下代码运行结果如何？]
-
-```
-- (void)viewDidLoad
-{
-[super viewDidLoad];
-NSLog(@"1");
-dispatch_sync(dispatch_get_main_queue(), ^{
-NSLog(@"2");
-});
-NSLog(@"3");
-}
-```
-
-46.[addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？]
-
-47.[如何手动触发一个value的KVO]
-
-48.[若一个类有实例变量NSString *_foo，调用setValue:forKey:时，可以以foo还是_foo作为key？]
-
-49.[KVC的keyPath中的集合运算符如何使用？]
-
-50.[KVC和KVO的keyPath一定是属性么？]
-
-51.[如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？]
-
-52.[apple用什么方式实现对一个对象的KVO？]
-
-53.[IBOutlet连出来的视图属性为什么可以被设置成weak?]
-
-54.[IB中User Defined Runtime Attributes如何使用？]
-
-55.[如何调试BAD_ACCESS错误]
-
-56.[lldb（gdb）常用的调试命令？]
-
-
-
-
-
-
-
--------------
-
-
-
-
 
 
