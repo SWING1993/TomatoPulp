@@ -185,7 +185,7 @@ self.mutableArray = array;
 14. 用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？
 ```
 1.因为父类指针可以指向子类对象,使用 copy 的目的是为了让本对象的属性不受外界影响,使用 copy 无论给我传入是一个可变对象还是不可对象,我本身持有的就是一个不可变的副本.
-2.如果我们使用是 strong ,那么这个属性就有可能指向一个可变对象,如果这个可变对象在外部被修改了,那么会影响该属性.
+2.如果我们使用 strong ,那么这个属性就有可能指向一个可变对象,如果这个可变对象在外部被修改了,那么会影响该属性.
 copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。 当属性类型为 NSString 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString 类的实例。这个类是 NSString 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。
 ```
 15. @synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？
@@ -302,15 +302,25 @@ return self;
 
 38.[使用block时什么情况会发生引用循环，如何解决？]
 
-39.[在block内如何修改block外部变量？]
+39. 在block内如何修改block外部变量？
+```
+Block不允许修改外部变量的值，(这里所说的外部变量的值，指的是栈中指针的内存地址)，__block 所起到的作用就是只要观察到该变量被 block 所持有，就将“外部变量”在栈中的内存地址放到了堆中，进而在block内部也可以修改外部变量的值。
+```
 
 40.[使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？]
-
-41.[GCD的队列（dispatch_queue_t）分哪两种类型？]
-
+```
+```
+41. GCD的队列（dispatch_queue_t）分哪两种类型？
+```
+1.串行队列Serial Dispatch Queue
+2.并行队列Concurrent Dispatch Queue
+```
 42.[如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）]
 
-43.[dispatch_barrier_async的作用是什么？]
+43. dispatch_barrier_async的作用是什么？
+```
+通过dispatch_barrier_async函数提交的任务会等它前面的任务执行完才开始，然后它后面的任务必须等它执行完毕才能开始. 必须使用dispatch_queue_create创建的队列才会达到上面的效果.
+```
 
 44.[苹果为什么要废弃dispatch_get_current_queue？]
 

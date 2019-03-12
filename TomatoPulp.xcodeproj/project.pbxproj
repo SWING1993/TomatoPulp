@@ -50,6 +50,7 @@
 		0332000A21EC7E6900158E86 /* SWASFConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFConfigViewController.swift; sourceTree = "<group>"; };
 		0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBotConfigViewController.swift; sourceTree = "<group>"; };
 		034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSetConfigViewController.swift; sourceTree = "<group>"; };
+		034C3D9422379154002054B3 /* orz.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = orz.md; sourceTree = "<group>"; };
 		034FC89821F16674006379C7 /* SWASFLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFLogViewController.swift; sourceTree = "<group>"; };
 		035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDUtils.swift; sourceTree = "<group>"; };
 		035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASFBotUtils.swift; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				03D5B5F6222E48EC00ED81D9 /* helloworld.md */,
+				034C3D9422379154002054B3 /* orz.md */,
 				03BEA11521E6EB1B00319A6C /* TomatoPulp */,
 				03BEA11421E6EB1B00319A6C /* Products */,
 				20D536314FC12E96DB08286F /* Pods */,
