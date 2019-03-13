@@ -29,7 +29,7 @@ class SWIndexViewController: UIViewController {
         prepareMenuButton()
         prepareStarButton()
         prepareNavigationItem()
-      
+
     }
 
 }
@@ -47,7 +47,7 @@ fileprivate extension SWIndexViewController {
     }
     
     func prepareNavigationItem() {
-        navigationItem.titleLabel.text = "Material"
+        navigationItem.titleLabel.text = "Index"
         navigationItem.detailLabel.text = "Build Beautiful Software"
         navigationItem.rightViews = [starButton, menuButton]
     }
