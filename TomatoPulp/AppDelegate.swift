@@ -36,10 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let indexNav = AppNavigationController(rootViewController: SWIndexViewController())
         indexNav.tabBarItem.title = "index"
 
+    
+        let statusNav = AppNavigationController(rootViewController: SWStatusController())
+        statusNav.tabBarItem.title = "status"
+        
         let userNav = AppNavigationController(rootViewController: SWUserInfoViewController())
         userNav.tabBarItem.title = "user"
+        
         let appTabs = QMUITabBarViewController.init()
-        appTabs.viewControllers = [indexNav, userNav]
+        appTabs.viewControllers = [statusNav, indexNav, userNav]
         window!.rootViewController = appTabs;
     }
 

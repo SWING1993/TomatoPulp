@@ -15,4 +15,6 @@ target 'TomatoPulp' do
     pod 'QMUIKit'
     pod 'AliyunOSSiOS'
     pod 'BlocksKit'
+    pod 'IGListKit', '~> 3.0'
+
 end

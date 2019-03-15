@@ -18,6 +18,7 @@
 		0332000B21EC7E6900158E86 /* SWASFConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000A21EC7E6900158E86 /* SWASFConfigViewController.swift */; };
 		0332000D21EC7E9300158E86 /* SWASFBotConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */; };
 		034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */; };
+		034C3D97223A2313002054B3 /* SWStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034C3D96223A2312002054B3 /* SWStatusController.swift */; };
 		034FC89921F16674006379C7 /* SWASFLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FC89821F16674006379C7 /* SWASFLogViewController.swift */; };
 		035CDEB721EDA76C00DCE7B1 /* HUDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */; };
 		035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */; };
@@ -51,6 +52,7 @@
 		0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBotConfigViewController.swift; sourceTree = "<group>"; };
 		034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSetConfigViewController.swift; sourceTree = "<group>"; };
 		034C3D9422379154002054B3 /* orz.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = orz.md; sourceTree = "<group>"; };
+		034C3D96223A2312002054B3 /* SWStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusController.swift; sourceTree = "<group>"; };
 		034FC89821F16674006379C7 /* SWASFLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFLogViewController.swift; sourceTree = "<group>"; };
 		035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDUtils.swift; sourceTree = "<group>"; };
 		035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASFBotUtils.swift; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 			path = SSR;
 			sourceTree = "<group>";
 		};
+		034C3D95223A22E1002054B3 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				034C3D96223A2312002054B3 /* SWStatusController.swift */,
+			);
+			path = Status;
+			sourceTree = "<group>";
+		};
 		035CDEB521EDA67F00DCE7B1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +165,7 @@
 		03BEA12821E6F1CC00319A6C /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				034C3D95223A22E1002054B3 /* Status */,
 				031820A822116BBE0027D58A /* User */,
 				0332000721EC718C00158E86 /* SSR */,
 				03FE608A21EB377900E159FF /* ASF */,
@@ -314,11 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -359,6 +366,7 @@
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
@@ -379,6 +387,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
@@ -421,6 +430,7 @@
 				03154341221297C100881E80 /* OssService.swift in Sources */,
 				03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */,
 				0332000421EC23E800158E86 /* SWASF.swift in Sources */,
+				034C3D97223A2313002054B3 /* SWStatusController.swift in Sources */,
 				03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */,
 				0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */,
 				0332000D21EC7E9300158E86 /* SWASFBotConfigViewController.swift in Sources */,
