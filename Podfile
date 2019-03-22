@@ -16,5 +16,7 @@ target 'TomatoPulp' do
     pod 'AliyunOSSiOS'
     pod 'BlocksKit'
     pod 'IGListKit', '~> 3.0'
+    pod 'GTSDK', '2.3.1.0-noidfa'
+    pod 'GTExtensionSDK'
 
 end

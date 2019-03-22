@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0311B4F22244A6F6005CD311 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0311B4F12244A6F6005CD311 /* UserNotifications.framework */; };
 		03154341221297C100881E80 /* OssService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03154340221297C100881E80 /* OssService.swift */; };
 		031820AA22116BFF0027D58A /* SWUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031820A922116BFF0027D58A /* SWUserInfoViewController.swift */; };
 		031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E558221EECC4E00C20363 /* HttpUtils.swift */; };
@@ -32,7 +33,6 @@
 		03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA13321E709C700319A6C /* SWLoginViewController.swift */; };
 		03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA13521E7195F00319A6C /* SWRegisterViewController.swift */; };
 		03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */; };
-		03D5B5F7222E48EC00ED81D9 /* helloworld.md in Resources */ = {isa = PBXBuildFile; fileRef = 03D5B5F6222E48EC00ED81D9 /* helloworld.md */; };
 		03FE608521EA02CE00E159FF /* SWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608421EA02CE00E159FF /* SWUser.swift */; };
 		03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608821EA1DBF00E159FF /* SWAppClient.swift */; };
 		03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608B21EB398A00E159FF /* SWASFBot.swift */; };
@@ -41,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0311B4F02244A662005CD311 /* TomatoPulp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TomatoPulp.entitlements; sourceTree = "<group>"; };
+		0311B4F12244A6F6005CD311 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		03154340221297C100881E80 /* OssService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OssService.swift; sourceTree = "<group>"; };
 		031820A922116BFF0027D58A /* SWUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWUserInfoViewController.swift; sourceTree = "<group>"; };
 		031E558221EECC4E00C20363 /* HttpUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtils.swift; sourceTree = "<group>"; };
@@ -53,7 +55,6 @@
 		0332000A21EC7E6900158E86 /* SWASFConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFConfigViewController.swift; sourceTree = "<group>"; };
 		0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBotConfigViewController.swift; sourceTree = "<group>"; };
 		034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSetConfigViewController.swift; sourceTree = "<group>"; };
-		034C3D9422379154002054B3 /* orz.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = orz.md; sourceTree = "<group>"; };
 		034C3D96223A2312002054B3 /* SWStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusController.swift; sourceTree = "<group>"; };
 		034C3D9F223B48AC002054B3 /* SWStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusModel.swift; sourceTree = "<group>"; };
 		034C3DA1223B48D0002054B3 /* SWStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusViewModel.swift; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		03BEA13321E709C700319A6C /* SWLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewController.swift; sourceTree = "<group>"; };
 		03BEA13521E7195F00319A6C /* SWRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWRegisterViewController.swift; sourceTree = "<group>"; };
 		03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewModel.swift; sourceTree = "<group>"; };
-		03D5B5F6222E48EC00ED81D9 /* helloworld.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = helloworld.md; sourceTree = "<group>"; };
 		03FE608421EA02CE00E159FF /* SWUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWUser.swift; sourceTree = "<group>"; };
 		03FE608821EA1DBF00E159FF /* SWAppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAppClient.swift; sourceTree = "<group>"; };
 		03FE608B21EB398A00E159FF /* SWASFBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBot.swift; sourceTree = "<group>"; };
@@ -85,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0311B4F22244A6F6005CD311 /* UserNotifications.framework in Frameworks */,
 				9AE2BE188F9EE124E3B2BD5B /* Pods_TomatoPulp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,8 +169,6 @@
 		03BEA10A21E6EB1B00319A6C = {
 			isa = PBXGroup;
 			children = (
-				03D5B5F6222E48EC00ED81D9 /* helloworld.md */,
-				034C3D9422379154002054B3 /* orz.md */,
 				03BEA11521E6EB1B00319A6C /* TomatoPulp */,
 				03BEA11421E6EB1B00319A6C /* Products */,
 				20D536314FC12E96DB08286F /* Pods */,
@@ -196,6 +195,7 @@
 				03BEA11D21E6EB1D00319A6C /* Assets.xcassets */,
 				03BEA11F21E6EB1D00319A6C /* LaunchScreen.storyboard */,
 				03BEA12221E6EB1D00319A6C /* Info.plist */,
+				0311B4F02244A662005CD311 /* TomatoPulp.entitlements */,
 			);
 			path = TomatoPulp;
 			sourceTree = "<group>";
@@ -282,6 +282,7 @@
 		CD81E2F316022268C8EC69C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0311B4F12244A6F6005CD311 /* UserNotifications.framework */,
 				E056230424EEBA1231BE2A9F /* Pods_TomatoPulp.framework */,
 			);
 			name = Frameworks;
@@ -323,6 +324,17 @@
 					03BEA11221E6EB1B00319A6C = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -350,7 +362,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				03BEA12121E6EB1D00319A6C /* LaunchScreen.storyboard in Resources */,
-				03D5B5F7222E48EC00ED81D9 /* helloworld.md in Resources */,
 				03BEA11E21E6EB1D00319A6C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,10 +625,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TomatoPulp/TomatoPulp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				INFOPLIST_FILE = TomatoPulp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -627,7 +639,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "TomatoPulp/TomatoPulp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -637,10 +649,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TomatoPulp/TomatoPulp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WPXQYZSK2Q;
 				INFOPLIST_FILE = TomatoPulp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -649,7 +662,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TomatoPulp/TomatoPulp-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

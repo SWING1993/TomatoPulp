@@ -8,6 +8,7 @@
 
 import UIKit
 import QMUIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,27 +17,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        GeTuiSdk.start(withAppId: "XotSLiKHSX7iswSsQlJir8", appKey: "ZjzdJP5fNH9BSWg8MMHek", appSecret: "7uQsaiZat670rSheNgfdh7", delegate: self as GeTuiSdkDelegate)
+        registerRemoteNotification()
+        
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window!.backgroundColor = UIColor.white;
         if clientShared.isLogin() {
-            toMain()
-            clientShared.refreshToekn()
-        } else {
             toLogin()
+        } else {
+            toMain()
         }
         window!.makeKeyAndVisible()
+       
         return true
     }
     
-    func toLogin() {
-        window!.rootViewController = AppNavigationController(rootViewController: SWLoginViewController())
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        GeTuiSdk.registerDeviceTokenData(deviceToken)
     }
     
-    func toMain() {
+    func registerRemoteNotification() {
+        let center : UNUserNotificationCenter = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [UNAuthorizationOptions.badge, UNAuthorizationOptions.sound, UNAuthorizationOptions.alert, UNAuthorizationOptions.carPlay]) { (granted, error) in
+            print("registerRemoteNotification:\(String(describing: error))")
+        }
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    func toLogin() {
         let indexNav = AppNavigationController(rootViewController: SWIndexViewController())
         indexNav.tabBarItem.title = "index"
-
-    
+        
         let statusNav = AppNavigationController(rootViewController: SWStatusController())
         statusNav.tabBarItem.title = "status"
         
@@ -47,6 +60,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appTabs.viewControllers = [statusNav, indexNav, userNav]
         window!.rootViewController = appTabs;
     }
+    
+    func toMain() {
+        window!.rootViewController = AppNavigationController(rootViewController: SWLoginViewController())
+    }
 
 }
 
+extension AppDelegate : GeTuiSdkDelegate {
+    
+}
+
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    
+}

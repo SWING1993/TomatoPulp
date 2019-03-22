@@ -23,6 +23,8 @@ PODS:
   - Charts (3.2.1):
     - Charts/Core (= 3.2.1)
   - Charts/Core (3.2.1)
+  - GTExtensionSDK (2.1.1)
+  - GTSDK (2.3.1.0-noidfa)
   - HandyJSON (4.2.1)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -311,6 +313,8 @@ DEPENDENCIES:
   - BlocksKit
   - Cache (>= 5.0.0)
   - Charts
+  - GTExtensionSDK
+  - GTSDK (= 2.3.1.0-noidfa)
   - HandyJSON (~> 4.2.0)
   - IGListKit (~> 3.0)
   - Material (~> 2.0)
@@ -329,6 +333,8 @@ SPEC REPOS:
     - BlocksKit
     - Cache
     - Charts
+    - GTExtensionSDK
+    - GTSDK
     - HandyJSON
     - IGListKit
     - Material
@@ -349,6 +355,8 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
+  GTExtensionSDK: 75949af976f728204a0f1edfb5ec8c97249a223f
+  GTSDK: ac8a6be4104dfbd69678525e142016d3673f9ca5
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
@@ -361,6 +369,6 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: f4aea5fa9dee812485f34041121a4cbde01b0dee
 
-PODFILE CHECKSUM: a165ab412cca03f8db6ddb45a942f3ff969758e9
+PODFILE CHECKSUM: 425ca41a1f35b7d357ab2e68d7f5344cb12dcc4f
 
 COCOAPODS: 1.5.3
