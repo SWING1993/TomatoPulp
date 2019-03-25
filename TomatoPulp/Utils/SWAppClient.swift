@@ -53,5 +53,4 @@ class SWAppClient: NSObject {
             print("refreshToken Error:\(error)")
         }
     }
-    
 }

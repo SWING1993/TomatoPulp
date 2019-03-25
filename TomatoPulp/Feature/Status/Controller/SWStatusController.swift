@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Material
 
 class SWStatusController: QMUICommonViewController {
+
+    fileprivate var tableView: TableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()

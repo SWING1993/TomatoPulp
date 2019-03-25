@@ -30,8 +30,8 @@ class SWLoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.phoneField.text = "18667905583"
-        self.passwordField.text = "123456"
+//        self.phoneField.text = "18667905583"
+//        self.passwordField.text = "123456"
         loginBtn.isEnabled = true
         loginBtn.alpha = 1
     }
@@ -55,9 +55,7 @@ class SWLoginViewController: UIViewController {
             return (self.phoneField.text!, self.passwordField.text!)
         }
         viewModel.loginAction.values.observeValues { message in
-            print("登录 + \(message)")
             if message == "登录成功" {
-                print("login success")
                 let app = UIApplication.shared.delegate as! AppDelegate
                 app.toMain()
             } else {

@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window!.backgroundColor = UIColor.white;
         if clientShared.isLogin() {
-            toLogin()
-        } else {
             toMain()
+        } else {
+           toLogin()
         }
         window!.makeKeyAndVisible()
        
@@ -35,6 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         GeTuiSdk.registerDeviceTokenData(deviceToken)
+        HttpUtils.default.request("/user/updateClientId", method: .post, params: ["clientId":GeTuiSdk.clientId()!]).response(success: { result in
+            print("ClientId更新成功：\(String(describing: result))")
+        }, failure: { error in
+            print("ClientId更新失败：\(error)")
+        })
     }
     
     func registerRemoteNotification() {
@@ -46,22 +51,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.registerForRemoteNotifications()
     }
     
-    func toLogin() {
+    func toMain() {
         let indexNav = AppNavigationController(rootViewController: SWIndexViewController())
         indexNav.tabBarItem.title = "index"
         
         let statusNav = AppNavigationController(rootViewController: SWStatusController())
         statusNav.tabBarItem.title = "status"
         
+        let messageNav = AppNavigationController(rootViewController: SWMessageController())
+        messageNav.tabBarItem.title = "message"
+        
         let userNav = AppNavigationController(rootViewController: SWUserInfoViewController())
         userNav.tabBarItem.title = "user"
         
         let appTabs = QMUITabBarViewController.init()
-        appTabs.viewControllers = [statusNav, indexNav, userNav]
+        appTabs.viewControllers = [statusNav, indexNav, messageNav, userNav]
         window!.rootViewController = appTabs;
     }
     
-    func toMain() {
+    func toLogin() {
         window!.rootViewController = AppNavigationController(rootViewController: SWLoginViewController())
     }
 
