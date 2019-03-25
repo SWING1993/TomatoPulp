@@ -15,8 +15,8 @@ class HttpUtils {
     static let `default` = HttpUtils()
     
     private var host: String {
-//        return "http://118.24.216.163:8080/orange"
-        return "http://localhost:8080"
+        return "http://118.24.216.163:8080/orange"
+//        return "http://localhost:8080"
     }
     /// 超时时间
     private var timeoutIntervalForRequest: TimeInterval = 25
