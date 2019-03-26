@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userNav.tabBarItem.title = "user"
         
         let appTabs = QMUITabBarViewController.init()
-        appTabs.viewControllers = [statusNav, indexNav, messageNav, userNav]
+        appTabs.viewControllers = [indexNav, statusNav, messageNav, userNav]
         window!.rootViewController = appTabs;
     }
     

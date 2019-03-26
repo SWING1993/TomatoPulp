@@ -15,7 +15,7 @@ class HttpUtils {
     static let `default` = HttpUtils()
     
     private var host: String {
-        #if Release
+        #if DEBUG
         return "http://localhost:8080"
         #else
         return "http://118.24.216.163:8080/orange"

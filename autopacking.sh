@@ -17,7 +17,8 @@ echo ''
 
 #指定构建配置
 read platform
-if [ $platform == 1 ];then
+if [ $platform == 1 ];
+then
 development_mode=Debug
 else
 development_mode=Release
@@ -33,6 +34,7 @@ if [ ! -d build  ];
 then
 mkdir build
 else
+echo ''
 fi
 
 #build文件夹路径 不存在就创建
@@ -123,7 +125,7 @@ echo '///-------------'
 echo '/// 已经上传到了蒲公英 '
 echo '///-------------'
 echo ''
-echo "是否将下载地址发送到磐石测试群? [ 1:发送 2:不发送] "
+echo "是否将下载地址发送到钉钉? [ 1:发送 2:不发送] "
 read platform
 if [ $platform == 1 ];
 then

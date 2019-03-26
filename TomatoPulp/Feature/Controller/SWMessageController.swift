@@ -13,20 +13,32 @@ class SWMessageController: QMUICommonViewController {
 
     var messages: Array<SWMessageModel> = Array()
     fileprivate var tableView: TableView!
+    
+    override func initSubviews() {
+        super.initSubviews()
+        prepareNavigationItem()
+        prepareTableView()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareTableView()
-        
+        setupMessageData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupMessageData()
+        if self.messages.count <= 0 {
+            setupMessageData()
+        }
     }
 }
 
 fileprivate extension SWMessageController {
+    
+    func prepareNavigationItem() {
+        navigationItem.titleLabel.text = "Message"
+        navigationItem.detailLabel.text = "✉️✉️✉️"
+    }
     
     func prepareTableView() {
         tableView = TableView.init(frame: CGRect.zero, style: .grouped)
@@ -36,6 +48,7 @@ fileprivate extension SWMessageController {
         tableView.estimatedRowHeight = 0;
         tableView.estimatedSectionHeaderHeight = 0;
         tableView.estimatedSectionFooterHeight = 0;
+        tableView.tableHeaderView = UIView()
         view.layout(tableView).edges()
     }
     
@@ -66,7 +79,7 @@ fileprivate extension SWMessageController {
 extension SWMessageController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 50
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -83,11 +96,11 @@ extension SWMessageController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            self.showProgreeHUD("加载中...")
-            let message = messages[indexPath.row]
+            self.showProgreeHUD("删除中...")
+            let message = messages[indexPath.section]
             HttpUtils.default.request("/message", method: .delete, params: ["msgId":message.id]).response(success: { result in
                 self.hideHUD()
-                self.messages.remove(at: indexPath.row)
+                self.messages.remove(at: indexPath.section)
                 tableView.reloadData()
             }) { errorMsg in
                 self.hideHUD()
@@ -100,11 +113,11 @@ extension SWMessageController : UITableViewDelegate {
 extension SWMessageController : UITableViewDataSource {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return messages.count
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return 1;
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,14 +125,23 @@ extension SWMessageController : UITableViewDataSource {
         if cell == nil {
             cell = TableViewCell.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cell")
         }
-        
-        let message = messages[indexPath.row]
+        let message = messages[indexPath.section]
         cell?.textLabel?.text = message.title
         cell?.detailTextLabel?.text =  message.content
         cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
         cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3
-        cell?.detailTextLabel?.numberOfLines = 0;
+        cell?.detailTextLabel?.numberOfLines = 1;
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let message = messages[section]
+        print("create:\(message.created)")
+        return NSDate.init(timeIntervalSince1970: TimeInterval(message.created/1000)).stringByMessageDate()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 15.0
     }
 }
