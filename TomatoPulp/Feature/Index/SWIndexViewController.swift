@@ -10,25 +10,27 @@ import UIKit
 import Material
 import Alamofire.Swift
 
-class SWIndexViewController: UIViewController {
+class SWIndexViewController: QMUICommonViewController {
 
     fileprivate var menuButton: IconButton!
     fileprivate var starButton: IconButton!
-
-    let v1 = UIView()
     
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = Color.grey.lighten5
+    override func didInitialize() {
+        super.didInitialize()
+        self.hidesBottomBarWhenPushed = false
 
-        v1.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-        v1.motionIdentifier = "v1"
-        v1.backgroundColor = .purple
-        view.addSubview(v1)
-        
+    }
+    
+    override func initSubviews() {
+        super.initSubviews()
+        view.backgroundColor = Color.grey.lighten5
         prepareMenuButton()
         prepareStarButton()
         prepareNavigationItem()
+    }
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
 
     }
 

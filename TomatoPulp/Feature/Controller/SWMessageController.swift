@@ -15,6 +15,11 @@ class SWMessageController: QMUICommonViewController {
     var messages: Array<SWMessageModel> = Array()
     fileprivate var tableView: TableView!
     
+    override func didInitialize() {
+        super.didInitialize()
+        self.hidesBottomBarWhenPushed = false
+    }
+    
     override func initSubviews() {
         super.initSubviews()
         prepareNavigationItem()
@@ -84,7 +89,10 @@ extension SWMessageController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let message = messages[indexPath.section]
+        let detailController = SWMessageDetailController()
+        detailController.message = message
+        self.navigationController?.pushViewController(detailController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -97,16 +105,13 @@ extension SWMessageController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            self.showProgreeHUD("删除中...")
             let message = messages[indexPath.section]
             HttpUtils.default.request("/message", method: .delete, params: ["msgId":message.id]).response(success: { result in
-                self.hideHUD()
-                self.messages.remove(at: indexPath.section)
-                tableView.reloadData()
+               
             }) { errorMsg in
-                self.hideHUD()
-                self.showTextHUD(errorMsg, dismissAfterDelay: 3)
             }
+            self.messages.remove(at: indexPath.section)
+            tableView.reloadData()
         }
     }
 }

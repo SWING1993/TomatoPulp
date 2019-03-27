@@ -36,6 +36,8 @@
 		03C16B6D22489C0E002596BB /* SWMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C16B6C22489C0E002596BB /* SWMessageModel.swift */; };
 		03C16BA12249BD12002596BB /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C16B7A2249BD12002596BB /* NSDate+Utilities.m */; };
 		03C16BA92249BD12002596BB /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C16B8C2249BD12002596BB /* NSDate+Extension.m */; };
+		03C16BC0224B2B21002596BB /* AppConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C16BBF224B2B20002596BB /* AppConfigurationTemplate.m */; };
+		03C16BC2224B3D83002596BB /* SWMessageDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C16BC1224B3D83002596BB /* SWMessageDetailController.swift */; };
 		03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */; };
 		03FE608521EA02CE00E159FF /* SWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608421EA02CE00E159FF /* SWUser.swift */; };
 		03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608821EA1DBF00E159FF /* SWAppClient.swift */; };
@@ -80,6 +82,9 @@
 		03C16B7A2249BD12002596BB /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		03C16B8C2249BD12002596BB /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		03C16B912249BD12002596BB /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		03C16BBE224B2B20002596BB /* AppConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigurationTemplate.h; sourceTree = "<group>"; };
+		03C16BBF224B2B20002596BB /* AppConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfigurationTemplate.m; sourceTree = "<group>"; };
+		03C16BC1224B3D83002596BB /* SWMessageDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWMessageDetailController.swift; sourceTree = "<group>"; };
 		03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewModel.swift; sourceTree = "<group>"; };
 		03FE608421EA02CE00E159FF /* SWUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWUser.swift; sourceTree = "<group>"; };
 		03FE608821EA1DBF00E159FF /* SWAppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAppClient.swift; sourceTree = "<group>"; };
@@ -166,13 +171,13 @@
 		035CDEB521EDA67F00DCE7B1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				03C16B6F2249BD12002596BB /* Category */,
 				035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */,
 				035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */,
 				031E558221EECC4E00C20363 /* HttpUtils.swift */,
 				031E558721EF28C400C20363 /* StringMd5.swift */,
 				03FE608821EA1DBF00E159FF /* SWAppClient.swift */,
 				03154340221297C100881E80 /* OssService.swift */,
+				03C16B6F2249BD12002596BB /* Category */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 			children = (
 				03BEA11621E6EB1B00319A6C /* AppDelegate.swift */,
 				031E558921EF28FA00C20363 /* TomatoPulp-Bridging-Header.h */,
+				03C16BBB224B279B002596BB /* Configs */,
 				035CDEB521EDA67F00DCE7B1 /* Utils */,
 				03BEA12D21E6F47A00319A6C /* Base */,
 				03BEA12821E6F1CC00319A6C /* Feature */,
@@ -282,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				03C16B6722489875002596BB /* SWMessageController.swift */,
+				03C16BC1224B3D83002596BB /* SWMessageDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -310,6 +317,15 @@
 				03C16B7A2249BD12002596BB /* NSDate+Utilities.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		03C16BBB224B279B002596BB /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				03C16BBE224B2B20002596BB /* AppConfigurationTemplate.h */,
+				03C16BBF224B2B20002596BB /* AppConfigurationTemplate.m */,
+			);
+			path = Configs;
 			sourceTree = "<group>";
 		};
 		03FE608A21EB377900E159FF /* ASF */ = {
@@ -524,6 +540,7 @@
 				0332000B21EC7E6900158E86 /* SWASFConfigViewController.swift in Sources */,
 				03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */,
 				031E558821EF28C400C20363 /* StringMd5.swift in Sources */,
+				03C16BC2224B3D83002596BB /* SWMessageDetailController.swift in Sources */,
 				03FE608521EA02CE00E159FF /* SWUser.swift in Sources */,
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
 				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
@@ -533,6 +550,7 @@
 				034C3DA2223B48D0002054B3 /* SWStatusViewModel.swift in Sources */,
 				03C16BA92249BD12002596BB /* NSDate+Extension.m in Sources */,
 				03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */,
+				03C16BC0224B2B21002596BB /* AppConfigurationTemplate.m in Sources */,
 				031E558521EF0ED800C20363 /* SWSSRInfoViewController.swift in Sources */,
 				035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */,
 				0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */,

@@ -17,6 +17,12 @@ class SWUserInfoViewController: QMUICommonViewController {
     fileprivate let settingsButton: IconButton = IconButton(image: Icon.cm.settings)
     fileprivate let avatarView: UIImageView = UIImageView()
     fileprivate let nicknameLabel : UILabel = UILabel()
+    
+    override func didInitialize() {
+        super.didInitialize()
+        self.hidesBottomBarWhenPushed = false
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -15,6 +15,8 @@ class SWStatusController: QMUICommonViewController {
     
     override func didInitialize() {
         super.didInitialize()
+        self.hidesBottomBarWhenPushed = false
+
     }
     
     override func initSubviews() {
