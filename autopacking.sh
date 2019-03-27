@@ -125,10 +125,11 @@ echo '///-------------'
 echo '/// 已经上传到了蒲公英 '
 echo '///-------------'
 echo ''
-echo "是否将下载地址发送到钉钉? [ 1:发送 2:不发送] "
-read platform
-if [ $platform == 1 ];
-then
+#echo "是否将下载地址发送到钉钉? [ 1:发送 2:不发送] "
+#read platform
+#if [ $platform == 1 ];
+#then
+
 #获取info.plist版本号
 # buildShortVersion=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${exportOptionsPlistPath})
 # buildVersion=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" ${exportOptionsPlistPath})
@@ -148,9 +149,11 @@ curl 'https://oapi.dingtalk.com/robot/send?access_token=7e6f02c3087edd1936234053
 -H 'Content-Type: application/json' \
 -d '{ "at": {"atMobiles": ["18667905583"], "isAtAll": false}, "msgtype": "markdown", "markdown": {"title": "Orange发布", "text": "### '$versionText'已上传到蒲公英\n[点击下载](https://www.pgyer.com/'$appShortcutUrl')\n或扫描二维码下载\n > ![]('$appQRCodeURL')"}}'
 
-else
-echo '取消发送到钉钉'
-fi
+curl 'http://118.24.216.163:8080/orange/message/send' \
+-d 'access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiZXhwIjoxNTU1MDcyMDQ0fQ.hPfK8X0PM3IjnOWliBrq4OALRhvVgR3NFv0ROnteYfc&title=OrangeForIos&content=Orange已上传到蒲公英\n版本号：'appVersion'('appBuildVersion')\n更新日期：'appUpdated'\n下载地址:https：//www.pgyer.com/'$appShortcutUrl''
+#else
+#echo '取消发送到钉钉'
+#fi
 
 else
 echo '///-------------'
