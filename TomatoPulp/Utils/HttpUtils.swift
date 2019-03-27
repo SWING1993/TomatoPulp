@@ -59,10 +59,8 @@ class HttpUtils {
         headers[SIGN_KEY] = temp.md5()
 
         // 请求头
-        if let token = clientShared.user.token {
-            headers["token"] = token
-            headers["uid"] = "\(clientShared.user.id)"
-        }
+        headers["token"] = clientShared.user.token
+        headers["uid"] = "\(clientShared.user.id)"
         print("headers:\(headers)")
 
         let taskManager: HttpTaskUtils = HttpTaskUtils().request("\(host)\(url)", method: method, params: signatureParams, encoding: encoding, headers: headers)

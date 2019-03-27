@@ -40,10 +40,11 @@ fileprivate extension SWUserInfoViewController {
     }
     
     func prepareAvatarView() {
-        if let avatarUrl = clientShared.user.avatarUrl {
-            let url = URL(string: avatarUrl)!
-            avatarView.af_setImage(withURL: url)
+       
+        if clientShared.user.avatarUrl.count > 0 {
+            avatarView.af_setImage(withURL: URL(string: clientShared.user.avatarUrl)!)
         }
+
         avatarView.isUserInteractionEnabled = true
         avatarView.layer.cornerRadius = 30
         avatarView.layer.masksToBounds = true
@@ -62,9 +63,7 @@ fileprivate extension SWUserInfoViewController {
             self.present(imagePickerController, animated: true, completion: nil)
         })
         
-        if let nickname = clientShared.user.nickname {
-            nicknameLabel.text = nickname
-        }
+        nicknameLabel.text = clientShared.user.nickname
         self.view.addSubview(nicknameLabel)
         nicknameLabel.snp.makeConstraints { maker in
             maker.left.equalTo(15)

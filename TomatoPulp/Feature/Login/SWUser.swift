@@ -11,17 +11,17 @@ import HandyJSON
 
 class SWUser: HandyJSON {
     var id: Int = 0
-    var phone : String?
-    var email: String?
-    var nickname: String?
+    var phone : String = ""
+    var email: String = ""
+    var nickname: String = ""
     var sex: Int = 0
-    var avatarUrl: String?
-    var userDesc: String?
-    var token: String?
+    var avatarUrl: String = ""
+    var userDesc: String = ""
+    var token: String = ""
+    var clientId: String = ""
 
     required init() {}
 
-    
 }
 
 

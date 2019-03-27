@@ -23,10 +23,7 @@ class SWAppClient: NSObject {
     }
     
     public func isLogin() -> Bool {
-        if let token = self.user.token {
-            return !token.isEmpty
-        }
-        return false
+        return !self.user.token.isEmpty
     }
     
     public func saveUserInfo() {
