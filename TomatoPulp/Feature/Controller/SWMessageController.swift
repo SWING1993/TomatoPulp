@@ -9,6 +9,7 @@
 import UIKit
 import Material
 
+// curl -d "access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiZXhwIjoxNTU1MDcyMDQ0fQ.hPfK8X0PM3IjnOWliBrq4OALRhvVgR3NFv0ROnteYfc&title=消息标题&content=消息内容" http://118.24.216.163:8080/orange/message/send
 class SWMessageController: QMUICommonViewController {
 
     var messages: Array<SWMessageModel> = Array()

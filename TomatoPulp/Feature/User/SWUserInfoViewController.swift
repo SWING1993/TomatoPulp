@@ -35,7 +35,7 @@ fileprivate extension SWUserInfoViewController {
     
     func prepareNavigationItem() {
         navigationItem.titleLabel.text = clientShared.user.nickname
-        navigationItem.detailLabel.text = "用户信息"
+        navigationItem.detailLabel.text = "🎈🎈🎈"
         navigationItem.rightViews = [settingsButton]
     }
     

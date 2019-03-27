@@ -48,7 +48,7 @@ fileprivate extension SWIndexViewController {
     
     func prepareNavigationItem() {
         navigationItem.titleLabel.text = "Index"
-        navigationItem.detailLabel.text = "Build Beautiful Software"
+        navigationItem.detailLabel.text = "🔥🔥🔥"
         navigationItem.rightViews = [starButton, menuButton]
     }
 }
