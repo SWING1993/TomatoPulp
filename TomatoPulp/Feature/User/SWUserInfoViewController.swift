@@ -59,7 +59,7 @@ fileprivate extension SWUserInfoViewController {
         self.view.addSubview(avatarView)
         avatarView.snp.makeConstraints { maker in
             maker.left.equalTo(15)
-            maker.top.equalTo(80)
+            maker.top.equalTo(self.qmui_navigationBarMaxYInViewCoordinator + 10)
             maker.size.equalTo(CGSize(width: 60, height: 60))
         }
         avatarView.bk_(whenTapped: {
