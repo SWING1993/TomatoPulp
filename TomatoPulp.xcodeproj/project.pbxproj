@@ -38,6 +38,8 @@
 		03C16BA92249BD12002596BB /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C16B8C2249BD12002596BB /* NSDate+Extension.m */; };
 		03C16BC0224B2B21002596BB /* AppConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C16BBF224B2B20002596BB /* AppConfigurationTemplate.m */; };
 		03C16BC2224B3D83002596BB /* SWMessageDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C16BC1224B3D83002596BB /* SWMessageDetailController.swift */; };
+		03C16BC5224B56EB002596BB /* SWRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C16BC4224B56EB002596BB /* SWRefreshHeader.swift */; };
+		03C16BC7224B5B01002596BB /* SWRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C16BC6224B5B01002596BB /* SWRefreshFooter.swift */; };
 		03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */; };
 		03FE608521EA02CE00E159FF /* SWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608421EA02CE00E159FF /* SWUser.swift */; };
 		03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608821EA1DBF00E159FF /* SWAppClient.swift */; };
@@ -85,6 +87,8 @@
 		03C16BBE224B2B20002596BB /* AppConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigurationTemplate.h; sourceTree = "<group>"; };
 		03C16BBF224B2B20002596BB /* AppConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfigurationTemplate.m; sourceTree = "<group>"; };
 		03C16BC1224B3D83002596BB /* SWMessageDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWMessageDetailController.swift; sourceTree = "<group>"; };
+		03C16BC4224B56EB002596BB /* SWRefreshHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWRefreshHeader.swift; sourceTree = "<group>"; };
+		03C16BC6224B5B01002596BB /* SWRefreshFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWRefreshFooter.swift; sourceTree = "<group>"; };
 		03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewModel.swift; sourceTree = "<group>"; };
 		03FE608421EA02CE00E159FF /* SWUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWUser.swift; sourceTree = "<group>"; };
 		03FE608821EA1DBF00E159FF /* SWAppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAppClient.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				031E558721EF28C400C20363 /* StringMd5.swift */,
 				03FE608821EA1DBF00E159FF /* SWAppClient.swift */,
 				03154340221297C100881E80 /* OssService.swift */,
+				03C16BC4224B56EB002596BB /* SWRefreshHeader.swift */,
+				03C16BC6224B5B01002596BB /* SWRefreshFooter.swift */,
 				03C16B6F2249BD12002596BB /* Category */,
 			);
 			path = Utils;
@@ -489,6 +495,7 @@
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 				"${BUILT_PRODUCTS_DIR}/QMUIKit/QMUIKit.framework",
@@ -510,6 +517,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QMUIKit.framework",
@@ -554,11 +562,13 @@
 				031E558521EF0ED800C20363 /* SWSSRInfoViewController.swift in Sources */,
 				035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */,
 				0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */,
+				03C16BC7224B5B01002596BB /* SWRefreshFooter.swift in Sources */,
 				034C3DA0223B48AC002054B3 /* SWStatusModel.swift in Sources */,
 				03154341221297C100881E80 /* OssService.swift in Sources */,
 				03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */,
 				0332000421EC23E800158E86 /* SWASF.swift in Sources */,
 				034C3D97223A2313002054B3 /* SWStatusController.swift in Sources */,
+				03C16BC5224B56EB002596BB /* SWRefreshHeader.swift in Sources */,
 				03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */,
 				03C16BA12249BD12002596BB /* NSDate+Utilities.m in Sources */,
 				0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */,

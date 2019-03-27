@@ -18,5 +18,6 @@ target 'TomatoPulp' do
     pod 'IGListKit', '~> 3.0'
     pod 'GTSDK', '2.3.1.0-noidfa'
     pod 'GTExtensionSDK'
+    pod 'MJRefresh'
 
 end

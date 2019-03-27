@@ -13,6 +13,7 @@ import Material
 class SWMessageController: QMUICommonViewController {
 
     var messages: Array<SWMessageModel> = Array()
+    var pageNum: Int = 1
     fileprivate var tableView: TableView!
     
     override func didInitialize() {
@@ -24,18 +25,16 @@ class SWMessageController: QMUICommonViewController {
         super.initSubviews()
         prepareNavigationItem()
         prepareTableView()
+        self.showEmptyViewWithLoading()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMessageData()
+         self.setupMessageData(showHUD: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if self.messages.count <= 0 {
-            setupMessageData()
-        }
     }
 }
 
@@ -55,14 +54,32 @@ fileprivate extension SWMessageController {
         tableView.estimatedSectionHeaderHeight = 0;
         tableView.estimatedSectionFooterHeight = 0;
         tableView.tableHeaderView = UIView()
+        tableView.mj_header = SWRefreshHeader()
+        tableView.mj_header.refreshingBlock = {
+            self.pageNum = 1;
+            self.setupMessageData(showHUD: false)
+        }
+        tableView.mj_footer = SWRefreshFooter()
+        tableView.mj_footer.refreshingBlock = {
+            self.pageNum = self.pageNum + 1;
+            self.setupMessageData(showHUD: false)
+        }
         view.layout(tableView).edges()
     }
     
-    func setupMessageData() {
-        self.showProgreeHUD("加载中...")
-        HttpUtils.default.request("/message", method: .get, params: ["pageNum":"1"]).response(success: { result in
-            self.hideHUD()
-            self.messages.removeAll()
+    @objc func setupMessageData(showHUD: Bool) {
+        if showHUD {
+            self.showProgreeHUD("加载中...")
+        }
+        HttpUtils.default.request("/message", method: .get, params: ["pageNum":pageNum]).response(success: { result in
+            if showHUD {
+                self.hideHUD()
+            }
+            self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
+            if self.pageNum <= 1 {
+                self.messages.removeAll()
+            }
             if let dict = result as? [String: Any] {
                 if let list: Array<[String: Any]> = dict["list"] as? Array<[String: Any]> {
                     list.forEach({ (obj) in
@@ -72,20 +89,31 @@ fileprivate extension SWMessageController {
                     })
                 }
             }
+            if self.messages.count <= 0 {
+                self.showEmptyView(withText: "", detailText: "暂无更多消息", buttonTitle: "刷新", buttonAction:#selector (self.setupMessageData(showHUD:)))
+            } else {
+                self.hideEmptyView()
+            }
             self.tableView.reloadData()
-            self.hideEmptyView()
         }) { errorMsg in
-            self.hideHUD()
+            if showHUD {
+                self.hideHUD()
+            }
             self.showTextHUD(errorMsg, dismissAfterDelay: 3)
+            self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
+            if self.messages.count <= 0 {
+                self.showEmptyView(withText: "", detailText: "网络错误", buttonTitle: "刷新", buttonAction:#selector (self.setupMessageData(showHUD:)))
+            }
+            self.tableView.reloadData()
         }
     }
 }
 
-
 extension SWMessageController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 55
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -111,6 +139,9 @@ extension SWMessageController : UITableViewDelegate {
             }) { errorMsg in
             }
             self.messages.remove(at: indexPath.section)
+            if self.messages.count <= 0 {
+                self.showEmptyView(withText: "", detailText: "暂无更多消息", buttonTitle: "刷新", buttonAction:#selector (self.setupMessageData(showHUD:)))
+            }
             tableView.reloadData()
         }
     }
@@ -133,8 +164,8 @@ extension SWMessageController : UITableViewDataSource {
         }
         let message = messages[indexPath.section]
         cell?.textLabel?.text = message.title
+        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 12)
         cell?.detailTextLabel?.text =  message.content
-        cell?.textLabel?.font = Font.boldSystemFont(ofSize: 13)
         cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
         cell?.detailTextLabel?.textColor = Color.blue.accent3
         cell?.detailTextLabel?.numberOfLines = 1;
@@ -143,7 +174,6 @@ extension SWMessageController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let message = messages[section]
-        print("create:\(message.created)")
         return NSDate.init(timeIntervalSince1970: TimeInterval(message.created/1000)).stringByMessageDate()
     }
     

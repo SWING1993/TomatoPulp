@@ -38,7 +38,7 @@ fileprivate extension SWMessageDetailController {
     
     func prepareContentView() {
         contentView.text = message.content
-        contentView.font = Font.systemFont(ofSize: 12)
+        contentView.font = Font.systemFont(ofSize: 14)
         contentView.textColor = Color.blue.accent3
         contentView.textAlignment = .left
         contentView.isEditable = false

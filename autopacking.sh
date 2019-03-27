@@ -150,7 +150,7 @@ curl 'https://oapi.dingtalk.com/robot/send?access_token=7e6f02c3087edd1936234053
 -d '{ "at": {"atMobiles": ["18667905583"], "isAtAll": false}, "msgtype": "markdown", "markdown": {"title": "Orange发布", "text": "### '$versionText'已上传到蒲公英\n[点击下载](https://www.pgyer.com/'$appShortcutUrl')\n或扫描二维码下载\n > ![]('$appQRCodeURL')"}}'
 
 curl 'http://118.24.216.163:8080/orange/message/send' \
--d 'access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiZXhwIjoxNTU1MDcyMDQ0fQ.hPfK8X0PM3IjnOWliBrq4OALRhvVgR3NFv0ROnteYfc&title=OrangeForIos&content=Orange已上传到蒲公英\n版本号：'appVersion'('appBuildVersion')\n更新日期：'appUpdated'\n下载地址:https：//www.pgyer.com/'$appShortcutUrl''
+-d 'access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiZXhwIjoxNTU1MDcyMDQ0fQ.hPfK8X0PM3IjnOWliBrq4OALRhvVgR3NFv0ROnteYfc&title=OrangeForIos&content=Orange已上传到蒲公英\n版本号：'$appVersion'('$appBuildVersion')\n更新日期：'$appUpdated'\n下载地址：https://www.pgyer.com/'$appShortcutUrl''
 #else
 #echo '取消发送到钉钉'
 #fi
