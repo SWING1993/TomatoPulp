@@ -13,19 +13,15 @@ import Alamofire.Swift
 class SWIndexViewController: QMUICommonViewController {
 
     fileprivate var menuButton: IconButton!
-    fileprivate var starButton: IconButton!
     
     override func didInitialize() {
         super.didInitialize()
-        self.hidesBottomBarWhenPushed = false
-
     }
     
     override func initSubviews() {
         super.initSubviews()
         view.backgroundColor = Color.grey.lighten5
         prepareMenuButton()
-        prepareStarButton()
         prepareNavigationItem()
     }
     
@@ -43,15 +39,10 @@ fileprivate extension SWIndexViewController {
         menuButton.addTarget(self, action: #selector(handleToASF), for: .touchUpInside)
     }
     
-    func prepareStarButton() {
-        starButton = IconButton(image: Icon.cm.star)
-        starButton.addTarget(self, action: #selector(handleToSSR), for: .touchUpInside)
-    }
-    
     func prepareNavigationItem() {
         navigationItem.titleLabel.text = "Index"
         navigationItem.detailLabel.text = "🔥🔥🔥"
-        navigationItem.rightViews = [starButton, menuButton]
+        navigationItem.rightViews = [menuButton]
     }
 }
 
@@ -63,10 +54,5 @@ fileprivate extension SWIndexViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    @objc
-    func handleToSSR() {
-        let controller = SWSSRViewController()
-        controller.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(controller, animated: true)
-    }
+   
 }

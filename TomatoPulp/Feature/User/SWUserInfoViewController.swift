@@ -20,8 +20,6 @@ class SWUserInfoViewController: QMUICommonViewController {
     
     override func didInitialize() {
         super.didInitialize()
-        self.hidesBottomBarWhenPushed = false
-
     }
 
     override func viewDidLoad() {

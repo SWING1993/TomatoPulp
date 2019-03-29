@@ -59,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let statusNav = AppNavigationController(rootViewController: SWStatusController())
         statusNav.tabBarItem.title = "Status"
         statusNav.tabBarItem = UITabBarItem.init(title: "Message", image: UIImage.init(named: "tabbar_status"), selectedImage: UIImage.init(named: "tabbar_status_selected"))
-
         
         let messageNav = AppNavigationController(rootViewController: SWMessageController())
         messageNav.tabBarItem.title = "Message"
@@ -69,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userNav.tabBarItem.title = "User"
         userNav.tabBarItem = UITabBarItem.init(title: "User", image: UIImage.init(named: "tabbar_user"), selectedImage: UIImage.init(named: "tabbar_user_selected"))
 
-        
         let appTabs = QMUITabBarViewController.init()
         appTabs.viewControllers = [indexNav, statusNav, messageNav, userNav]
         window!.rootViewController = appTabs;

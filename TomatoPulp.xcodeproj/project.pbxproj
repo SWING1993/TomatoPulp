@@ -130,6 +130,34 @@
 			path = SSR;
 			sourceTree = "<group>";
 		};
+		033BEB80224E099100919AA5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				03FE608D21EB829900E159FF /* SWASFViewController.swift */,
+				0332000A21EC7E6900158E86 /* SWASFConfigViewController.swift */,
+				0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */,
+				034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */,
+				034FC89821F16674006379C7 /* SWASFLogViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		033BEB81224E099C00919AA5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0332000321EC23E800158E86 /* SWASF.swift */,
+				03FE608B21EB398A00E159FF /* SWASFBot.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		033BEB82224E09A300919AA5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		034C3D95223A22E1002054B3 /* Status */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,13 +365,9 @@
 		03FE608A21EB377900E159FF /* ASF */ = {
 			isa = PBXGroup;
 			children = (
-				0332000321EC23E800158E86 /* SWASF.swift */,
-				03FE608B21EB398A00E159FF /* SWASFBot.swift */,
-				03FE608D21EB829900E159FF /* SWASFViewController.swift */,
-				0332000A21EC7E6900158E86 /* SWASFConfigViewController.swift */,
-				0332000C21EC7E9300158E86 /* SWASFBotConfigViewController.swift */,
-				034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */,
-				034FC89821F16674006379C7 /* SWASFLogViewController.swift */,
+				033BEB82224E09A300919AA5 /* View */,
+				033BEB81224E099C00919AA5 /* Model */,
+				033BEB80224E099100919AA5 /* Controller */,
 			);
 			path = ASF;
 			sourceTree = "<group>";

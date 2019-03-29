@@ -259,6 +259,7 @@ extension SWASFBotConfigViewController {
             self.asfBotDict?[key] = set
             self.tableView.reloadData()
         }
+        controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }

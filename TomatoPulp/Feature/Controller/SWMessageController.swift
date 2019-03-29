@@ -18,7 +18,6 @@ class SWMessageController: QMUICommonViewController {
     
     override func didInitialize() {
         super.didInitialize()
-        self.hidesBottomBarWhenPushed = false
     }
     
     override func initSubviews() {
@@ -30,7 +29,7 @@ class SWMessageController: QMUICommonViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-         self.setupMessageData(showHUD: false)
+        self.tableView.mj_header.beginRefreshing();
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -120,6 +119,7 @@ extension SWMessageController : UITableViewDelegate {
         let message = messages[indexPath.section]
         let detailController = SWMessageDetailController()
         detailController.message = message
+        detailController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailController, animated: true)
     }
     

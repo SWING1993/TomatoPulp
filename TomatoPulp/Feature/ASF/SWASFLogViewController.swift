@@ -17,9 +17,6 @@ class SWASFLogViewController: QMUICommonViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
         prepareTableView()
         prepareNavigationItem()
         setupASFLogData()
@@ -38,20 +35,23 @@ fileprivate extension SWASFLogViewController {
         tableView.estimatedRowHeight = 0;
         tableView.estimatedSectionHeaderHeight = 0;
         tableView.estimatedSectionFooterHeight = 0;
+        tableView.mj_header = SWRefreshHeader()
+        tableView.mj_header.refreshingBlock = {
+            self.setupASFLogData()
+        }
         view.layout(tableView).edges()
     }
     
     func prepareNavigationItem() {
         navigationItem.titleLabel.text = "ArchiSteamFarm "
         navigationItem.detailLabel.text = "Log"
-//        settingButton.addTarget(self, action: #selector(handleToASFSetting), for: .touchUpInside)
-//        navigationItem.rightViews = [settingButton]
     }
     
     func setupASFLogData() {
         self.showProgreeHUD("加载中...")
         HttpUtils.default.request("/asf/logs").response(success: { result in
             self.hideHUD()
+            self.tableView.mj_header.endRefreshing()
             if let x = result as? Array<String> {
                 self.logs = x
             }
@@ -65,7 +65,7 @@ fileprivate extension SWASFLogViewController {
             self.hideHUD()
             self.showTextHUD(msg, dismissAfterDelay: 3)
             self.showEmptyView(withText: "暂无日志", detailText: nil, buttonTitle: nil, buttonAction: nil)
-
+            self.tableView.mj_header.endRefreshing()
         }
     }
 }

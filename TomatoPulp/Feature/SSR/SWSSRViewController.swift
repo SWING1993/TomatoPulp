@@ -163,8 +163,8 @@ extension SWSSRViewController : UITableViewDelegate {
         let user: SWSSRUser = self.users[indexPath.row]
         let controller: SWSSRInfoViewController = SWSSRInfoViewController()
         controller.ssr = user
+        controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
-
     }
 }
 
@@ -191,6 +191,5 @@ extension SWSSRViewController : UITableViewDataSource {
         
         return cell!
     }
-    
 }
 
