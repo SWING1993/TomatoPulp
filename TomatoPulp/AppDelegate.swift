@@ -52,17 +52,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func toMain() {
         
-        let indexNav = AppNavigationController(rootViewController: SWIndexViewController())
-        indexNav.tabBarItem.title = "index"
+        let indexNav = AppNavigationController(rootViewController: SWASFViewController())
+        indexNav.tabBarItem.title = "Index"
+        indexNav.tabBarItem = UITabBarItem.init(title: "Index", image: UIImage.init(named: "tabbar_index"), selectedImage: UIImage.init(named: "tabbar_index_selected"))
         
         let statusNav = AppNavigationController(rootViewController: SWStatusController())
-        statusNav.tabBarItem.title = "status"
+        statusNav.tabBarItem.title = "Status"
+        statusNav.tabBarItem = UITabBarItem.init(title: "Message", image: UIImage.init(named: "tabbar_status"), selectedImage: UIImage.init(named: "tabbar_status_selected"))
+
         
         let messageNav = AppNavigationController(rootViewController: SWMessageController())
-        messageNav.tabBarItem.title = "message"
-        
+        messageNav.tabBarItem.title = "Message"
+        messageNav.tabBarItem = UITabBarItem.init(title: "Message", image: UIImage.init(named: "tabbar_message"), selectedImage: UIImage.init(named: "tabbar_message_selected"))
+
         let userNav = AppNavigationController(rootViewController: SWUserInfoViewController())
-        userNav.tabBarItem.title = "user"
+        userNav.tabBarItem.title = "User"
+        userNav.tabBarItem = UITabBarItem.init(title: "User", image: UIImage.init(named: "tabbar_user"), selectedImage: UIImage.init(named: "tabbar_user_selected"))
+
         
         let appTabs = QMUITabBarViewController.init()
         appTabs.viewControllers = [indexNav, statusNav, messageNav, userNav]
