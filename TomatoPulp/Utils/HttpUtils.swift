@@ -61,7 +61,7 @@ class HttpUtils {
         // 请求头
         headers["token"] = clientShared.user.token
         headers["uid"] = "\(clientShared.user.id)"
-        print("headers:\(headers)")
+//        print("headers:\(headers)")
 
         let taskManager: HttpTaskUtils = HttpTaskUtils().request("\(host)\(url)", method: method, params: signatureParams, encoding: encoding, headers: headers)
         return taskManager
@@ -99,6 +99,7 @@ public class HttpTaskUtils {
     /// 响应String
     public func response(success: @escaping (Any?)->(), failure: @escaping (String)->()) {
         dataRequest?.responseString(completionHandler: { response in
+            QMUIConsole.log("response.result.value as Any")
             response.result.ifSuccess {
                 if let httpResult = HttpResponse<Any>.deserialize(from: response.result.value) {
                     if httpResult.success {
