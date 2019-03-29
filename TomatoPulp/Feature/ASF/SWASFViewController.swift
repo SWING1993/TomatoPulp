@@ -129,10 +129,33 @@ extension SWASFViewController : UITableViewDataSource {
         cell?.imageView?.image = UIImage.init(named: "robot-solid")?.resize(toWidth: 25)?.tint(with: bot.Enabled ? Color.green.base : Color.blueGrey.lighten4)
         cell?.textLabel?.text = bot.SteamLogin
         cell?.detailTextLabel?.text = bot.FileName
+        
+        let botSwitch: Switch = Switch(state: .off, style: .light, size: .small)
+        botSwitch.isOn = bot.Enabled
+        botSwitch.tag = indexPath.row
+        botSwitch.delegate = self
+        cell?.accessoryView = botSwitch
+        
         return cell!
     }
 }
 
+extension SWASFViewController: SwitchDelegate {
+    func switchDidChangeState(control: Switch, state: SwitchState) {
+        print("Switch changed state to: ", .on == state ? "on" : "off")
+        let bot: SWASFBot = self.bots[control.tag]
+        bot.Enabled = control.isOn
+        let parameters = ["filename": bot.FileName, "content": bot.toJSONString()!]
+        self.showProgreeHUD("保存中...")
+        HttpUtils.default.request("/asf/save", method: .post, params: parameters).response(success: { _ in
+            self.hideHUD()
+            self.tableView.reloadData()
+        }) { errorMsg in
+            self.hideHUD()
+            self.showTextHUD(errorMsg, dismissAfterDelay: 3)
+        }
+    }
+}
 
 fileprivate extension SWASFViewController {
     
