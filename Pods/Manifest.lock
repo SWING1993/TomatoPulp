@@ -35,7 +35,6 @@ PODS:
     - Material/Core (= 2.16.4)
   - Material/Core (2.16.4):
     - Motion (~> 1.4.3)
-  - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.16)
   - Motion (1.4.3):
     - Motion/Core (= 1.4.3)
@@ -327,7 +326,6 @@ DEPENDENCIES:
   - HandyJSON (~> 4.2.0)
   - IGListKit (~> 3.0)
   - Material (~> 2.0)
-  - MBProgressHUD
   - MJRefresh
   - QMUIKit
   - ReactiveCocoa (~> 8.0)
@@ -348,7 +346,6 @@ SPEC REPOS:
     - HandyJSON
     - IGListKit
     - Material
-    - MBProgressHUD
     - MJRefresh
     - Motion
     - QMUIKit
@@ -371,7 +368,6 @@ SPEC CHECKSUMS:
   HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
-  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   Motion: 153ba49692997888556c7a95207278a8b1f8be95
   QMUIKit: 765333b31bb25a973f2ea11e0a67fca727ef29a7
@@ -381,6 +377,6 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: dd54f20afd420b791511c262298ee30179ff26e6
 
-PODFILE CHECKSUM: 8b3c39977beaafb0af1a1c8829259c542b58ce2a
+PODFILE CHECKSUM: 809a0d8dfedaa313a280d0782e6fc61e16b4702e
 
 COCOAPODS: 1.5.3

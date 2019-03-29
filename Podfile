@@ -9,7 +9,6 @@ target 'TomatoPulp' do
     pod 'HandyJSON', '~> 4.2.0'
     pod 'SnapKit', '~> 4.0.0'
     pod 'AsyncSwift'
-    pod 'MBProgressHUD'
     pod 'Charts'
     pod 'Cache', '>= 5.0.0'
     pod 'QMUIKit'

@@ -99,7 +99,7 @@ public class HttpTaskUtils {
     /// 响应String
     public func response(success: @escaping (Any?)->(), failure: @escaping (String)->()) {
         dataRequest?.responseString(completionHandler: { response in
-            QMUIConsole.log("response.result.value as Any")
+//            QMUIConsole.log("response.result.value as Any")
             response.result.ifSuccess {
                 if let httpResult = HttpResponse<Any>.deserialize(from: response.result.value) {
                     if httpResult.success {

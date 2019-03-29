@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MBProgressHUD
 import Async
 
 private var hudKey = "hud"
@@ -15,27 +14,22 @@ private var hudKey = "hud"
 @objc extension UIViewController {
     
     func showProgreeHUD(_ text: String? = nil) {
-        hideHUD()
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.mode = .indeterminate
-        hud.label.text = text
+        QMUITips.hideAllTips(in: self.view)
+        QMUITips.showLoading(text, in: self.view)
     }
     
     func showTextHUD(_ text: String?, dismissAfterDelay: TimeInterval) {
-        hideHUD()
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.mode = .text
-        hud.detailsLabel.text = text
-        hideHUD(dismissAfterDelay)
+        QMUITips.hideAllTips(in: self.view)
+        QMUITips.showInfo(text, in: self.view, hideAfterDelay: dismissAfterDelay)
     }
     
     func hideHUD() {
-        MBProgressHUD.hide(for: view, animated: true)
+        QMUITips.hideAllTips()
     }
     
     func hideHUD(_ afterDelay: TimeInterval) {
         Async.main(after: afterDelay) {
-            self.hideHUD()
+            QMUITips.hideAllTips()
         }
     }
     

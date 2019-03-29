@@ -37,7 +37,7 @@ fileprivate extension SWMessageDetailController {
     }
     
     func prepareContentView() {
-        contentView.text = message.content
+        contentView.text = message.content.replacingOccurrences(of: "\\n", with: "\n")
         contentView.font = Font.systemFont(ofSize: 14)
         contentView.textColor = Color.darkText.primary
         contentView.textAlignment = .left
