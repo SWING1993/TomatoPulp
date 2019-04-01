@@ -12,6 +12,7 @@ import ReactiveSwift
 import enum Result.NoError
 import Alamofire.Swift
 import Material
+import Async
 
 class SWLoginViewModel: NSObject {
     
@@ -64,7 +65,13 @@ class SWLoginViewModel: NSObject {
             return SignalProducer<String, NoError> { observer, disposable in
                 let parameters: Parameters = ["phone": phone, "password": password]
                 
+                Async.main{
+                    QMUITips.showLoading("登录中...", in: UIApplication.shared.keyWindow!)
+                }
                 HttpUtils.default.request("/user/login", method: .post, params: parameters).response(success: { result in
+                    Async.main{
+                        QMUITips.hideAllTips()
+                    }
                     let userDict : Dictionary<String, Any> = result as! Dictionary<String, Any>
                     if let user  = SWUser.deserialize(from: userDict) {
                         clientShared.user = user
@@ -73,6 +80,9 @@ class SWLoginViewModel: NSObject {
                     observer.send(value: "登录成功")
                     observer.sendCompleted()
                 }, failure: { msg in
+                    Async.main{
+                        QMUITips.hideAllTips()
+                    }
                     observer.send(value: msg)
                     observer.sendCompleted()
                 })

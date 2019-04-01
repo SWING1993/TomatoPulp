@@ -73,6 +73,7 @@ class SWLoginViewController: UIViewController {
 }
 
 extension SWLoginViewController {
+    
     fileprivate func preparePhoneField() {
         phoneField = ErrorTextField()
         phoneField.placeholder = "手机号"

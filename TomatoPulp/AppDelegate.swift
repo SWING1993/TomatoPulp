@@ -27,13 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.backgroundColor = UIColor.white;
         if clientShared.isLogin() {
             toMain()
+            GeTuiSdk.setBadge(0)
             GeTuiSdk.resetBadge()
         } else {
            toLogin()
         }
         window!.makeKeyAndVisible()
-        
-        
         return true
     }
     
