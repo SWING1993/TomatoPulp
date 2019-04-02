@@ -523,6 +523,7 @@
     NSDateComponents *sendCom = [calendar components:(NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitSecond) fromDate:self];
     
     NSString *str_date = [NSString stringWithFormat:@"%02lu%ld月",(unsigned long)sendCom.day,(unsigned long)sendCom.month];
+    
     NSDate *date1 = [toDay dateByAddingDays:-1];
     
     NSString *station_ymd = [self formatYMD];
@@ -537,22 +538,24 @@
 }
 
 - (NSString *)stringByMessageDate {
-    NSDate *toDay = [NSDate date];
+    NSDate *now = [NSDate date];
+    NSString *str_now = [now formatYMD];
+
+    NSDate *yesterday = [now dateByAddingDays:-1];
+    NSString *str_yesterday = [yesterday formatYMD];
+
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *sendCom = [calendar components:(NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitSecond) fromDate:self];
     
     NSString *str_date = [NSString stringWithFormat:@"%02lu/%02lu",(unsigned long)sendCom.month,(unsigned long)sendCom.day];
-    NSDate *date1 = [toDay dateByAddingDays:-1];
     
     NSString *station_ymd = [self formatYMD];
-    NSString *str_toDay = [toDay formatYMD];
-    NSString *str_day1 = [date1 formatYMD];
-    if ([station_ymd isEqualToString:str_toDay]) {
+    if ([station_ymd isEqualToString:str_now]) {
         str_date = [NSString stringWithFormat:@"今天 %@",[self formatHM]];
-    } else if ([station_ymd isEqualToString:str_day1]) {
+    } else if ([station_ymd isEqualToString:str_yesterday]) {
         str_date = [NSString stringWithFormat:@"昨天 %@",[self formatHM]];
     }
-    return str_date;
+    return [NSString stringWithFormat:@"%@ %@",str_date,[self formatHM]];
 }
 
 - (NSString *)stringByTimeHM {
@@ -572,28 +575,6 @@
         str_date = [NSString stringWithFormat:@"昨天"];
     }
     return str_date;
-}
-
-- (NSInteger)getAgeOfBirthDate:(NSDate *)toDay
-{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *sendCom = [calendar components:(NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitSecond) fromDate:self];
-    NSDateComponents *todayCom = [calendar components:(NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitSecond) fromDate:toDay];
-    
-    NSInteger brithDateYear  = [sendCom year];
-    NSInteger brithDateMonth = [sendCom month];
-    NSInteger brithDateDay   = [sendCom day];
-    
-    NSInteger currentDateYear  = [todayCom year];
-    NSInteger currentDateMonth = [todayCom month];
-    NSInteger currentDateDay   = [todayCom day];
-    
-    // 计算年龄
-    NSInteger iAge = currentDateYear - brithDateYear - 1;
-    if ((currentDateMonth > brithDateMonth) || (currentDateMonth == brithDateMonth && currentDateDay >= brithDateDay)) {
-        iAge++;
-    }
-    return iAge;
 }
 
 @end

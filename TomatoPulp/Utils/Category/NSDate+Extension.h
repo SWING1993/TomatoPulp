@@ -109,10 +109,9 @@
 - (NSString *)yearTextBySendDate;
 /** 日期逻辑：今天，昨天，具体日期（xx日xx月） */
 - (NSString *)stringBySendDate;
-/** 根据日前获取年龄 */
-- (NSInteger)getAgeOfBirthDate:(NSDate *)toDay;
 
-/** 日期逻辑：今天 xx:xx，昨天xx:xx，具体日期（xx日xx月） */
+/** 日期逻辑：今天 xx:xx，昨天 xx:xx，具体日期（xx日xx月 xx:xx） */
 - (NSString *)stringByMessageDate;
 - (NSString *)stringByTimeHM;
+
 @end
