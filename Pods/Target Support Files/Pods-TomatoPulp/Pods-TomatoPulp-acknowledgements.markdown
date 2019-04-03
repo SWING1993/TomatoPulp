@@ -817,6 +817,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+## PgyUpdate
+
+Copyright 2015 pgyer.com. All rights reserved.
+
+
 ## QMUIKit
 
 Tencent is pleased to support the open source community by making QMUI_iOS available.  

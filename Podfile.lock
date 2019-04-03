@@ -39,6 +39,7 @@ PODS:
   - Motion (1.4.3):
     - Motion/Core (= 1.4.3)
   - Motion/Core (1.4.3)
+  - PgyUpdate (1.6)
   - QMUIKit (3.1.2):
     - QMUIKit/QMUIComponents (= 3.1.2)
     - QMUIKit/QMUICore (= 3.1.2)
@@ -327,6 +328,7 @@ DEPENDENCIES:
   - IGListKit (~> 3.0)
   - Material (~> 2.0)
   - MJRefresh
+  - PgyUpdate
   - QMUIKit
   - ReactiveCocoa (~> 8.0)
   - SnapKit (~> 4.0.0)
@@ -348,6 +350,7 @@ SPEC REPOS:
     - Material
     - MJRefresh
     - Motion
+    - PgyUpdate
     - QMUIKit
     - ReactiveCocoa
     - ReactiveSwift
@@ -370,6 +373,7 @@ SPEC CHECKSUMS:
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   Motion: 153ba49692997888556c7a95207278a8b1f8be95
+  PgyUpdate: cd6c2ada5928f36a9f904d8f96a9b3b53e190755
   QMUIKit: 765333b31bb25a973f2ea11e0a67fca727ef29a7
   ReactiveCocoa: fbd26e9ba60e98417ee47433e59465a98ed9da0f
   ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
@@ -377,6 +381,6 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: dd54f20afd420b791511c262298ee30179ff26e6
 
-PODFILE CHECKSUM: 809a0d8dfedaa313a280d0782e6fc61e16b4702e
+PODFILE CHECKSUM: b0fa7b186ab7976289a1912bc08a6c872fa64def
 
 COCOAPODS: 1.5.3

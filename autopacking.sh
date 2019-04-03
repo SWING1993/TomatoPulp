@@ -109,9 +109,9 @@ echo '///-------------'
 echo ''
 
 #蒲公英aipKey
-MY_PGY_API_K=4895e73abf35e7b1c73c25329bd87ddc
+MY_PGY_API_K=a10e9546852359e8badd5e347037b82c
 #蒲公英uKey
-MY_PGY_UK=bdcc644596f9d8524c04e859cf6e2bbf
+MY_PGY_UK=56f24ad1113cd5ba667bcfb157a4ee8d
 #上传蒲公英
 result=$(curl -F "file=@${exportIpaPath}/${scheme_name}.ipa" -F "uKey=${MY_PGY_UK}" -F "_api_key=${MY_PGY_API_K}" https://qiniu-storage.pgyer.com/apiv1/app/upload)
 echo $result
@@ -150,7 +150,7 @@ curl 'https://oapi.dingtalk.com/robot/send?access_token=7e6f02c3087edd1936234053
 -d '{ "at": {"atMobiles": ["18667905583"], "isAtAll": false}, "msgtype": "markdown", "markdown": {"title": "Orange发布", "text": "### '$versionText'已上传到蒲公英\n[点击下载](https://www.pgyer.com/'$appShortcutUrl')\n或扫描二维码下载\n > ![]('$appQRCodeURL')"}}'
 
 curl 'http://118.24.216.163:8080/orange/message/send' \
--d 'access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiZXhwIjoxNTU1MDcyMDQ0fQ.hPfK8X0PM3IjnOWliBrq4OALRhvVgR3NFv0ROnteYfc&title=Oranged发布&content=Orange已上传到蒲公英 \n版本号：'$appVersion'('$appBuildVersion') \n更新日期：'$appUpdated' \n下载地址：https://www.pgyer.com/'$appShortcutUrl
+-d 'messageToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiZXhwIjoxNTU1NjUyNjI2fQ.MwZuRFzlOLEqKADVjQ5sHEvRBZxAxIzAQqsymOJvOYk&title=Oranged发布&content=Orange已上传到蒲公英 \n版本号：'$appVersion'('$appBuildVersion') \n更新日期：'$appUpdated' \n下载地址：https://www.pgyer.com/'$appShortcutUrl
 #else
 #echo '取消发送到钉钉'
 #fi
