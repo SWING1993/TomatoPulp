@@ -22,23 +22,23 @@ import Foundation
  */
 extension UIFont {
    
-    func PFSCRegular(aSize: CGFloat) -> UIFont? {
+    static func PFSCRegular(aSize: CGFloat) -> UIFont? {
         return UIFont.init(name: "PingFangSC-Regular", size: aSize)
     }
     
-    func PFSCMedium(aSize: CGFloat) -> UIFont? {
+    static func PFSCMedium(aSize: CGFloat) -> UIFont? {
         return UIFont.init(name: "PingFangSC-Medium", size: aSize)
     }
     
-    func PFSCSemibold(aSize: CGFloat) -> UIFont? {
+    static func PFSCSemibold(aSize: CGFloat) -> UIFont? {
         return UIFont.init(name: "PingFangSC-Semibold", size: aSize)
     }
     
-    func PFSCLight(aSize: CGFloat) -> UIFont? {
+    static func PFSCLight(aSize: CGFloat) -> UIFont? {
         return UIFont.init(name: "PingFangSC-Light", size: aSize)
     }
     
-    func PFThin(aSize: CGFloat) -> UIFont? {
+    static func PFSCThin(aSize: CGFloat) -> UIFont? {
         return UIFont.init(name: "PingFangSC-Thin", size: aSize)
     }
     
