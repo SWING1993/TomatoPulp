@@ -109,9 +109,9 @@ echo '///-------------'
 echo ''
 
 #蒲公英aipKey
-MY_PGY_API_K=a10e9546852359e8badd5e347037b82c
+MY_PGY_API_K=4895e73abf35e7b1c73c25329bd87ddc
 #蒲公英uKey
-MY_PGY_UK=56f24ad1113cd5ba667bcfb157a4ee8d
+MY_PGY_UK=bdcc644596f9d8524c04e859cf6e2bbf
 #上传蒲公英
 result=$(curl -F "file=@${exportIpaPath}/${scheme_name}.ipa" -F "uKey=${MY_PGY_UK}" -F "_api_key=${MY_PGY_API_K}" https://qiniu-storage.pgyer.com/apiv1/app/upload)
 echo $result
@@ -125,10 +125,6 @@ echo '///-------------'
 echo '/// 已经上传到了蒲公英 '
 echo '///-------------'
 echo ''
-#echo "是否将下载地址发送到钉钉? [ 1:发送 2:不发送] "
-#read platform
-#if [ $platform == 1 ];
-#then
 
 #获取info.plist版本号
 # buildShortVersion=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${exportOptionsPlistPath})

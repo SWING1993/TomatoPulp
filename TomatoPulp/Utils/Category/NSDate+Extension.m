@@ -554,8 +554,10 @@
         str_date = [NSString stringWithFormat:@"今天 %@",[self formatHM]];
     } else if ([station_ymd isEqualToString:str_yesterday]) {
         str_date = [NSString stringWithFormat:@"昨天 %@",[self formatHM]];
+    } else {
+        str_date = [NSString stringWithFormat:@"%@ %@",str_date,[self formatHM]];
     }
-    return [NSString stringWithFormat:@"%@ %@",str_date,[self formatHM]];
+    return str_date;
 }
 
 - (NSString *)stringByTimeHM {

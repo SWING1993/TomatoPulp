@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppConfigurationTemplate.apply()
         #if DEBUG
         #else
-        PgyUpdateManager.sharedPgy()?.start(withAppId: "")
+        PgyUpdateManager.sharedPgy()?.start(withAppId: "8aa40edc30844910094fcf40f9cac9bc")
         PgyUpdateManager.sharedPgy()?.checkUpdate()
         #endif
 
