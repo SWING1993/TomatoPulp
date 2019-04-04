@@ -8,18 +8,6 @@
 
 import Foundation
 
-/*
- #define UIFontPFRegularMake(aSize)    [UIFont fontWithName:@"PingFangSC-Regular" size:aSize]
- #define UIFontPFMediumMake(aSize)  [UIFont fontWithName:@"PingFangSC-Medium" size:aSize]
- #define UIFontPFSemiboldMake(aSize)  [UIFont fontWithName:@"PingFangSC-Semibold" size:aSize]
- #define UIFontPFLightMake(aSize)  [UIFont fontWithName:@"PingFangSC-Light" size:aSize]
- #define UIFontPFThinMake(aSize)  [UIFont fontWithName:@"PingFangSC-Thin" size:aSize]
- 
- #define UIFontHNMake(aSize)  [UIFont fontWithName:@"HelveticaNeue" size:aSize]
- #define UIFontHNLightMake(aSize)  [UIFont fontWithName:@"HelveticaNeue-Light" size:aSize]
- #define UIFontHNMediumMake(aSize)  [UIFont fontWithName:@"HelveticaNeue-Medium" size:aSize]
- #define UIFontHNBoldMake(aSize)  [UIFont fontWithName:@"HelveticaNeue-Bold" size:aSize]
- */
 extension UIFont {
    
     static func PFSCRegular(aSize: CGFloat) -> UIFont? {

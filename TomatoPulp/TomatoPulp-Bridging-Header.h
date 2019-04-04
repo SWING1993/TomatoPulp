@@ -3,10 +3,8 @@
 //
 
 #import "AppConfigurationTemplate.h"
-
 #import "NSDate+Extension.h"
 #import "NSDate+Utilities.h"
-
 #import <CommonCrypto/CommonDigest.h>
 #import <QMUIKit/QMUIKit.h>
 #import <AliyunOSSiOS/OSSService.h>
@@ -16,4 +14,5 @@
 #import <GTSDK/GeTuiSdk.h>
 #import <MJRefresh/MJRefresh.h>
 #import <PgyUpdate/PgyUpdateManager.h>
+#import <IGListKit/IGListKit.h>
 

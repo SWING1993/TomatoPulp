@@ -313,6 +313,7 @@ PODS:
   - Result (4.1.0)
   - SnapKit (4.0.1)
   - SwiftDate (6.0.0)
+  - TZImagePickerController (3.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8)
@@ -333,6 +334,7 @@ DEPENDENCIES:
   - ReactiveCocoa (~> 8.0)
   - SnapKit (~> 4.0.0)
   - SwiftDate
+  - TZImagePickerController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -357,6 +359,7 @@ SPEC REPOS:
     - Result
     - SnapKit
     - SwiftDate
+    - TZImagePickerController
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -380,7 +383,8 @@ SPEC CHECKSUMS:
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: dd54f20afd420b791511c262298ee30179ff26e6
+  TZImagePickerController: 7850b158d025065b162a1a963d445040b828abc9
 
-PODFILE CHECKSUM: b0fa7b186ab7976289a1912bc08a6c872fa64def
+PODFILE CHECKSUM: 0ca2e3dd162c7998888d75b9193a2b9689d77ca3
 
 COCOAPODS: 1.5.3

@@ -85,6 +85,7 @@ fileprivate extension SWUserInfoViewController {
 }
 
 extension SWUserInfoViewController : UIImagePickerControllerDelegate {
+   
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.showProgreeHUD("上传中...")
         let aImage: UIImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage

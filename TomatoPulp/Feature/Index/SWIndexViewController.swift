@@ -47,6 +47,7 @@ fileprivate extension SWIndexViewController {
 }
 
 fileprivate extension SWIndexViewController {
+    
     @objc
     func handleToASF() {
         let controller = SWASFViewController()

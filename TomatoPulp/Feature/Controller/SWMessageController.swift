@@ -9,7 +9,8 @@
 import UIKit
 import Material
 
-// curl -d "access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiZXhwIjoxNTU1MDcyMDQ0fQ.hPfK8X0PM3IjnOWliBrq4OALRhvVgR3NFv0ROnteYfc&title=消息标题&content=消息内容" http://118.24.216.163:8080/orange/message/send
+// curl -d "messageToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwiZXhwIjoxNTU1MDcyMDQ0fQ.hPfK8X0PM3IjnOWliBrq4OALRhvVgR3NFv0ROnteYfc&title=消息标题&content=消息内容" http://118.24.216.163:8080/orange/message/send
+
 class SWMessageController: QMUICommonViewController {
 
     var messages: Array<SWMessageModel> = Array()
@@ -29,7 +30,7 @@ class SWMessageController: QMUICommonViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.mj_header.beginRefreshing();
+        self.setupMessageData(showHUD: false);
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +46,7 @@ fileprivate extension SWMessageController {
     }
     
     func prepareTableView() {
+        
         tableView = TableView.init(frame: CGRect.zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self

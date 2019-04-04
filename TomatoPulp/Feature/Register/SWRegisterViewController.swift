@@ -10,6 +10,7 @@ import UIKit
 import Material
 
 class SWRegisterViewController: UIViewController {
+    
     fileprivate var phoneField: ErrorTextField!
     fileprivate var passwordField: TextField!
     fileprivate var checkoutPasswordField: TextField!
@@ -42,6 +43,7 @@ class SWRegisterViewController: UIViewController {
 }
 
 extension SWRegisterViewController {
+    
     fileprivate func prepareEmailField() {
         phoneField = ErrorTextField()
         phoneField.placeholder = "Email"

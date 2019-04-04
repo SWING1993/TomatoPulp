@@ -21,11 +21,12 @@
 		034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */; };
 		034C3D97223A2313002054B3 /* SWStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034C3D96223A2312002054B3 /* SWStatusController.swift */; };
 		034C3DA0223B48AC002054B3 /* SWStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034C3D9F223B48AC002054B3 /* SWStatusModel.swift */; };
-		034C3DA2223B48D0002054B3 /* SWStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034C3DA1223B48D0002054B3 /* SWStatusViewModel.swift */; };
 		034FC89921F16674006379C7 /* SWASFLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FC89821F16674006379C7 /* SWASFLogViewController.swift */; };
 		03555FDA225443B5001D6BA4 /* SWFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03555FD9225443B5001D6BA4 /* SWFont.swift */; };
 		035CDEB721EDA76C00DCE7B1 /* HUDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */; };
 		035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */; };
+		03AE47CF2255D56600687BCE /* SWStatusSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE47CE2255D56600687BCE /* SWStatusSectionController.swift */; };
+		03AE47D12255E00E00687BCE /* SWPostStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE47D02255E00E00687BCE /* SWPostStatusController.swift */; };
 		03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BEA11621E6EB1B00319A6C /* AppDelegate.swift */; };
 		03BEA11E21E6EB1D00319A6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03BEA11D21E6EB1D00319A6C /* Assets.xcassets */; };
 		03BEA12121E6EB1D00319A6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03BEA11F21E6EB1D00319A6C /* LaunchScreen.storyboard */; };
@@ -66,11 +67,12 @@
 		034BCB0021F021DA00A242B1 /* SWASFSetConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFSetConfigViewController.swift; sourceTree = "<group>"; };
 		034C3D96223A2312002054B3 /* SWStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusController.swift; sourceTree = "<group>"; };
 		034C3D9F223B48AC002054B3 /* SWStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusModel.swift; sourceTree = "<group>"; };
-		034C3DA1223B48D0002054B3 /* SWStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusViewModel.swift; sourceTree = "<group>"; };
 		034FC89821F16674006379C7 /* SWASFLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFLogViewController.swift; sourceTree = "<group>"; };
 		03555FD9225443B5001D6BA4 /* SWFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWFont.swift; sourceTree = "<group>"; };
 		035CDEB621EDA76C00DCE7B1 /* HUDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDUtils.swift; sourceTree = "<group>"; };
 		035CDEB821EDB88400DCE7B1 /* ASFBotUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASFBotUtils.swift; sourceTree = "<group>"; };
+		03AE47CE2255D56600687BCE /* SWStatusSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusSectionController.swift; sourceTree = "<group>"; };
+		03AE47D02255E00E00687BCE /* SWPostStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWPostStatusController.swift; sourceTree = "<group>"; };
 		03BEA11321E6EB1B00319A6C /* TomatoPulp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TomatoPulp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03BEA11621E6EB1B00319A6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03BEA11D21E6EB1D00319A6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -164,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				034C3D9E223B4885002054B3 /* Controller */,
-				034C3D9D223B487F002054B3 /* ViewModel */,
 				034C3D9A223B480A002054B3 /* View */,
 				034C3D98223B47BB002054B3 /* Model */,
 			);
@@ -186,18 +187,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		034C3D9D223B487F002054B3 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				034C3DA1223B48D0002054B3 /* SWStatusViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		034C3D9E223B4885002054B3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				034C3D96223A2312002054B3 /* SWStatusController.swift */,
+				03AE47CE2255D56600687BCE /* SWStatusSectionController.swift */,
+				03AE47D02255E00E00687BCE /* SWPostStatusController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -214,7 +209,6 @@
 				03C16BC4224B56EB002596BB /* SWRefreshHeader.swift */,
 				03C16BC6224B5B01002596BB /* SWRefreshFooter.swift */,
 				03555FD9225443B5001D6BA4 /* SWFont.swift */,
-				03C16B6F2249BD12002596BB /* Category */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -242,6 +236,7 @@
 			children = (
 				03BEA11621E6EB1B00319A6C /* AppDelegate.swift */,
 				031E558921EF28FA00C20363 /* TomatoPulp-Bridging-Header.h */,
+				03C16B6F2249BD12002596BB /* Category */,
 				03C16BBB224B279B002596BB /* Configs */,
 				035CDEB521EDA67F00DCE7B1 /* Utils */,
 				03BEA12D21E6F47A00319A6C /* Base */,
@@ -314,9 +309,9 @@
 		03C16B662248983B002596BB /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				03C16B69224898F0002596BB /* Controller */,
 				03C16B6B224898FD002596BB /* View */,
 				03C16B6A224898F7002596BB /* Model */,
-				03C16B69224898F0002596BB /* Controller */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -530,6 +525,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -551,6 +547,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -580,7 +577,6 @@
 				031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */,
 				034FC89921F16674006379C7 /* SWASFLogViewController.swift in Sources */,
 				034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */,
-				034C3DA2223B48D0002054B3 /* SWStatusViewModel.swift in Sources */,
 				03C16BA92249BD12002596BB /* NSDate+Extension.m in Sources */,
 				03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */,
 				03C16BC0224B2B21002596BB /* AppConfigurationTemplate.m in Sources */,
@@ -588,6 +584,7 @@
 				035CDEB921EDB88400DCE7B1 /* ASFBotUtils.swift in Sources */,
 				0332000921EC71CB00158E86 /* SWSSRUser.swift in Sources */,
 				03C16BC7224B5B01002596BB /* SWRefreshFooter.swift in Sources */,
+				03AE47CF2255D56600687BCE /* SWStatusSectionController.swift in Sources */,
 				034C3DA0223B48AC002054B3 /* SWStatusModel.swift in Sources */,
 				03154341221297C100881E80 /* OssService.swift in Sources */,
 				03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */,
@@ -597,6 +594,7 @@
 				03BEA11721E6EB1B00319A6C /* AppDelegate.swift in Sources */,
 				03C16BA12249BD12002596BB /* NSDate+Utilities.m in Sources */,
 				03555FDA225443B5001D6BA4 /* SWFont.swift in Sources */,
+				03AE47D12255E00E00687BCE /* SWPostStatusController.swift in Sources */,
 				0332000621EC717C00158E86 /* SWSSRViewController.swift in Sources */,
 				0332000D21EC7E9300158E86 /* SWASFBotConfigViewController.swift in Sources */,
 				035CDEB721EDA76C00DCE7B1 /* HUDUtils.swift in Sources */,

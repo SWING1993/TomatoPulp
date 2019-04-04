@@ -1,6 +1,7 @@
 platform :ios, '10.0'
 use_frameworks!
 target 'TomatoPulp' do
+    
     pod 'Material', '~> 2.0'
     pod 'ReactiveCocoa', '~> 8.0'
     pod 'Alamofire', '~> 4.8'
@@ -20,5 +21,6 @@ target 'TomatoPulp' do
     pod 'MJRefresh'
 #    pod 'Pgyer'
     pod 'PgyUpdate'
+    pod 'TZImagePickerController'
 
 end

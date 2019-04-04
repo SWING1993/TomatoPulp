@@ -10,6 +10,7 @@ import UIKit
 import HandyJSON
 
 class SWUser: HandyJSON {
+    
     var id: Int = 0
     var phone : String = ""
     var email: String = ""
@@ -19,9 +20,8 @@ class SWUser: HandyJSON {
     var userDesc: String = ""
     var token: String = ""
     var clientId: String = ""
-
+    
     required init() {}
-
 }
 
 

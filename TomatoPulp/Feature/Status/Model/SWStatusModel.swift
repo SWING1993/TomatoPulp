@@ -24,3 +24,17 @@ class SWStatusModel: HandyJSON {
 
     required init() {}
 }
+
+extension SWStatusModel : ListDiffable {
+    
+    func diffIdentifier() -> NSObjectProtocol {
+        return self as! NSObjectProtocol
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        if self === object  {
+            return true
+        }
+        return false
+    }
+}
