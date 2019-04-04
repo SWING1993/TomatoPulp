@@ -20,12 +20,12 @@ class SWStatusController: QMUICommonViewController {
     override func didInitialize() {
         super.didInitialize()
         dataSource = Array()
-        for index in 0...6 {
-            let model = SWStatusModel()
-            model.id = Int64(index)
-            model.content = "开心 happy"
-            dataSource.append(model)
-        }
+//        for index in 0...6 {
+//            let model = SWStatusModel()
+//            model.id = Int64(index)
+//            model.content = "开心 happy"
+//            dataSource.append(model)
+//        }
     }
     
     override func initSubviews() {
@@ -56,7 +56,7 @@ fileprivate extension SWStatusController {
     
     func prepareCollectionView() {
         collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = Color.red.accent1
+        collectionView.backgroundColor = Color.white
         view.addSubview(collectionView)
         adapter = ListAdapter.init(updater: ListAdapterUpdater(), viewController: self)
         adapter.collectionView = collectionView

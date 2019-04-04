@@ -32,7 +32,7 @@ fileprivate extension SWPostStatusController {
         dismissButton.addTarget(self, action: #selector(handleToDismiss), for: .touchUpInside)
         navigationItem.titleLabel.text = "此刻的心情"
         navigationItem.detailLabel.text = "👿👿👿"
-        navigationItem.rightViews = [dismissButton]
+        navigationItem.leftViews = [dismissButton]
     }
 }
 

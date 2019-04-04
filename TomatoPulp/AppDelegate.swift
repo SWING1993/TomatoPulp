@@ -56,11 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func toMain() {
-        
-        let indexNav = AppNavigationController(rootViewController: SWASFViewController())
-        indexNav.tabBarItem.title = "Index"
-        indexNav.tabBarItem = UITabBarItem.init(title: "Index", image: UIImage.init(named: "tabbar_index"), selectedImage: UIImage.init(named: "tabbar_index_selected"))
-        
+
         let statusNav = AppNavigationController(rootViewController: SWStatusController())
         statusNav.tabBarItem.title = "Status"
         statusNav.tabBarItem = UITabBarItem.init(title: "Message", image: UIImage.init(named: "tabbar_status"), selectedImage: UIImage.init(named: "tabbar_status_selected"))
@@ -74,7 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userNav.tabBarItem = UITabBarItem.init(title: "User", image: UIImage.init(named: "tabbar_user"), selectedImage: UIImage.init(named: "tabbar_user_selected"))
 
         let appTabs = QMUITabBarViewController.init()
-        appTabs.viewControllers = [indexNav, statusNav, messageNav, userNav]
+        if clientShared.user.phone == "18667905583" {
+            let indexNav = AppNavigationController(rootViewController: SWASFViewController())
+            indexNav.tabBarItem.title = "Index"
+            indexNav.tabBarItem = UITabBarItem.init(title: "Index", image: UIImage.init(named: "tabbar_index"), selectedImage: UIImage.init(named: "tabbar_index_selected"))
+            appTabs.viewControllers = [indexNav, statusNav, messageNav, userNav]
+        } else {
+            appTabs.viewControllers = [statusNav, messageNav, userNav]
+        }
         window!.rootViewController = appTabs;
     }
     

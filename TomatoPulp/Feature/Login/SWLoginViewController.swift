@@ -23,6 +23,7 @@ class SWLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.grey.lighten5
+        navigationItem.titleLabel.text = "Orange🍊"
         preparePhoneField()
         preparePasswordField()
         prepareResignResponderButton()
@@ -30,8 +31,6 @@ class SWLoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        self.phoneField.text = "18667905583"
-//        self.passwordField.text = "123456"
         loginBtn.isEnabled = true
         loginBtn.alpha = 1
     }
