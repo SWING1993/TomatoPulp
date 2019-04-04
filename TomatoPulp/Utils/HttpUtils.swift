@@ -61,7 +61,6 @@ class HttpUtils {
         // 请求头
         headers["token"] = clientShared.user.token
         headers["uid"] = "\(clientShared.user.id)"
-//        print("headers:\(headers)")
 
         let taskManager: HttpTaskUtils = HttpTaskUtils().request("\(host)\(url)", method: method, params: signatureParams, encoding: encoding, headers: headers)
         return taskManager

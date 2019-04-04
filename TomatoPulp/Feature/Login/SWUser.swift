@@ -11,7 +11,7 @@ import HandyJSON
 
 class SWUser: HandyJSON {
     
-    var id: Int = 0
+    var id: Int64  = 0
     var phone : String = ""
     var email: String = ""
     var nickname: String = ""

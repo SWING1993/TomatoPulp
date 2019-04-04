@@ -14,12 +14,12 @@ class SWStatusModel: HandyJSON {
     var uid: Int64 = 0
     // 状态类型 0 = 图文  1 = 视频
     var type : Int = 0
+    var created: Int64 = 0
     var nickname : String = ""
     var avatarUrl : String = ""
     var content: String = ""
     var imageUrls: String = ""
     var vedioUrl: String = ""
-    var created: Int64 = 0
     var fromDevice: String = ""
 
     required init() {}

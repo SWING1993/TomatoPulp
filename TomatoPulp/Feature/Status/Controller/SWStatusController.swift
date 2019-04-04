@@ -11,7 +11,6 @@ import Material
 
 class SWStatusController: QMUICommonViewController {
 
-    fileprivate var tableView: TableView!
     fileprivate var postButton: IconButton!
     fileprivate var collectionView: UICollectionView!
     fileprivate var adapter: ListAdapter!
@@ -78,6 +77,7 @@ fileprivate extension SWStatusController {
 
 
 extension SWStatusController : ListAdapterDataSource {
+    
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return dataSource as [ListDiffable]
     }
