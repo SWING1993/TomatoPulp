@@ -32,7 +32,7 @@ extension SWStatusModel : ListDiffable {
     }
     
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        if self === object  {
+        if self === object {
             return true
         }
         return false

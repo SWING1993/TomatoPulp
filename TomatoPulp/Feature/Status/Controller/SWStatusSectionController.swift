@@ -23,7 +23,7 @@ class SWStatusSectionController: ListSectionController {
         if index == 0 {
             height = 45.0
         } else {
-            height = 140.0
+            height = SWStatusTextCell.cellHeight(text: model.content, width: width! - 30)
         }
         return CGSize.init(width: width!, height: height)
     }
@@ -31,15 +31,18 @@ class SWStatusSectionController: ListSectionController {
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         if index == 0 {
             let cell: SWStatusUserCell = self.collectionContext?.dequeueReusableCell(of: SWStatusUserCell.self, for: self, at:index) as! SWStatusUserCell
+            if model.avatarUrl.count > 0 {
+                cell.avatarView.af_setImage(withURL: URL(string: model.avatarUrl)!)
+            }
+            cell.nicknameLabel.text = model.nickname
             return cell
         }
         let cell: SWStatusTextCell = self.collectionContext?.dequeueReusableCell(of: SWStatusTextCell.self, for: self, at:index) as! SWStatusTextCell
+        cell.contentLabel.text = model.content
         return cell
     }
     
     override func didUpdate(to object: Any) {
         model = object as? SWStatusModel
-        print(model.content)
     }
-
 }

@@ -13,8 +13,8 @@ import Material
 
 class SWMessageController: QMUICommonViewController {
 
-    var messages: Array<SWMessageModel> = Array()
-    var pageNum: Int = 1
+    fileprivate var messages: Array<SWMessageModel> = Array()
+    fileprivate var pageNum: Int = 1
     fileprivate var tableView: TableView!
     
     override func didInitialize() {
@@ -25,11 +25,11 @@ class SWMessageController: QMUICommonViewController {
         super.initSubviews()
         prepareNavigationItem()
         prepareTableView()
-        self.showEmptyViewWithLoading()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showEmptyViewWithLoading()
         self.setupMessageData(showHUD: false);
     }
     
