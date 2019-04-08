@@ -12,7 +12,8 @@ import Material
 class AppNavigationController: NavigationController {
     open override func prepare() {
         super.prepare()
-        isMotionEnabled = true
+        isMotionEnabled = false
+        motionTransitionType = .cover(direction: .up)
         guard let v = navigationBar as? NavigationBar else {
             return
         }

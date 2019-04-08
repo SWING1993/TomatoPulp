@@ -13,6 +13,8 @@ import ReactiveSwift
 
 class SWPostStatusController: QMUICommonViewController {
 
+    open var complete: (() -> (Void))?
+
     fileprivate var dismissButton: IconButton!
     fileprivate var postButton: Button!
     fileprivate var tableView: TableView!
@@ -99,6 +101,9 @@ fileprivate extension SWPostStatusController {
         self.showProgreeHUD()
         HttpUtils.default.request("/status", method: .post, params: self.postModel.toJSON()).response(success: { _ in
             self.hideHUD()
+            if let complete = self.complete {
+                complete()
+            }
             self.handleToDismiss()
         }) { error in
             self.hideHUD()

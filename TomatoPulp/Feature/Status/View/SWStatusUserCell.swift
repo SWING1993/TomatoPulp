@@ -10,19 +10,29 @@ import UIKit
 import Material
 
 class SWStatusUserCell: UICollectionViewCell {
+    
     let avatarView = UIImageView()
     let nicknameLabel = QMUILabel()
+    let timeLabel = QMUILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        avatarView.contentMode = .scaleAspectFill
         avatarView.backgroundColor = Color.red.accent4
+        avatarView.contentMode = .scaleAspectFill
+        avatarView.layer.masksToBounds = true
+        avatarView.layer.cornerRadius = 17.5
+//        avatarView.layer.borderColor = Color.lightText.secondary.cgColor
+//        avatarView.layer.borderWidth = 1
         self.contentView.addSubview(avatarView)
         
-        nicknameLabel.textColor = Color.darkText.primary
-        nicknameLabel.font = UIFont.PFSCMedium(aSize: 14)
+        nicknameLabel.textColor = Color.blue.accent3
+        nicknameLabel.font = UIFont.PFSCMedium(aSize: 13.5)
         self.contentView.addSubview(nicknameLabel)
+        
+        timeLabel.textColor = Color.darkText.secondary
+        timeLabel.font = UIFont.PFSCMedium(aSize: 12)
+        self.contentView.addSubview(timeLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,9 +50,16 @@ class SWStatusUserCell: UICollectionViewCell {
         
         nicknameLabel.snp.makeConstraints { maker in
             maker.width.equalTo(250)
-            maker.height.equalTo(35)
-            maker.centerY.equalTo(self.contentView)
-            maker.left.equalTo(avatarView.snp.right).offset(15)
+            maker.top.equalTo(0)
+            maker.bottom.equalTo(self.contentView.snp.centerY)
+            maker.left.equalTo(avatarView.snp.right).offset(10)
+        }
+        
+        timeLabel.snp.makeConstraints { maker in
+            maker.width.equalTo(250)
+            maker.top.equalTo(nicknameLabel.snp.bottom)
+            maker.bottom.equalTo(0)
+            maker.left.equalTo(avatarView.snp.right).offset(10)
         }
     }
 }

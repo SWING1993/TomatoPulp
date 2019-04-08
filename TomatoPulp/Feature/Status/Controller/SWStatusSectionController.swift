@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Material
 
 class SWStatusSectionController: ListSectionController {
     
@@ -14,7 +15,7 @@ class SWStatusSectionController: ListSectionController {
     var model: SWStatusModel!
     
     override func numberOfItems() -> Int {
-        return 2
+        return cellsBeforeComments
     }
     
     override func sizeForItem(at index: Int) -> CGSize {
@@ -22,8 +23,12 @@ class SWStatusSectionController: ListSectionController {
         var height: CGFloat = 0.0
         if index == 0 {
             height = 45.0
-        } else {
+        } else if index == 1 {
             height = SWStatusTextCell.cellHeight(text: model.content, width: width! - 30)
+        } else if index == 2  {
+            height = SWStatusImageCell.cellHeight(count: 9)
+        } else {
+            height = 20
         }
         return CGSize.init(width: width!, height: height)
     }
@@ -35,10 +40,18 @@ class SWStatusSectionController: ListSectionController {
                 cell.avatarView.af_setImage(withURL: URL(string: model.avatarUrl)!)
             }
             cell.nicknameLabel.text = model.nickname
+            cell.timeLabel.text = NSDate.init(timeIntervalSince1970: TimeInterval(model.created/1000)).stringByMessageDate()
+            return cell
+        } else if index == 1 {
+            let cell: SWStatusTextCell = self.collectionContext?.dequeueReusableCell(of: SWStatusTextCell.self, for: self, at:index) as! SWStatusTextCell
+            cell.contentLabel.text = model.content
+            return cell
+        } else if index == 2 {
+            let cell: SWStatusImageCell = self.collectionContext?.dequeueReusableCell(of: SWStatusImageCell.self, for: self, at:index) as! SWStatusImageCell
+            cell.configImageCell(count: 9)
             return cell
         }
-        let cell: SWStatusTextCell = self.collectionContext?.dequeueReusableCell(of: SWStatusTextCell.self, for: self, at:index) as! SWStatusTextCell
-        cell.contentLabel.text = model.content
+        let cell: SWStatusLineCell = self.collectionContext?.dequeueReusableCell(of: SWStatusLineCell.self, for: self, at:index) as! SWStatusLineCell
         return cell
     }
     
