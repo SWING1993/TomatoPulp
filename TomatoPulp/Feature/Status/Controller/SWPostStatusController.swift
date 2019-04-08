@@ -20,12 +20,12 @@ class SWPostStatusController: QMUICommonViewController {
     fileprivate var tableView: TableView!
     fileprivate var postModel = SWStatusModel()
     fileprivate var textView: QMUITextView!
+    fileprivate var statusImages = Array<UIImage>()
     
     override func didInitialize() {
         super.didInitialize()
         self.postModel.uid = clientShared.user.id
         self.postModel.fromDevice = "iPhone Xs Max"
-        
     }
     
     override func initSubviews() {
@@ -37,6 +37,11 @@ class SWPostStatusController: QMUICommonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.textView.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,11 +68,12 @@ fileprivate extension SWPostStatusController {
         tableView = TableView.init(frame: CGRect.zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .singleLine
+//        tableView.separatorStyle = .singleLine
         tableView.estimatedRowHeight = 0;
         tableView.estimatedSectionHeaderHeight = 0;
         tableView.estimatedSectionFooterHeight = 0;
         tableView.tableHeaderView = tableHeaderView
+        tableView.register(SWPostStatusImageCell.self, forCellReuseIdentifier: "cell")
         view.layout(tableView).edges()
     }
     
@@ -110,13 +116,18 @@ fileprivate extension SWPostStatusController {
             self.showTextHUD(error, dismissAfterDelay: 3)
         }
     }
+    
+//    @objc
+//    func handleToAddImages() {
+//
+//    }
+    
 }
-
 
 extension SWPostStatusController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return SWPostStatusImageCell.cellHeight(count: statusImages.count)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -130,15 +141,22 @@ extension SWPostStatusController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0;
+        return 1;
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        if cell == nil {
-            cell = TableViewCell.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cell")
+        let cell: SWPostStatusImageCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SWPostStatusImageCell
+        cell.configImageCell(images: statusImages)
+        cell.addImageHandle = {
+            self.view.endEditing(true)
+            let imagePickerController = TZImagePickerController.init(maxImagesCount: 9, delegate: nil)
+            imagePickerController?.didFinishPickingPhotosHandle = { photos, assets, isSelectOriginalPhoto in
+                self.statusImages = photos!
+                self.tableView.reloadData()
+            }
+            self.present(imagePickerController!, animated: true, completion: nil)
         }
-        return cell!
+        return cell
     }
 }
 

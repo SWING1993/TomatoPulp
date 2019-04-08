@@ -52,7 +52,7 @@ fileprivate extension SWUserInfoViewController {
         avatarView.isUserInteractionEnabled = true
         avatarView.layer.cornerRadius = 30
         avatarView.layer.masksToBounds = true
-        avatarView.layer.borderColor = UIColor(red: 225/255, green: 245/255, blue: 254/255, alpha: 1).cgColor
+        avatarView.layer.borderColor = UIColor.init(red: 241/255, green: 241/255, blue: 241/255, alpha: 1).cgColor
         avatarView.layer.borderWidth = 0.5
         self.view.addSubview(avatarView)
         avatarView.snp.makeConstraints { maker in

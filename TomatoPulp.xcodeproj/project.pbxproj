@@ -46,6 +46,7 @@
 		03C16BC7224B5B01002596BB /* SWRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C16BC6224B5B01002596BB /* SWRefreshFooter.swift */; };
 		03D11DB1225B15F600071A7C /* SWStatusLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D11DB0225B15F600071A7C /* SWStatusLineCell.swift */; };
 		03D11DB3225B18F300071A7C /* SWStatusImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D11DB2225B18F300071A7C /* SWStatusImageCell.swift */; };
+		03D11DB5225B3C2300071A7C /* SWPostStatusImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D11DB4225B3C2300071A7C /* SWPostStatusImageCell.swift */; };
 		03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */; };
 		03FE608521EA02CE00E159FF /* SWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608421EA02CE00E159FF /* SWUser.swift */; };
 		03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608821EA1DBF00E159FF /* SWAppClient.swift */; };
@@ -101,6 +102,7 @@
 		03C16BC6224B5B01002596BB /* SWRefreshFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWRefreshFooter.swift; sourceTree = "<group>"; };
 		03D11DB0225B15F600071A7C /* SWStatusLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusLineCell.swift; sourceTree = "<group>"; };
 		03D11DB2225B18F300071A7C /* SWStatusImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWStatusImageCell.swift; sourceTree = "<group>"; };
+		03D11DB4225B3C2300071A7C /* SWPostStatusImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWPostStatusImageCell.swift; sourceTree = "<group>"; };
 		03D4BCCE21E85CDA00475311 /* SWLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLoginViewModel.swift; sourceTree = "<group>"; };
 		03FE608421EA02CE00E159FF /* SWUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWUser.swift; sourceTree = "<group>"; };
 		03FE608821EA1DBF00E159FF /* SWAppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAppClient.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		034C3D9A223B480A002054B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				03D11DB4225B3C2300071A7C /* SWPostStatusImageCell.swift */,
 				03AE47DD225603E700687BCE /* SWStatusUserCell.swift */,
 				03AE47DB225603B200687BCE /* SWStatusTextCell.swift */,
 				03D11DB2225B18F300071A7C /* SWStatusImageCell.swift */,
@@ -588,6 +591,7 @@
 				03FE608521EA02CE00E159FF /* SWUser.swift in Sources */,
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
 				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
+				03D11DB5225B3C2300071A7C /* SWPostStatusImageCell.swift in Sources */,
 				031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */,
 				034FC89921F16674006379C7 /* SWASFLogViewController.swift in Sources */,
 				034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */,

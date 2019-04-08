@@ -15,4 +15,4 @@
 #import <MJRefresh/MJRefresh.h>
 #import <PgyUpdate/PgyUpdateManager.h>
 #import <IGListKit/IGListKit.h>
-
+#import <TZImagePickerController/TZImagePickerController.h>

@@ -10,8 +10,8 @@ import UIKit
 
 class SWStatusImageCell: UICollectionViewCell {
     
-    private static let viewPadding: CGFloat = 10.0
-    private static let leftPadding: CGFloat = 15.0
+    static let viewPadding: CGFloat = 10.0
+    static let leftPadding: CGFloat = 15.0
 
     override init(frame: CGRect) {
         super.init(frame: frame)

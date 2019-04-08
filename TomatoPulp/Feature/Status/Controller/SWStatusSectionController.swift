@@ -26,7 +26,7 @@ class SWStatusSectionController: ListSectionController {
         } else if index == 1 {
             height = SWStatusTextCell.cellHeight(text: model.content, width: width! - 30)
         } else if index == 2  {
-            height = SWStatusImageCell.cellHeight(count: 9)
+            height = SWStatusImageCell.cellHeight(count: 1)
         } else {
             height = 20
         }
@@ -48,7 +48,7 @@ class SWStatusSectionController: ListSectionController {
             return cell
         } else if index == 2 {
             let cell: SWStatusImageCell = self.collectionContext?.dequeueReusableCell(of: SWStatusImageCell.self, for: self, at:index) as! SWStatusImageCell
-            cell.configImageCell(count: 9)
+            cell.configImageCell(count: 1)
             return cell
         }
         let cell: SWStatusLineCell = self.collectionContext?.dequeueReusableCell(of: SWStatusLineCell.self, for: self, at:index) as! SWStatusLineCell

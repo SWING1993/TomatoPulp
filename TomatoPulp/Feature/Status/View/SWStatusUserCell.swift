@@ -18,12 +18,11 @@ class SWStatusUserCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        avatarView.backgroundColor = Color.red.accent4
         avatarView.contentMode = .scaleAspectFill
         avatarView.layer.masksToBounds = true
         avatarView.layer.cornerRadius = 17.5
-//        avatarView.layer.borderColor = Color.lightText.secondary.cgColor
-//        avatarView.layer.borderWidth = 1
+        avatarView.layer.borderColor = UIColor.init(red: 241/255, green: 241/255, blue: 241/255, alpha: 1).cgColor
+        avatarView.layer.borderWidth = 0.5
         self.contentView.addSubview(avatarView)
         
         nicknameLabel.textColor = Color.blue.accent3
@@ -31,7 +30,7 @@ class SWStatusUserCell: UICollectionViewCell {
         self.contentView.addSubview(nicknameLabel)
         
         timeLabel.textColor = Color.darkText.secondary
-        timeLabel.font = UIFont.PFSCMedium(aSize: 12)
+        timeLabel.font = UIFont.PFSCLight(aSize: 12)
         self.contentView.addSubview(timeLabel)
     }
     
@@ -50,7 +49,7 @@ class SWStatusUserCell: UICollectionViewCell {
         
         nicknameLabel.snp.makeConstraints { maker in
             maker.width.equalTo(250)
-            maker.top.equalTo(0)
+            maker.height.equalTo(18)
             maker.bottom.equalTo(self.contentView.snp.centerY)
             maker.left.equalTo(avatarView.snp.right).offset(10)
         }
@@ -58,7 +57,7 @@ class SWStatusUserCell: UICollectionViewCell {
         timeLabel.snp.makeConstraints { maker in
             maker.width.equalTo(250)
             maker.top.equalTo(nicknameLabel.snp.bottom)
-            maker.bottom.equalTo(0)
+            maker.height.equalTo(18)
             maker.left.equalTo(avatarView.snp.right).offset(10)
         }
     }
