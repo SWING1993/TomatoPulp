@@ -35,8 +35,8 @@ class SWStatusImageCell: UICollectionViewCell {
             let view = UIView()
             view.backgroundColor = UIColor.qmui_random()
             contentView.addSubview(view)
-            let row = CGFloat(i / 3)
             let col = CGFloat(i % 3)
+            let row = CGFloat(i / 3)
             let xOffset = col * (imageHeight + SWStatusImageCell.viewPadding)
             let yOffset = row * (imageHeight + SWStatusImageCell.viewPadding)
             view.frame = firstRect.offsetBy(dx: xOffset, dy: yOffset)
@@ -50,8 +50,15 @@ class SWStatusImageCell: UICollectionViewCell {
     }
     
     static func cellHeight(count: Int) -> CGFloat {
-        let col = CGFloat(count / 3)
-        let height = col * (SWStatusImageCell.imageHeight() + SWStatusImageCell.viewPadding) + SWStatusImageCell.viewPadding
+        var row: CGFloat = 0
+        if count <= 0 {
+            row = 0
+        } else if count >= 7 {
+            row = 3
+        } else {
+            row = CGFloat(count / 3) + 1
+        }
+        let height = row * (SWStatusImageCell.imageHeight() + SWStatusImageCell.viewPadding) + SWStatusImageCell.viewPadding
         return height
     }
 }

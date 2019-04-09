@@ -41,7 +41,6 @@ class SWPostStatusImageCell: TableViewCell {
         }
         let imageHeight = SWStatusImageCell.imageHeight()
         let firstRect = CGRect.init(x: SWStatusImageCell.leftPadding, y: SWStatusImageCell.viewPadding, width: imageHeight, height: imageHeight)
-        var lastView = UIImageView()
         for i in 0..<images.count {
             let view = UIImageView()
             view.backgroundColor = UIColor.qmui_random()
@@ -52,20 +51,18 @@ class SWPostStatusImageCell: TableViewCell {
             let yOffset = row * (imageHeight + SWStatusImageCell.viewPadding)
             view.frame = firstRect.offsetBy(dx: xOffset, dy: yOffset)
             view.image = images[i]
-            lastView = view
         }
         
-        contentView.addSubview(addImageButton)
-        if images.count < 9 {
-            if images.count == 0 {
-                addImageButton.frame = firstRect
-            } else {
-                let row = CGFloat((images.count - 1) / 3)
-                let col = CGFloat((images.count - 1) % 3)
-                let xOffset = col * (imageHeight + SWStatusImageCell.viewPadding)
-                let yOffset = row * (imageHeight + SWStatusImageCell.viewPadding)
-                addImageButton.frame = lastView.frame.offsetBy(dx: xOffset, dy: yOffset)
-            }
+        if images.count == 0 {
+            addImageButton.frame = firstRect
+            contentView.addSubview(addImageButton)
+        } else if images.count < 9 {
+            let col = CGFloat((images.count) % 3)
+            let row = CGFloat((images.count) / 3)
+            let xOffset = col * (imageHeight + SWStatusImageCell.viewPadding)
+            let yOffset = row * (imageHeight + SWStatusImageCell.viewPadding)
+            addImageButton.frame = firstRect.offsetBy(dx: xOffset, dy: yOffset)
+            contentView.addSubview(addImageButton)
         }
     }
     
@@ -74,8 +71,15 @@ class SWPostStatusImageCell: TableViewCell {
         if imageCount < 9 {
             imageCount = imageCount + 1
         }
-        let col = CGFloat(imageCount / 3)
-        let height = col * (SWStatusImageCell.imageHeight() + SWStatusImageCell.viewPadding) + SWStatusImageCell.viewPadding
+        var row: CGFloat = 0
+        if imageCount <= 0 {
+            row = 0
+        } else if imageCount >= 7 {
+            row = 3
+        } else {
+            row = CGFloat(imageCount / 3) + 1
+        }
+        let height = row * (SWStatusImageCell.imageHeight() + SWStatusImageCell.viewPadding) + SWStatusImageCell.viewPadding
         print(height)
         return height
     }

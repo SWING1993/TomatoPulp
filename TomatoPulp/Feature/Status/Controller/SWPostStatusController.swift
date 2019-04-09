@@ -21,6 +21,7 @@ class SWPostStatusController: QMUICommonViewController {
     fileprivate var postModel = SWStatusModel()
     fileprivate var textView: QMUITextView!
     fileprivate var statusImages = Array<UIImage>()
+    fileprivate var selectedAssets = Array<Any>()
     
     override func didInitialize() {
         super.didInitialize()
@@ -150,7 +151,10 @@ extension SWPostStatusController: UITableViewDataSource {
         cell.addImageHandle = {
             self.view.endEditing(true)
             let imagePickerController = TZImagePickerController.init(maxImagesCount: 9, delegate: nil)
+            imagePickerController?.allowPickingVideo = false
+            imagePickerController?.selectedAssets = self.selectedAssets as? NSMutableArray
             imagePickerController?.didFinishPickingPhotosHandle = { photos, assets, isSelectOriginalPhoto in
+                self.selectedAssets = assets!
                 self.statusImages = photos!
                 self.tableView.reloadData()
             }
