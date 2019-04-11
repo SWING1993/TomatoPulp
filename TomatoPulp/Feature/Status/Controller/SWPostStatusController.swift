@@ -165,7 +165,7 @@ extension SWPostStatusController: UITableViewDataSource {
             self.view.endEditing(true)
             let imagePickerController = TZImagePickerController.init(maxImagesCount: 9, delegate: nil)
             imagePickerController?.naviTitleColor = Color.black
-            imagePickerController?.barItemTextColor = UIColor.black
+            imagePickerController?.barItemTextColor = Color.blue.accent3
             imagePickerController?.allowPickingVideo = false
             imagePickerController?.selectedAssets = self.selectedAssets as? NSMutableArray
             imagePickerController?.statusBarStyle = .default
