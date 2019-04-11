@@ -10,6 +10,7 @@ import UIKit
 
 class SWStatusImageCell: UICollectionViewCell {
     
+    open var showImagesHandle: ((Array<String>, Int) -> (Void))?
     static let viewPadding: CGFloat = 10.0
     static let leftPadding: CGFloat = 15.0
 
@@ -29,24 +30,51 @@ class SWStatusImageCell: UICollectionViewCell {
         for subview in contentView.subviews {
             subview.removeFromSuperview()
         }
-        let imageHeight = SWStatusImageCell.imageHeight()
+        let imageHeight = SWStatusImageCell.imageHeight(count: imageUrls.count)
         let firstRect = CGRect.init(x: SWStatusImageCell.leftPadding, y: SWStatusImageCell.viewPadding, width: imageHeight, height: imageHeight)
         for i in 0..<imageUrls.count {
             let imageUrl = imageUrls[i]
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
+            imageView.isUserInteractionEnabled = true
+            imageView.tag = i
             imageView.af_setImage(withURL: URL(string: imageUrl)!)
-            let col = CGFloat(i % 3)
-            let row = CGFloat(i / 3)
+            var col = CGFloat(i % 3)
+            var row = CGFloat(i / 3)
+            if imageUrls.count == 4 {
+                col = CGFloat(i % 2)
+                row = CGFloat(i / 2)
+            }
             let xOffset = col * (imageHeight + SWStatusImageCell.viewPadding)
             let yOffset = row * (imageHeight + SWStatusImageCell.viewPadding)
             imageView.frame = firstRect.offsetBy(dx: xOffset, dy: yOffset)
             contentView.addSubview(imageView)
+            imageView.bk_(whenTapped: {
+                if let showImagesHandle = self.showImagesHandle {
+                    showImagesHandle(imageUrls, imageView.tag)
+                }
+            })
         }
     }
     
-    static func imageHeight() -> CGFloat {
+    static func imageHeight(count: Int) -> CGFloat {
+        var height: CGFloat = 0.0
+        let screenWidth = UIScreen.main.bounds.width
+        if count == 1 {
+            height = screenWidth - 2 * SWStatusImageCell.leftPadding
+        } else if count == 4 {
+            height = (screenWidth - 2 * SWStatusImageCell.leftPadding - SWStatusImageCell.viewPadding)/2
+        } else {
+            height = (screenWidth - 2 * (SWStatusImageCell.leftPadding + SWStatusImageCell.viewPadding))/3
+        }
+        return height
+    }
+    
+    /// 9宫格布局
+    ///
+    /// - Returns: 单张图片高度
+    static func defaultImageHeight() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
         let height = (screenWidth - 2 * (SWStatusImageCell.leftPadding + SWStatusImageCell.viewPadding))/3
         return height
@@ -63,7 +91,8 @@ class SWStatusImageCell: UICollectionViewCell {
         } else {
             row = 3
         }
-        let height = row * (SWStatusImageCell.imageHeight() + SWStatusImageCell.viewPadding) + SWStatusImageCell.viewPadding
+        let height = row * (SWStatusImageCell.imageHeight(count: count) + SWStatusImageCell.viewPadding)
+//            + SWStatusImageCell.viewPadding
         return height
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import SKPhotoBrowser
 
 class SWStatusSectionController: ListSectionController {
     
@@ -49,6 +50,19 @@ class SWStatusSectionController: ListSectionController {
         } else if index == 2 {
             let cell: SWStatusImageCell = self.collectionContext?.dequeueReusableCell(of: SWStatusImageCell.self, for: self, at:index) as! SWStatusImageCell
             cell.configImageCell(imageUrls: model.images)
+            cell.showImagesHandle = { imageUrlStrs, index in
+                // 1. create URL Array
+                var images = [SKPhoto]()
+                for url in imageUrlStrs {
+                    let photo = SKPhoto.photoWithImageURL(url)
+                    photo.shouldCachePhotoURLImage = true // you can use image cache by true(NSCache)
+                    images.append(photo)
+                }
+                // 2. create PhotoBrowser Instance, and present.
+                let browser = SKPhotoBrowser(photos: images)
+                browser.initializePageIndex(index)
+                self.viewController?.present(browser, animated: true, completion: {})
+            }
             return cell
         }
         let cell: SWStatusLineCell = self.collectionContext?.dequeueReusableCell(of: SWStatusLineCell.self, for: self, at:index) as! SWStatusLineCell

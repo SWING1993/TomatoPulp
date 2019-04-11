@@ -311,6 +311,7 @@ PODS:
   - ReactiveSwift (4.0.0):
     - Result (~> 4.0)
   - Result (4.1.0)
+  - SKPhotoBrowser (6.0.0)
   - SnapKit (4.0.1)
   - SwiftDate (6.0.0)
   - TZImagePickerController (3.2.0)
@@ -332,6 +333,7 @@ DEPENDENCIES:
   - PgyUpdate
   - QMUIKit
   - ReactiveCocoa (~> 8.0)
+  - SKPhotoBrowser
   - SnapKit (~> 4.0.0)
   - SwiftDate
   - TZImagePickerController
@@ -357,6 +359,7 @@ SPEC REPOS:
     - ReactiveCocoa
     - ReactiveSwift
     - Result
+    - SKPhotoBrowser
     - SnapKit
     - SwiftDate
     - TZImagePickerController
@@ -381,10 +384,11 @@ SPEC CHECKSUMS:
   ReactiveCocoa: fbd26e9ba60e98417ee47433e59465a98ed9da0f
   ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SKPhotoBrowser: 76eb862685761707b5745fde7762757966565e07
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftDate: dd54f20afd420b791511c262298ee30179ff26e6
   TZImagePickerController: 7850b158d025065b162a1a963d445040b828abc9
 
-PODFILE CHECKSUM: 0ca2e3dd162c7998888d75b9193a2b9689d77ca3
+PODFILE CHECKSUM: c30c9530156cd53fe48b4b6e8fb1c8f0b7dd84a4
 
 COCOAPODS: 1.5.3

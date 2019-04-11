@@ -214,6 +214,7 @@
     [QMUIAlertController appearance].alertButtonAttributes = @{NSForegroundColorAttributeName:UIColorBlue,NSFontAttributeName:UIFontMake(15),NSKernAttributeName:@(0)};
     [QMUIAlertController appearance].alertCancelButtonAttributes = @{NSForegroundColorAttributeName:UIColorBlue,NSFontAttributeName:UIFontBoldMake(15),NSKernAttributeName:@(0)};
     QMUIEmptyView.appearance.actionButtonTitleColor = UIColorBlue;
+    
 }
 
 // QMUI 2.3.0 版本里，配置表新增这个方法，返回 YES 表示在 App 启动时要自动应用这份配置表。仅当你的 App 里存在多份配置表时，才需要把除默认配置表之外的其他配置表的返回值改为 NO。

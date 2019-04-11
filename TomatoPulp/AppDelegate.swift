@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let statusNav = AppNavigationController(rootViewController: SWStatusController())
         statusNav.tabBarItem.title = "Status"
-        statusNav.tabBarItem = UITabBarItem.init(title: "Message", image: UIImage.init(named: "tabbar_status"), selectedImage: UIImage.init(named: "tabbar_status_selected"))
+        statusNav.tabBarItem = UITabBarItem.init(title: "Status", image: UIImage.init(named: "tabbar_status"), selectedImage: UIImage.init(named: "tabbar_status_selected"))
         
         let messageNav = AppNavigationController(rootViewController: SWMessageController())
         messageNav.tabBarItem.title = "Message"

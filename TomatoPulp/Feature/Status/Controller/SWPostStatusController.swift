@@ -70,7 +70,6 @@ fileprivate extension SWPostStatusController {
         tableView = TableView.init(frame: CGRect.zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.separatorStyle = .singleLine
         tableView.estimatedRowHeight = 0;
         tableView.estimatedSectionHeaderHeight = 0;
         tableView.estimatedSectionFooterHeight = 0;
@@ -165,8 +164,11 @@ extension SWPostStatusController: UITableViewDataSource {
         cell.addImageHandle = {
             self.view.endEditing(true)
             let imagePickerController = TZImagePickerController.init(maxImagesCount: 9, delegate: nil)
+            imagePickerController?.naviTitleColor = Color.black
+            imagePickerController?.barItemTextColor = UIColor.black
             imagePickerController?.allowPickingVideo = false
             imagePickerController?.selectedAssets = self.selectedAssets as? NSMutableArray
+            imagePickerController?.statusBarStyle = .default
             imagePickerController?.didFinishPickingPhotosHandle = { photos, assets, isSelectOriginalPhoto in
                 self.selectedAssets = assets!
                 self.statusImages = photos!

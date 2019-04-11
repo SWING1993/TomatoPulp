@@ -22,5 +22,6 @@ target 'TomatoPulp' do
 #    pod 'Pgyer'
     pod 'PgyUpdate'
     pod 'TZImagePickerController'
+    pod 'SKPhotoBrowser'
 
 end

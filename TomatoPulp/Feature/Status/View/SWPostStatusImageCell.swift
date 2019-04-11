@@ -39,7 +39,7 @@ class SWPostStatusImageCell: TableViewCell {
         for subview in contentView.subviews {
             subview.removeFromSuperview()
         }
-        let imageHeight = SWStatusImageCell.imageHeight()
+        let imageHeight = SWStatusImageCell.defaultImageHeight()
         let firstRect = CGRect.init(x: SWStatusImageCell.leftPadding, y: SWStatusImageCell.viewPadding, width: imageHeight, height: imageHeight)
         for i in 0..<images.count {
             let imageView = UIImageView()
@@ -92,7 +92,7 @@ class SWPostStatusImageCell: TableViewCell {
         } else {
             row = 3
         }
-        let height = row * (SWStatusImageCell.imageHeight() + SWStatusImageCell.viewPadding) + SWStatusImageCell.viewPadding
+        let height = row * (SWStatusImageCell.defaultImageHeight() + SWStatusImageCell.viewPadding) + SWStatusImageCell.viewPadding
         return height
     }
     
