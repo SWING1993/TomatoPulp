@@ -13,7 +13,8 @@ class SWPostStatusImageCell: TableViewCell {
     
     let addImageButton: QMUIButton = QMUIButton.init()
     open var addImageHandle: (() -> (Void))?
-    
+    open var deleteImageHandle: ((Int) -> (Void))?
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -21,7 +22,6 @@ class SWPostStatusImageCell: TableViewCell {
         addImageButton.layer.borderColor = UIColor.init(red: 231/255, green: 231/255, blue: 231/255, alpha: 1).cgColor
         addImageButton.setImage(UIImage.init(named: "image_add"), for: .normal)
         addImageButton.addTarget(self, action: #selector(handleToAddImages), for: .touchUpInside)
-
     }
     
     @objc
@@ -42,15 +42,26 @@ class SWPostStatusImageCell: TableViewCell {
         let imageHeight = SWStatusImageCell.imageHeight()
         let firstRect = CGRect.init(x: SWStatusImageCell.leftPadding, y: SWStatusImageCell.viewPadding, width: imageHeight, height: imageHeight)
         for i in 0..<images.count {
-            let view = UIImageView()
-            view.backgroundColor = UIColor.qmui_random()
-            contentView.addSubview(view)
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.isUserInteractionEnabled = true
+            imageView.layer.borderWidth = 0.5
+            imageView.layer.borderColor = UIColor.init(red: 231/255, green: 231/255, blue: 231/255, alpha: 1).cgColor
+            imageView.image = images[i]
             let row = CGFloat(i / 3)
             let col = CGFloat(i % 3)
             let xOffset = col * (imageHeight + SWStatusImageCell.viewPadding)
             let yOffset = row * (imageHeight + SWStatusImageCell.viewPadding)
-            view.frame = firstRect.offsetBy(dx: xOffset, dy: yOffset)
-            view.image = images[i]
+            imageView.frame = firstRect.offsetBy(dx: xOffset, dy: yOffset)
+            contentView.addSubview(imageView)
+            
+            let deleteButton = UIButton.init(type: .custom)
+            deleteButton.setImage(UIImage.init(named: "image_delete"), for: .normal)
+            deleteButton.tag = i
+            deleteButton.addTarget(self, action: #selector(handleToDeleteImage), for: .touchUpInside)
+            deleteButton.frame = CGRect.init(x: imageView.bounds.size.width - 30, y: 0, width: 30, height: 30)
+            imageView.addSubview(deleteButton)
         }
         
         if images.count == 0 {
@@ -74,13 +85,21 @@ class SWPostStatusImageCell: TableViewCell {
         var row: CGFloat = 0
         if imageCount <= 0 {
             row = 0
-        } else if imageCount >= 7 {
-            row = 3
+        } else if imageCount <= 3 {
+            row = 1
+        } else if imageCount <= 6 {
+            row = 2
         } else {
-            row = CGFloat(imageCount / 3) + 1
+            row = 3
         }
         let height = row * (SWStatusImageCell.imageHeight() + SWStatusImageCell.viewPadding) + SWStatusImageCell.viewPadding
-        print(height)
         return height
+    }
+    
+    @objc
+    func handleToDeleteImage(button: UIButton) {
+        if let deleteImageHandle = self.deleteImageHandle {
+            deleteImageHandle(button.tag)
+        }
     }
 }

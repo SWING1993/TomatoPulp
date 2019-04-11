@@ -56,18 +56,32 @@ class OssService {
             let task = self.client?.putObject(putRequest)
             task?.continue({ task -> Any? in
                 if let putError = task.error {
-                    Async.main{
-                        failed(putError as NSError)
-                    }
+                    failed(putError as NSError)
                 } else {
-                    Async.main{
-                        let urlStr = "\(self.UrlPrefixed)\(putRequest.objectKey)"
-                        succees(urlStr)
-                    }
+                    let urlStr = "\(self.UrlPrefixed)\(putRequest.objectKey)"
+                    succees(urlStr)
                 }
                 self.putRequest = nil
                 return nil
             })
+        }
+    }
+    
+    func putImages(images: Array<UIImage>, compression: Bool, succees: @escaping (Array<String>) ->(), failed: @escaping (NSError) -> ()) -> Void {
+        var imageUrls = Array<String>()
+        for index in 0..<images.count {
+            let image = images[index]
+            self.putImage(image: image, compression: compression, succees: { url in
+                print(url)
+                imageUrls.append(url)
+                if imageUrls.count >= images.count {
+                    succees(imageUrls)
+                }
+            }) { error in
+                print(error.description)
+                failed(error)
+                return
+            }
         }
     }
     

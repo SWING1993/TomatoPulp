@@ -18,6 +18,7 @@ class SWStatusModel: HandyJSON {
     var nickname : String = ""
     var avatarUrl : String = ""
     var content: String = ""
+    var images = Array<String>()
     var imageUrls: String = ""
     var vedioUrl: String = ""
     var fromDevice: String = ""

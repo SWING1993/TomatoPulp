@@ -10,6 +10,7 @@ import UIKit
 import Material
 import ReactiveCocoa
 import ReactiveSwift
+import Async
 
 class SWPostStatusController: QMUICommonViewController {
 
@@ -105,6 +106,24 @@ fileprivate extension SWPostStatusController {
             self.showTextHUD("状态内容不能为空", dismissAfterDelay: 3)
             return
         }
+        if statusImages.count > 0 {
+            OssService().putImages(images: statusImages, compression: true, succees: { urls in
+                Async.main{
+                    self.postModel.imageUrls = urls.joined(separator: ",")
+                    self.postStatus()
+                }
+            }) { error in
+                Async.main{
+                    print("error:\(error)")
+                    self.showTextHUD("图片上传失败", dismissAfterDelay: 3)
+                }
+            }
+        } else {
+            self.postStatus()
+        }
+    }
+    
+    func postStatus() {
         self.showProgreeHUD()
         HttpUtils.default.request("/status", method: .post, params: self.postModel.toJSON()).response(success: { _ in
             self.hideHUD()
@@ -117,12 +136,6 @@ fileprivate extension SWPostStatusController {
             self.showTextHUD(error, dismissAfterDelay: 3)
         }
     }
-    
-//    @objc
-//    func handleToAddImages() {
-//
-//    }
-    
 }
 
 extension SWPostStatusController: UITableViewDelegate {
@@ -148,6 +161,7 @@ extension SWPostStatusController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SWPostStatusImageCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SWPostStatusImageCell
         cell.configImageCell(images: statusImages)
+        
         cell.addImageHandle = {
             self.view.endEditing(true)
             let imagePickerController = TZImagePickerController.init(maxImagesCount: 9, delegate: nil)
@@ -159,6 +173,12 @@ extension SWPostStatusController: UITableViewDataSource {
                 self.tableView.reloadData()
             }
             self.present(imagePickerController!, animated: true, completion: nil)
+        }
+        
+        cell.deleteImageHandle = { index in
+            self.selectedAssets.remove(at: index)
+            self.statusImages.remove(at: index)
+            self.tableView.reloadData()
         }
         return cell
     }

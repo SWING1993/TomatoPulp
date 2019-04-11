@@ -55,5 +55,4 @@ fileprivate extension SWIndexViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-   
 }

@@ -68,7 +68,6 @@ fileprivate extension SWStatusController {
         adapter.collectionView = collectionView
         adapter.dataSource = self
     }
-    
 }
 
 fileprivate extension SWStatusController {
@@ -102,6 +101,9 @@ fileprivate extension SWStatusController {
                 if let list: Array<[String: Any]> = dict["list"] as? Array<[String: Any]> {
                     list.forEach({ (obj) in
                         if let model = SWStatusModel.deserialize(from: obj) {
+                            if model.imageUrls.isEmpty == false {
+                                model.images = model.imageUrls.components(separatedBy: ",")
+                            }
                             self.dataSource.append(model)
                         }
                     })
