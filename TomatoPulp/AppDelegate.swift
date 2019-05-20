@@ -18,11 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         AppConfigurationTemplate.apply()
-        #if DEBUG
-        #else
-        PgyUpdateManager.sharedPgy()?.start(withAppId: "8aa40edc30844910094fcf40f9cac9bc")
-        PgyUpdateManager.sharedPgy()?.checkUpdate()
-        #endif
 
         GeTuiSdk.start(withAppId: "XotSLiKHSX7iswSsQlJir8", appKey: "ZjzdJP5fNH9BSWg8MMHek", appSecret: "7uQsaiZat670rSheNgfdh7", delegate: self as GeTuiSdkDelegate)
         registerRemoteNotification()

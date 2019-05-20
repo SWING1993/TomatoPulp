@@ -19,8 +19,6 @@ target 'TomatoPulp' do
     pod 'GTSDK', '2.3.1.0-noidfa'
     pod 'GTExtensionSDK'
     pod 'MJRefresh'
-#    pod 'Pgyer'
-    pod 'PgyUpdate'
     pod 'TZImagePickerController'
     pod 'SKPhotoBrowser'
 
