@@ -7,7 +7,9 @@ target 'TomatoPulp' do
     pod 'Alamofire', '~> 4.8'
     pod 'AlamofireImage', '~> 3.5'
     pod 'SwiftDate'
-    pod 'HandyJSON', '~> 4.2.0'
+#    pod 'HandyJSON', '~> 4.2.0'
+pod 'HandyJSON', :git => 'https://github.com/alibaba/HandyJSON.git', :branch => 'dev_for_swift5.0'
+
     pod 'SnapKit', '~> 4.0.0'
     pod 'AsyncSwift'
     pod 'Charts'

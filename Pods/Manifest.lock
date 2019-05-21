@@ -25,7 +25,7 @@ PODS:
   - Charts/Core (3.3.0)
   - GTExtensionSDK (2.2.0)
   - GTSDK (2.3.1.0-noidfa)
-  - HandyJSON (4.2.1)
+  - HandyJSON (5.0.0-beta.1)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
   - IGListKit/Default (3.4.0):
@@ -325,7 +325,7 @@ DEPENDENCIES:
   - Charts
   - GTExtensionSDK
   - GTSDK (= 2.3.1.0-noidfa)
-  - HandyJSON (~> 4.2.0)
+  - HandyJSON (from `https://github.com/alibaba/HandyJSON.git`, branch `dev_for_swift5.0`)
   - IGListKit (~> 3.0)
   - Material (~> 2.0)
   - MJRefresh
@@ -347,7 +347,6 @@ SPEC REPOS:
     - Charts
     - GTExtensionSDK
     - GTSDK
-    - HandyJSON
     - IGListKit
     - Material
     - MJRefresh
@@ -361,6 +360,16 @@ SPEC REPOS:
     - SwiftDate
     - TZImagePickerController
 
+EXTERNAL SOURCES:
+  HandyJSON:
+    :branch: dev_for_swift5.0
+    :git: https://github.com/alibaba/HandyJSON.git
+
+CHECKOUT OPTIONS:
+  HandyJSON:
+    :commit: a2ba4e537711ae1fcd9183679c4db878eb171a78
+    :git: https://github.com/alibaba/HandyJSON.git
+
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
@@ -371,7 +380,7 @@ SPEC CHECKSUMS:
   Charts: ec1f57f9340054155691e84d4544a1d239d382c5
   GTExtensionSDK: acebdd364d45034841b72acb9a9891bc9e0127e5
   GTSDK: ac8a6be4104dfbd69678525e142016d3673f9ca5
-  HandyJSON: d0c5fc80204f29056d59d3e5c4587fa0b16b60a8
+  HandyJSON: 582477127ab3ab65bd2e471815f1a7b846856978
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
@@ -385,6 +394,6 @@ SPEC CHECKSUMS:
   SwiftDate: 8d4f14bf1ef68e95094511504856547bf9e3e1a6
   TZImagePickerController: 7850b158d025065b162a1a963d445040b828abc9
 
-PODFILE CHECKSUM: 6c0033668a6d751bdcbb1c93551d038341c99673
+PODFILE CHECKSUM: f893e0df16a23a95fb1d27efd2e539b2e8013281
 
 COCOAPODS: 1.6.0
