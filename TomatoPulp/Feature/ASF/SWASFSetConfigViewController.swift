@@ -130,26 +130,26 @@ fileprivate extension SWASFSetConfigViewController {
     
     @objc
     func addItmeHandle() {
-        let dialogViewController = QMUIDialogTextFieldViewController()
-        dialogViewController.title = self.title
-        dialogViewController.addTextField(withTitle: nil) { (titleLabel, textField, separatorLayer) in
-            textField?.placeholder = "请输入";
-            textField?.maximumTextLength = 20;
-            textField?.keyboardType = .numberPad
-        }
-        dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
-        dialogViewController.addCancelButton(withText: "取消", block: nil)
-        dialogViewController.addSubmitButton(withText: "确定") { d in
-            let d = d as! QMUIDialogTextFieldViewController
-            let t = d.textFields.first
-            if let value = t?.text {
-                if let intValue = Int(value) {
-                    self.set.insert(intValue)
-                    self.tableView .reloadData()
-                }
-            }
-            d.hide()
-        }
-        dialogViewController.show()
+//        let dialogViewController = QMUIDialogTextFieldViewController()
+//        dialogViewController.title = self.title
+//        dialogViewController.addTextField(withTitle: nil) { (titleLabel, textField, separatorLayer) in
+//            textField?.placeholder = "请输入";
+//            textField?.maximumTextLength = 20;
+//            textField?.keyboardType = .numberPad
+//        }
+//        dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
+//        dialogViewController.addCancelButton(withText: "取消", block: nil)
+//        dialogViewController.addSubmitButton(withText: "确定") { d in
+//            let d = d as! QMUIDialogTextFieldViewController
+//            let t = d.textFields.first
+//            if let value = t?.text {
+//                if let intValue = Int(value) {
+//                    self.set.insert(intValue)
+//                    self.tableView .reloadData()
+//                }
+//            }
+//            d.hide()
+//        }
+//        dialogViewController.show()
     }
 }

@@ -121,16 +121,16 @@ extension AppDelegate : GeTuiSdkDelegate {
         if let payloadMsg: String = String(data: payloadData, encoding: String.Encoding.utf8) {
             print("SDK通知收到个推推送的透传消息 PayloadData:\(payloadMsg) taskId:\(String(describing: taskId)) msgId:\(String(describing: msgId)) offLine:\(offLine) appId:\(String(describing: appId))")
             // 在线消息 创建Alert提醒
-            if offLine == false {
-                if let message = SWMessageModel.deserialize(from: payloadMsg) {
-                    let alertController = QMUIAlertController.init(title: message.title, message: message.content, preferredStyle: .alert)
-                    let dismissAction = QMUIAlertAction.init(title: "知道了", style: .cancel) { (alertController, dismissAction) in
-                        alertController?.hideWith(animated: true)
-                    }
-                    alertController.addAction(dismissAction)
-                    alertController.showWith(animated: true)
-                }
-            }
+//            if offLine == false {
+//                if let message = SWMessageModel.deserialize(from: payloadMsg) {
+//                    let alertController = QMUIAlertController.init(title: message.title, message: message.content, preferredStyle: .alert)
+//                    let dismissAction = QMUIAlertAction.init(title: "知道了", style: .cancel) { (alertController, dismissAction) in
+//                        alertController?.hideWith(animated: true)
+//                    }
+//                    alertController.addAction(dismissAction)
+//                    alertController.showWith(animated: true)
+//                }
+//            }
         }
     }
     

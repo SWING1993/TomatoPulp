@@ -198,55 +198,55 @@ extension SWASFBotConfigViewController: SwitchDelegate {
 extension SWASFBotConfigViewController {
     
     func xxInt(_ key: String) {
-        let dialogViewController = QMUIDialogTextFieldViewController()
-        dialogViewController.title = key
-        dialogViewController.addTextField(withTitle: nil) { (titleLabel, textField, separatorLayer) in
-            textField?.placeholder = "请输入";
-            textField?.maximumTextLength = 70;
-            textField?.keyboardType = .numberPad
-        }
-        dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
-        dialogViewController.addCancelButton(withText: "取消", block: nil)
-        dialogViewController.addSubmitButton(withText: "确定") { d in
-            let d = d as! QMUIDialogTextFieldViewController
-            let t = d.textFields.first
-            if let tValue = t?.text {
-                if let intValue = Int(tValue) {
-                    self.asfBotDict?[key] = intValue
-                    self.tableView.reloadData()
-                }
-            }
-            d.hide()
-        }
-        dialogViewController.show()
+//        let dialogViewController = QMUIDialogTextFieldViewController()
+//        dialogViewController.title = key
+//        dialogViewController.addTextField(withTitle: nil) { (titleLabel, textField, separatorLayer) in
+//            textField?.placeholder = "请输入";
+//            textField?.maximumTextLength = 70;
+//            textField?.keyboardType = .numberPad
+//        }
+//        dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
+//        dialogViewController.addCancelButton(withText: "取消", block: nil)
+//        dialogViewController.addSubmitButton(withText: "确定") { d in
+//            let d = d as! QMUIDialogTextFieldViewController
+//            let t = d.textFields.first
+//            if let tValue = t?.text {
+//                if let intValue = Int(tValue) {
+//                    self.asfBotDict?[key] = intValue
+//                    self.tableView.reloadData()
+//                }
+//            }
+//            d.hide()
+//        }
+//        dialogViewController.show()
     }
     
     func xxString(_ key: String, value: String) {
-        let dialogViewController = QMUIDialogTextFieldViewController()
-        dialogViewController.title = key
-        dialogViewController.addTextField(withTitle: nil) { (titleLabel, textField, separatorLayer) in
-            textField?.placeholder = "请输入";
-            textField?.text = value
-            textField?.maximumTextLength = 70;
-        }
-        dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
-        dialogViewController.shouldEnableSubmitButtonBlock = { _ in
-            return true
-        }
-      
-        dialogViewController.addCancelButton(withText: "取消", block: nil)
-        dialogViewController.addSubmitButton(withText: "确定") { d in
-            let d = d as! QMUIDialogTextFieldViewController
-            let t = d.textFields.first
-            if let tValue = t?.text {
-                self.asfBotDict?[key] = tValue
-            } else {
-                self.asfBotDict?[key] = ""
-            }
-            self.tableView.reloadData()
-            d.hide()
-        }
-        dialogViewController.show()
+//        let dialogViewController = QMUIDialogTextFieldViewController()
+//        dialogViewController.title = key
+//        dialogViewController.addTextField(withTitle: nil) { (titleLabel, textField, separatorLayer) in
+//            textField?.placeholder = "请输入";
+//            textField?.text = value
+//            textField?.maximumTextLength = 70;
+//        }
+//        dialogViewController.shouldManageTextFieldsReturnEventAutomatically = true
+//        dialogViewController.shouldEnableSubmitButtonBlock = { _ in
+//            return true
+//        }
+//
+//        dialogViewController.addCancelButton(withText: "取消", block: nil)
+//        dialogViewController.addSubmitButton(withText: "确定") { d in
+//            let d = d as! QMUIDialogTextFieldViewController
+//            let t = d.textFields.first
+//            if let tValue = t?.text {
+//                self.asfBotDict?[key] = tValue
+//            } else {
+//                self.asfBotDict?[key] = ""
+//            }
+//            self.tableView.reloadData()
+//            d.hide()
+//        }
+//        dialogViewController.show()
     }
     
     func xxSet(_ key: String, value: Set<Int>) {
