@@ -41,8 +41,7 @@ class SWMessageController: QMUICommonViewController {
 fileprivate extension SWMessageController {
     
     func prepareNavigationItem() {
-        navigationItem.titleLabel.text = "Message"
-        navigationItem.detailLabel.text = "✉️✉️✉️"
+        navigationItem.titleLabel.text = "消息"
     }
     
     func prepareTableView() {

@@ -79,7 +79,7 @@ fileprivate extension SWPostStatusController {
     }
     
     func prepareNavigationItem() {
-        navigationItem.titleLabel.text = "Status"
+        navigationItem.titleLabel.text = "发布状态"
         dismissButton = IconButton(image: Icon.cm.close)
         dismissButton.addTarget(self, action: #selector(handleToDismiss), for: .touchUpInside)
         navigationItem.leftViews = [dismissButton]

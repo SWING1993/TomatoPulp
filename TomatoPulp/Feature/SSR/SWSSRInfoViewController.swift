@@ -29,7 +29,7 @@ class SWSSRInfoViewController: UIViewController {
         ssrDict = self.ssr.toJSON()
         if let keys = ssrDict?.keys {
             ssrKeys = Array(keys)
-            ssrKeys?.sort(){
+            ssrKeys?.sort() {
                 $0 < $1
             }
         }

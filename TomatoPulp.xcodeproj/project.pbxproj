@@ -52,6 +52,9 @@
 		03FE608921EA1DBF00E159FF /* SWAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608821EA1DBF00E159FF /* SWAppClient.swift */; };
 		03FE608C21EB398A00E159FF /* SWASFBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608B21EB398A00E159FF /* SWASFBot.swift */; };
 		03FE608E21EB829900E159FF /* SWASFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE608D21EB829900E159FF /* SWASFViewController.swift */; };
+		163A69CF22A64D4700B95AF5 /* SWSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163A69CE22A64D4700B95AF5 /* SWSettingsController.swift */; };
+		163A69D122A6514900B95AF5 /* SWUserBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163A69D022A6514900B95AF5 /* SWUserBGView.swift */; };
+		163A69D522A655F700B95AF5 /* SWCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163A69D422A655F700B95AF5 /* SWCommon.swift */; };
 		9AE2BE188F9EE124E3B2BD5B /* Pods_TomatoPulp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E056230424EEBA1231BE2A9F /* Pods_TomatoPulp.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +111,9 @@
 		03FE608821EA1DBF00E159FF /* SWAppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAppClient.swift; sourceTree = "<group>"; };
 		03FE608B21EB398A00E159FF /* SWASFBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFBot.swift; sourceTree = "<group>"; };
 		03FE608D21EB829900E159FF /* SWASFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWASFViewController.swift; sourceTree = "<group>"; };
+		163A69CE22A64D4700B95AF5 /* SWSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWSettingsController.swift; sourceTree = "<group>"; };
+		163A69D022A6514900B95AF5 /* SWUserBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SWUserBGView.swift; path = ../SWUserBGView.swift; sourceTree = "<group>"; };
+		163A69D422A655F700B95AF5 /* SWCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWCommon.swift; sourceTree = "<group>"; };
 		5CA839BC8EB94E07683D8040 /* Pods-TomatoPulp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TomatoPulp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TomatoPulp/Pods-TomatoPulp.debug.xcconfig"; sourceTree = "<group>"; };
 		7BA1AD4AF62682472F1CD356 /* Pods-TomatoPulp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TomatoPulp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TomatoPulp/Pods-TomatoPulp.release.xcconfig"; sourceTree = "<group>"; };
 		E056230424EEBA1231BE2A9F /* Pods_TomatoPulp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TomatoPulp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				031820A922116BFF0027D58A /* SWUserInfoViewController.swift */,
+				163A69CE22A64D4700B95AF5 /* SWSettingsController.swift */,
+				163A69D322A6516A00B95AF5 /* Views */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 				03C16BC4224B56EB002596BB /* SWRefreshHeader.swift */,
 				03C16BC6224B5B01002596BB /* SWRefreshFooter.swift */,
 				03555FD9225443B5001D6BA4 /* SWFont.swift */,
+				163A69D422A655F700B95AF5 /* SWCommon.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -383,6 +392,14 @@
 				033BEB80224E099100919AA5 /* Controller */,
 			);
 			path = ASF;
+			sourceTree = "<group>";
+		};
+		163A69D322A6516A00B95AF5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				163A69D022A6514900B95AF5 /* SWUserBGView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		20D536314FC12E96DB08286F /* Pods */ = {
@@ -585,6 +602,7 @@
 				03C16B6D22489C0E002596BB /* SWMessageModel.swift in Sources */,
 				03BEA12F21E6F4E500319A6C /* AppNavigationController.swift in Sources */,
 				03C16B6822489875002596BB /* SWMessageController.swift in Sources */,
+				163A69D522A655F700B95AF5 /* SWCommon.swift in Sources */,
 				03BEA12C21E6F22D00319A6C /* SWIndexViewController.swift in Sources */,
 				0332000B21EC7E6900158E86 /* SWASFConfigViewController.swift in Sources */,
 				03D4BCCF21E85CDA00475311 /* SWLoginViewModel.swift in Sources */,
@@ -594,7 +612,9 @@
 				03BEA13421E709C700319A6C /* SWLoginViewController.swift in Sources */,
 				03BEA13621E7195F00319A6C /* SWRegisterViewController.swift in Sources */,
 				03D11DB5225B3C2300071A7C /* SWPostStatusImageCell.swift in Sources */,
+				163A69CF22A64D4700B95AF5 /* SWSettingsController.swift in Sources */,
 				031E558321EECC4E00C20363 /* HttpUtils.swift in Sources */,
+				163A69D122A6514900B95AF5 /* SWUserBGView.swift in Sources */,
 				034FC89921F16674006379C7 /* SWASFLogViewController.swift in Sources */,
 				034BCB0121F021DA00A242B1 /* SWASFSetConfigViewController.swift in Sources */,
 				03C16BA92249BD12002596BB /* NSDate+Extension.m in Sources */,

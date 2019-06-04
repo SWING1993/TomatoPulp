@@ -23,7 +23,7 @@ class SWLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.grey.lighten5
-        navigationItem.titleLabel.text = "Orange🍊"
+        self.title = "登录"
         preparePhoneField()
         preparePasswordField()
         prepareResignResponderButton()

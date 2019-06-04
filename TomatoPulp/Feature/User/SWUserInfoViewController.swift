@@ -13,80 +13,70 @@ import SnapKit
 import BlocksKit
 import Async
 
-class SWUserInfoViewController: QMUICommonViewController {
+class SWUserInfoViewController: QMUICommonTableViewController {
     
     fileprivate let settingsButton: IconButton = IconButton(image: Icon.cm.settings)
-    fileprivate let avatarView: UIImageView = UIImageView()
-    fileprivate let nicknameLabel : UILabel = UILabel()
+    fileprivate var userBGView : SWUserBGView?
     
     override func didInitialize() {
         super.didInitialize()
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+    override func initSubviews() {
+        super.initSubviews()
         prepareSettingButton()
         prepareNavigationItem()
-        prepareAvatarView()
-    }
-}
-
-fileprivate extension SWUserInfoViewController {
-
-    func prepareSettingButton() {
-        settingsButton.addTarget(self, action: #selector(handleToSettings), for: .touchUpInside)
     }
     
-    func prepareNavigationItem() {
-        navigationItem.titleLabel.text = clientShared.user.nickname
-        navigationItem.detailLabel.text = "🎈🎈🎈"
-        navigationItem.rightViews = [settingsButton]
-    }
-    
-    func prepareAvatarView() {
-       
-        if clientShared.user.avatarUrl.count > 0 {
-            avatarView.af_setImage(withURL: URL(string: clientShared.user.avatarUrl)!)
-        }
-
-        avatarView.isUserInteractionEnabled = true
-        avatarView.layer.cornerRadius = 30
-        avatarView.layer.masksToBounds = true
-        avatarView.layer.borderColor = UIColor.init(red: 241/255, green: 241/255, blue: 241/255, alpha: 1).cgColor
-        avatarView.layer.borderWidth = 0.5
-        self.view.addSubview(avatarView)
-        avatarView.snp.makeConstraints { maker in
-            maker.left.equalTo(15)
-            maker.top.equalTo(self.qmui_navigationBarMaxYInViewCoordinator + 10)
-            maker.size.equalTo(CGSize(width: 60, height: 60))
-        }
-        avatarView.bk_(whenTapped: {
+    override func initTableView() {
+        super.initTableView()
+        self.userBGView = SWUserBGView.init(frame: CGRect.init(x: 0, y: 0, width: kUIScreenWidth, height: 300))
+        self.tableView.tableHeaderView = userBGView
+        userBGView?.avatarView.bk_(whenTapped: {
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
             imagePickerController.sourceType = .photoLibrary
             self.present(imagePickerController, animated: true, completion: nil)
         })
-        
-        nicknameLabel.text = clientShared.user.nickname
-        self.view.addSubview(nicknameLabel)
-        nicknameLabel.snp.makeConstraints { maker in
-            maker.left.equalTo(15)
-            maker.right.equalTo(-15)
-            maker.top.equalTo(avatarView.snp.bottom).offset(15)
-            maker.height.equalTo(25)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        if clientShared.user.avatarUrl.count > 0 {
+            self.userBGView?.avatarView.af_setImage(withURL: URL(string: clientShared.user.avatarUrl)!)
         }
+        self.userBGView?.nicknameLabel.text = clientShared.user.nickname;
+        
+    }
+
+}
+
+fileprivate extension SWUserInfoViewController {
+    
+    func prepareSettingButton() {
+        settingsButton.addTarget(self, action: #selector(handleToSettings), for: .touchUpInside)
+    }
+    
+    func prepareNavigationItem() {
+//        navigationItem.titleLabel.text = clientShared.user.nickname
+//        navigationItem.detailLabel.text = "🎈🎈🎈"
+        navigationItem.rightViews = [settingsButton]
     }
     
     @objc
     func handleToSettings() {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        app.toLogin()
+        let controller = SWSettingsController()
+        controller.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(controller, animated: true)
+        //        let app = UIApplication.shared.delegate as! AppDelegate
+        //        app.toLogin()
     }
+
 }
 
 extension SWUserInfoViewController : UIImagePickerControllerDelegate {
-   
+    
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.showProgreeHUD("上传中...")
         let aImage: UIImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
@@ -99,7 +89,7 @@ extension SWUserInfoViewController : UIImagePickerControllerDelegate {
                 HttpUtils.default.request("/user", method: .put, params: params).response(success: { result in
                     print("保存成功：\(String(describing: result))")
                     clientShared.saveUserInfo()
-                    self.avatarView.image = aImage
+                    self.userBGView?.avatarView.image = aImage
                 }, failure: { error in
                     print("保存失败：\(error)")
                     self.showTextHUD("图片保存失败：\(error)", dismissAfterDelay: 3)
@@ -120,3 +110,4 @@ extension SWUserInfoViewController : UIImagePickerControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
     }
 }
+

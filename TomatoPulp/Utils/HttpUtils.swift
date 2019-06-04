@@ -15,11 +15,11 @@ class HttpUtils {
     static let `default` = HttpUtils()
     
     private var host: String {
-        #if DEBUG
-        return "http://localhost:8080"
-        #else
+//        #if DEBUG
+//        return "http://localhost:8080"
+//        #else
         return "http://118.24.216.163:8080/orange"
-        #endif
+//        #endif
     }
     /// 超时时间
     private var timeoutIntervalForRequest: TimeInterval = 25

@@ -45,8 +45,7 @@ fileprivate extension SWStatusController {
     func prepareNavigationItem() {
         postButton = IconButton(image: Icon.cm.photoCamera)
         postButton.addTarget(self, action: #selector(handleToPostStatus), for: .touchUpInside)
-        navigationItem.titleLabel.text = "Status"
-        navigationItem.detailLabel.text = "👿👿👿"
+        navigationItem.titleLabel.text = "状态"
         navigationItem.rightViews = [postButton]
     }
     
