@@ -53,16 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func toMain() {
 
         let statusNav = AppNavigationController(rootViewController: SWStatusController())
-        statusNav.tabBarItem.title = "Status"
-        statusNav.tabBarItem = UITabBarItem.init(title: "Status", image: UIImage.init(named: "tabbar_status"), selectedImage: UIImage.init(named: "tabbar_status_selected"))
+        statusNav.tabBarItem = UITabBarItem.init(title: "状态", image: UIImage.init(named: "tabbar_status"), selectedImage: UIImage.init(named: "tabbar_status_selected"))
         
         let messageNav = AppNavigationController(rootViewController: SWMessageController())
-        messageNav.tabBarItem.title = "Message"
-        messageNav.tabBarItem = UITabBarItem.init(title: "Message", image: UIImage.init(named: "tabbar_message"), selectedImage: UIImage.init(named: "tabbar_message_selected"))
+        messageNav.tabBarItem = UITabBarItem.init(title: "消息", image: UIImage.init(named: "tabbar_message"), selectedImage: UIImage.init(named: "tabbar_message_selected"))
 
         let userNav = AppNavigationController(rootViewController: SWUserInfoViewController())
-        userNav.tabBarItem.title = "User"
-        userNav.tabBarItem = UITabBarItem.init(title: "User", image: UIImage.init(named: "tabbar_user"), selectedImage: UIImage.init(named: "tabbar_user_selected"))
+        userNav.tabBarItem = UITabBarItem.init(title: "用户", image: UIImage.init(named: "tabbar_user"), selectedImage: UIImage.init(named: "tabbar_user_selected"))
 
         let appTabs = QMUITabBarViewController.init()
 //        if clientShared.user.phone == "18667905583" {

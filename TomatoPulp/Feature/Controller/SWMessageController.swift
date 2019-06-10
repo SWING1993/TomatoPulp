@@ -113,11 +113,11 @@ fileprivate extension SWMessageController {
 extension SWMessageController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 65
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let message = messages[indexPath.section]
+        let message = messages[indexPath.row]
         let detailController = SWMessageDetailController()
         detailController.message = message
         detailController.hidesBottomBarWhenPushed = true
@@ -139,7 +139,7 @@ extension SWMessageController : UITableViewDelegate {
                
             }) { errorMsg in
             }
-            self.messages.remove(at: indexPath.section)
+            self.messages.remove(at: indexPath.row)
             if self.messages.count <= 0 {
                 self.showEmptyView(withText: "", detailText: "暂无更多消息", buttonTitle: "刷新", buttonAction:#selector (self.setupMessageData(showHUD:)))
             }
@@ -151,11 +151,11 @@ extension SWMessageController : UITableViewDelegate {
 extension SWMessageController : UITableViewDataSource {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return messages.count
+        return 1
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1;
+        return messages.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -163,22 +163,21 @@ extension SWMessageController : UITableViewDataSource {
         if cell == nil {
             cell = TableViewCell.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cell")
         }
-        let message = messages[indexPath.section]
+
+        let message = messages[indexPath.row]
         cell?.textLabel?.text = message.title
         cell?.textLabel?.font = Font.boldSystemFont(ofSize: 12)
         cell?.detailTextLabel?.text =  message.content
         cell?.detailTextLabel?.font = Font.systemFont(ofSize: 11)
-        cell?.detailTextLabel?.textColor = Color.blue.accent3
+        cell?.detailTextLabel?.textColor = Color.darkText.primary
         cell?.detailTextLabel?.numberOfLines = 1;
+        
+        let timeLabel = QMUILabel.init(frame: CGRect.init(x: 0, y: 0, width: 70, height: 20))
+        timeLabel.text = NSDate.init(timeIntervalSince1970: TimeInterval(message.created/1000)).stringByMessageDate()
+        timeLabel.font = Font.systemFont(ofSize: 11)
+        timeLabel.textColor = Color.blue.accent3
+        cell?.accessoryView = timeLabel
         return cell!
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let message = messages[section]
-        return NSDate.init(timeIntervalSince1970: TimeInterval(message.created/1000)).stringByMessageDate()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15.0
-    }
+
 }
