@@ -12,8 +12,8 @@ import Async
 
 class OssService {
     
-    let AccessKeySecret = "1bXQp4ewQYWoupyNu37lXvLkEbHyJQ"
-    let AccessKeyId = "LTAIeJacGUbHxZXE"
+    let AccessKeySecret = ""
+    let AccessKeyId = ""
     let EndPoint = "https://oss-cn-beijing.aliyuncs.com"
     let BUCKET_NAME = "mybucket-swing"
     let UrlPrefixed = "https://mybucket-swing.oss-cn-beijing.aliyuncs.com/"
